@@ -4,7 +4,7 @@
 ## Configurations ##
 
 # You have to write down your own GitHub user id.
-USERID=jeehoonkang
+USERID=wonook
 
 # You have to write down the directory you want to place the repository.
 WORKSPACE=~/Works
