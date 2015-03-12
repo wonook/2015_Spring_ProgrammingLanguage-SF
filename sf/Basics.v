@@ -441,6 +441,52 @@ Fixpoint plus (n : nat) (m : nat) : nat :=
 
 Eval compute in (plus (S (S (S O))) (S (S O))).
 
+(* plus (S O) (plus m k) = S (plus O (plus m k)) *)
+(* plus (plus (S O) m) k = plus (S (plus O m)) k = S (plus (plus 0 m) k) *)
+
+(* Lemma foo1: forall m k, plus 1 (plus m k) = O.
+Proof.
+  simpl.
+
+Lemma foo2: forall m k, plus (plus 1 m) k = O.
+Proof.
+  simpl.*)
+
+Lemma add_assoc_0:
+  forall (m k : nat), plus O (plus m k) = plus (plus O m) k.
+Proof.
+  simpl.
+  reflexivity.
+Qed.
+
+Lemma add_assoc_n_Sn: forall n : nat,
+  (forall m k : nat, plus n (plus m k) = plus (plus n m) k)
+  ->
+  (forall m k : nat, plus (S n) (plus m k) = plus (plus (S n) m) k)
+.
+Proof.
+  intros n.
+  intros Hn.
+  intros m'.
+  intros k'.
+  
+  simpl plus at 1.
+  simpl plus at 4.
+  simpl plus at 3.
+  
+  specialize (Hn m' k').
+  rewrite Hn.
+  reflexivity.
+Qed.
+
+Lemma add_assoc: forall (n m k : nat),
+  plus n (plus m k) = plus (plus n m) k.
+Proof.
+  induction n.
+  - apply add_assoc_0.
+  - revert n IHn. apply add_assoc_n_Sn.
+Qed.
+
 (** The simplification that Coq performs to reach this conclusion can
     be visualized as follows: *)
 
@@ -497,12 +543,15 @@ Fixpoint exp (base power : nat) : nat :=
     Translate this into Coq. *)
 
 Fixpoint factorial (n:nat) : nat := 
-(* FILL IN HERE *) admit.
+  match n with
+    | O => S O
+    | S p => mult (S p) (factorial p)
+  end.
 
 Example test_factorial1:          (factorial 3) = 6.
-(* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 Example test_factorial2:          (factorial 5) = (mult 10 12).
-(* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 
 (** [] *)
 
