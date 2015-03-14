@@ -66,10 +66,16 @@ Proof. reflexivity. Qed.
     [compute], which is like [simpl] on steroids.  However, there is a
     simple, elegant solution for which [simpl] suffices. *)
 
-Definition blt_nat (n m : nat) : bool :=
-  match beq_nat n m with
-    | true => false
-    | false => ble_nat n m
+Fixpoint blt_nat (n m : nat) : bool :=
+  match n with
+    | O => match m with
+            | O => false
+            | S m' => true
+            end
+    | S n' => match m with
+                | O => false
+                | S m' => blt_nat n' m'
+              end
   end.
 
 Example test_blt_nat1:             (blt_nat 2 2) = false.
