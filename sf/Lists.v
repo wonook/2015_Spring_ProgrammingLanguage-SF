@@ -29,6 +29,30 @@ Check (pair 3 5).
     illustrate how to do pattern matching on two-argument
     constructors.) *)
 
+(* A -> B : function spaces already exist --> we have to express a function.
+  
+ *)
+
+
+(* Definition fst :=
+  fun (p:natprod) =>
+  match p with
+  | pair x y => x
+  end. 
+  
+  This is equivalent to the function below! 
+  
+  
+  Definition evenb : nat -> bool :=
+  fix foo n :=
+  match n with
+  | O => true
+  | S O => false
+  | S (S n') => foo n'
+  end.
+  
+  Fixpoints can also be defined in these kinds of ways. *)
+
 Definition fst (p : natprod) : nat := 
   match p with
   | pair x y => x

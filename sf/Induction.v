@@ -43,6 +43,20 @@ Require Export Basics.
     library (just for the concrete syntax of quoted strings) and the
     [Ltac] command, which allows us to declare custom tactics.  Kudos
     to Aaron Bohannon for this nice hack! *)
+(* 
+Lemma blah
+Proof.
+intros.
+destruct a.
+{ destruct b.
+{reflexivity.}
+{reflexivity.}
+}
+destruct b.
+- reflexivity.
+- reflexivity.
+Qed.
+*)
 
 Require String. Open Scope string_scope.
 
