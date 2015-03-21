@@ -7,5 +7,6 @@ git remote rm upstream
 git remote add upstream https://github.com/snu-sf/pl2015.git
 
 # Download and update.
+git checkout fetchassignments
 git fetch upstream
 git merge upstream/master
