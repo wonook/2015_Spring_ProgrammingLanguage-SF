@@ -779,7 +779,12 @@ Proof.
 Theorem plus_id_exercise : forall n m o : nat,
   n = m -> m = o -> n + m = m + o.
 Proof.
-  (* FILL IN HERE *) Admitted.
+intros n m o.
+intros H1 H2.
+rewrite ->H1.
+rewrite <- H2.
+reflexivity.
+Qed.
 (** [] *)
 
 (** As we've seen in earlier examples, the [Admitted] command
@@ -809,7 +814,11 @@ Theorem mult_S_1 : forall n m : nat,
   m = S n -> 
   m * (1 + n) = m * m.
 Proof.
-  (* FILL IN HERE *) Admitted.
+intros n m.
+intros H.
+rewrite -> H.
+reflexivity.
+Qed.
 (** [] *)
 
 
