@@ -5,8 +5,7 @@ Theorem mult_S_1 : forall n m : nat,
 Proof.
 intros n m.
 intros H.
-rewrite -> H.
-reflexivity.
+rewrite -> H. reflexivity.
 Qed.
 (** [] *)
 
@@ -58,7 +57,7 @@ Proof.
   destruct b.
   reflexivity.
   reflexivity.
-  Qed.
+Qed.
   
 
 
@@ -78,15 +77,9 @@ Theorem andb_eq_orb :
 Proof.
   intros b c.
   destruct b.
-  simpl.
-  intros H.
-  rewrite -> H.
-  reflexivity.
-  simpl.
-  intros H.
-  rewrite <- H.
-  reflexivity.
-  Qed.
+  - simpl. intros H. rewrite -> H. reflexivity.
+  - simpl. intros H. rewrite <- H. reflexivity.
+Qed.
 
 
 
@@ -100,11 +93,9 @@ Theorem plus_n_O : forall n : nat,
 Proof.
   intros n.
   induction n.
-  reflexivity.
-  simpl.
-  rewrite <- IHn.
-  reflexivity.
-  Qed.
+  - reflexivity.
+  - simpl. rewrite <- IHn. reflexivity.
+Qed.
   
   
 
@@ -113,15 +104,11 @@ Theorem plus_n_Sm : forall n m : nat,
 Proof. 
   intros n m.
   induction n, m.
-  reflexivity.
-  reflexivity.
-  simpl.
-  rewrite -> IHn.
-  reflexivity.
-  simpl.
-  rewrite -> IHn.
-  reflexivity.
-  Qed.
+  - reflexivity.
+  - reflexivity.
+  - simpl. rewrite -> IHn. reflexivity.
+  - simpl. rewrite -> IHn. reflexivity.
+Qed.
   
 
 Theorem plus_comm : forall n m : nat,
@@ -130,8 +117,7 @@ Proof.
   intros n m.
   induction n as [| n'].
   - simpl. rewrite <- plus_n_O. reflexivity.
-  - simpl. rewrite -> IHn'. rewrite -> (plus_n_Sm m n').
-  reflexivity.
+  - simpl. rewrite -> IHn'. rewrite -> (plus_n_Sm m n'). reflexivity.
   Qed. 
   
 Theorem plus_assoc : forall n m p : nat,
@@ -167,7 +153,7 @@ Proof.
   induction n as [| n'].
   - reflexivity.
   - simpl. rewrite -> IHn'. rewrite -> plus_n_Sm. reflexivity.
-  Qed. 
+Qed. 
 (** [] *)
 
 
@@ -188,7 +174,7 @@ Proof.
   induction n as [| n'].
   - simpl. reflexivity.
   - simpl. rewrite -> IHn'. rewrite -> plus_n_Sm. reflexivity.
-  Qed.
+Qed.
 
 
 
@@ -206,7 +192,7 @@ Proof.
   induction n as [| n'].
   reflexivity.
   - simpl. rewrite -> IHn'. rewrite <- plus_assoc. reflexivity.
-  Qed.
+Qed.
 
 Theorem mult_assoc : forall n m p : nat,
   n * (m * p) = (n * m) * p.
@@ -215,7 +201,7 @@ Proof.
   induction n as [| n'].
   reflexivity.
   - simpl. rewrite -> IHn'. rewrite -> mult_plus_distr_r. reflexivity.
-  Qed.
+Qed.
 (** [] *)
 
 
@@ -256,7 +242,7 @@ Theorem snd_fst_is_swap : forall (p : natprod),
   (snd p, fst p) = swap_pair p.
 Proof.
   intros p. destruct p. reflexivity.
-  Qed.
+Qed.
 (** [] *)
 
 
@@ -270,7 +256,7 @@ Theorem fst_swap_is_snd : forall (p : natprod),
   fst (swap_pair p) = snd p.
 Proof.
   intros p. destruct p. reflexivity.
-  Qed.
+Qed.
 (** [] *)
 
 
