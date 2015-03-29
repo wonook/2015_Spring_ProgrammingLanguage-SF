@@ -121,15 +121,15 @@ Qed.
 Theorem andb_true_elim2 : forall b c : bool,
   andb b c = true -> c = true.
 Proof.
-  intros b c H.
+  intros b c.
   destruct c. 
   Case "c = true".
     reflexivity.
   Case "c = false".
-    rewrite <-H.
-    reflexivity.
-    simpl.
-Qed.
+    intros H.
+    rewrite <- H.
+Abort.
+(**Todo! *)
   
 (** [] *)
 
@@ -247,24 +247,45 @@ Proof.
 Theorem mult_0_r : forall n:nat,
   n * 0 = 0.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n.
+  induction n as [| n'].
+  Case "n=0".
+    simpl. reflexivity.
+  Case "n=S n'".
+    simpl. rewrite -> IHn'. reflexivity.
+Qed.
+
 
 Theorem plus_n_Sm : forall n m : nat, 
   S (n + m) = n + (S m).
 Proof. 
-  (* FILL IN HERE *) Admitted.
+  intros n m.
+  induction n.
+  Case "n=0".
+  - simpl. reflexivity.
+  - simpl. rewrite -> IHn. reflexivity.
+Qed.
 
 
 Theorem plus_comm : forall n m : nat,
   n + m = m + n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n m.
+  induction n.
+  - simpl. rewrite -> plus_0_r. reflexivity.
+  - simpl. rewrite -> IHn. rewrite -> plus_n_Sm. reflexivity.
+Qed.
+
 
 
 Theorem plus_assoc : forall n m p : nat,
   n + (m + p) = (n + m) + p.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n m p.
+  induction n.
+  - simpl. reflexivity.
+  - simpl. rewrite -> IHn. reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 2 stars (double_plus)  *)
@@ -281,7 +302,11 @@ Fixpoint double (n:nat) :=
 
 Lemma double_plus : forall n, double n = n + n .
 Proof.  
-  (* FILL IN HERE *) Admitted.
+  intros n.
+  induction n.
+  - reflexivity.
+  - simpl. rewrite -> IHn. rewrite -> plus_n_Sm. reflexivity.
+Qed.
 (** [] *)
 
 
@@ -379,7 +404,11 @@ Proof.
 Theorem plus_swap : forall n m p : nat, 
   n + (m + p) = m + (n + p).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n m p.
+  induction n.
+  - reflexivity.
+  - simpl. rewrite -> IHn. rewrite -> plus_n_Sm. reflexivity.
+Qed.
 
 
 (** Now prove commutativity of multiplication.  (You will probably
@@ -390,7 +419,11 @@ Proof.
 Theorem mult_comm : forall m n : nat,
  m * n = n * m.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n m.
+  induction n.
+  - simpl. rewrite -> mult_0_r. reflexivity.
+  - simpl. rewrite -> IHn. rewrite <- mult_n_Sm. rewrite -> plus_comm. reflexivity.  
+Qed.
 (** [] *)
 
 (** **** Exercise: 2 stars, optional (evenb_n__oddb_Sn)  *)
@@ -400,7 +433,12 @@ Proof.
 Theorem evenb_n__oddb_Sn : forall n : nat,
   evenb n = negb (evenb (S n)).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n.
+  induction n.
+  - reflexivity.
+  - simpl.
+Abort.
+(** TODO! *)
 (** [] *)
 
 (* ###################################################################### *)
