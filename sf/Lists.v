@@ -787,13 +787,25 @@ Proof.
 Theorem app_nil_end : forall l : natlist, 
   l ++ [] = l.   
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l. induction l.
+  - reflexivity.
+  - simpl. rewrite -> IHl. reflexivity.
+Qed.
 
-
+Lemma rev_snoc : forall l : natlist, forall n : nat,
+  rev (snoc l n) = n :: rev l.
+Proof.
+  intros l n. induction l.
+  - reflexivity.
+  - simpl. rewrite -> IHl. reflexivity.
+Qed.
 Theorem rev_involutive : forall l : natlist,
   rev (rev l) = l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l. induction l.
+  - reflexivity.
+  - simpl. rewrite -> rev_snoc. rewrite -> IHl. reflexivity.
+Qed.
 
 (** There is a short solution to the next exercise.  If you find
     yourself getting tangled up, step back and try to look for a
@@ -802,25 +814,48 @@ Proof.
 Theorem app_assoc4 : forall l1 l2 l3 l4 : natlist,
   l1 ++ (l2 ++ (l3 ++ l4)) = ((l1 ++ l2) ++ l3) ++ l4.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l1 l2 l3 l4.
+  induction l1.
+  - simpl. rewrite -> app_assoc. reflexivity.
+  - simpl. rewrite -> IHl1. reflexivity.
+Qed.
 
 Theorem snoc_append : forall (l:natlist) (n:nat),
   snoc l n = l ++ [n].
 Proof.
-  (* FILL IN HERE *) Admitted.
-
+  intros l n.
+  induction l.
+  - reflexivity.
+  - simpl. rewrite -> IHl. reflexivity.
+Qed.
 
 Theorem distr_rev : forall l1 l2 : natlist,
   rev (l1 ++ l2) = (rev l2) ++ (rev l1).
+Lemma app_nil : forall l : natlist,
+  l ++ [] = l.
+Proof. induction l. 
+  - reflexivity.
+  - simpl. rewrite -> IHl. reflexivity.
+Qed.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l1 l2.
+  induction l1.
+  - simpl. rewrite -> app_nil. reflexivity.
+  - simpl. rewrite -> IHl1. rewrite -> snoc_append. rewrite -> snoc_append. rewrite -> app_assoc. reflexivity.
+Qed.
 
 (** An exercise about your implementation of [nonzeros]: *)
 
 Lemma nonzeros_app : forall l1 l2 : natlist,
   nonzeros (l1 ++ l2) = (nonzeros l1) ++ (nonzeros l2).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l1 l2. induction l1.
+  - reflexivity.
+  - simpl. rewrite -> IHl1. destruct n. 
+    reflexivity.
+    reflexivity.
+Qed.
+
 (** [] *)
 
 (** **** Exercise: 2 stars (beq_natlist)  *)
@@ -829,19 +864,38 @@ Proof.
     yields [true] for every list [l]. *)
 
 Fixpoint beq_natlist (l1 l2 : natlist) : bool :=
-  (* FILL IN HERE *) admit.
+  match l1 with
+  | nil => match l2 with
+            | nil => true
+            | _ => false
+            end
+  | h::t => match l2 with
+            | nil => false
+            | x::y => andb (beq_nat h x) (beq_natlist t y)
+            end
+  end.
 
 Example test_beq_natlist1 :   (beq_natlist nil nil = true).
- (* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 Example test_beq_natlist2 :   beq_natlist [1;2;3] [1;2;3] = true.
- (* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 Example test_beq_natlist3 :   beq_natlist [1;2;3] [1;2;4] = false.
- (* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 
+Lemma beq_nat_refl : forall n:nat,
+  true = beq_nat n n.
+Proof.
+  intros n. induction n.
+  - reflexivity.
+  - simpl. rewrite -> IHn. reflexivity.
+Qed.
 Theorem beq_natlist_refl : forall l:natlist,
   true = beq_natlist l l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l. induction l.
+  - reflexivity.
+  - simpl. rewrite <- IHl. rewrite <- beq_nat_refl. reflexivity.
+Qed.
 (** [] *)
 
 (* ###################################################### *)
@@ -897,7 +951,21 @@ Proof.
 There is a hard way and an easy way to solve this exercise.
 *)
 
-(* FILL IN HERE *)
+Lemma rev_injective1: forall l1 l2 : natlist,
+  l1 = l2 -> rev l1 = rev l2.
+Proof.
+  intros l1 l2. induction l1.
+  - simpl. intros H. rewrite <- H. reflexivity.
+  - simpl. intros H. rewrite <- H. simpl. reflexivity.
+Qed.
+Theorem rev_injective: forall l1 l2 : natlist,
+  rev l1 = rev l2 -> l1 = l2.
+Proof.
+  intros l1 l2. induction l1. 
+  - simpl. intros H. rewrite <- rev_involutive. rewrite <- H. reflexivity.
+  - simpl. intros H. rewrite <- rev_involutive with (l := l1). rewrite <- rev_snoc with (l := (rev l1)).rewrite -> H. rewrite -> rev_involutive. reflexivity.
+Qed.
+
 (** [] *)
 
 
