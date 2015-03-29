@@ -73,7 +73,7 @@ Qed.
 Theorem andb_eq_orb : 
   forall (b c : bool),
   (andb b c = orb b c) ->
-  b = c.
+  b = c
 Proof.
   intros b c.
   destruct b.
@@ -97,7 +97,7 @@ Proof.
   - simpl. rewrite <- IHn. reflexivity.
 Qed.
   
-  
+ 
 
 Theorem plus_n_Sm : forall n m : nat, 
   S (n + m) = n + (S m).
