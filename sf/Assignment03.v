@@ -143,14 +143,27 @@ Proof. reflexivity. Qed.
 Theorem app_nil_end : forall l : natlist, 
   l ++ [] = l.   
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l. induction l.
+  - reflexivity.
+  - simpl. rewrite -> IHl. reflexivity.
+Qed.
 
 
 (** Hint: You may need to first state and prove some lemma about snoc and rev. *)
+Lemma rev_snoc : forall l : natlist, forall n : nat,
+  rev (snoc l n) = n :: rev l.
+Proof.
+  intros l n. induction l.
+  - reflexivity.
+  - simpl. rewrite -> IHl. reflexivity.
+Qed.
 Theorem rev_involutive : forall l : natlist,
   rev (rev l) = l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l. induction l.
+  - reflexivity.
+  - simpl. rewrite -> rev_snoc. rewrite -> IHl. reflexivity.
+Qed.
 
 
 (** There is a short solution to the next exercise.  If you find
@@ -159,26 +172,49 @@ Proof.
 Theorem app_assoc4 : forall l1 l2 l3 l4 : natlist,
   l1 ++ (l2 ++ (l3 ++ l4)) = ((l1 ++ l2) ++ l3) ++ l4.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l1 l2 l3 l4.
+  induction l1.
+  - simpl. rewrite -> app_assoc. reflexivity.
+  - simpl. rewrite -> IHl1. reflexivity.
+Qed.
 
 
 Theorem snoc_append : forall (l:natlist) (n:nat),
   snoc l n = l ++ [n].
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l n.
+  induction l.
+  - reflexivity.
+  - simpl. rewrite -> IHl. reflexivity.
+Qed.
 
 
+Lemma app_nil : forall l : natlist,
+  l ++ [] = l.
+Proof. induction l. 
+  - reflexivity.
+  - simpl. rewrite -> IHl. reflexivity.
+Qed.
 Theorem distr_rev : forall l1 l2 : natlist,
   rev (l1 ++ l2) = (rev l2) ++ (rev l1).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l1 l2.
+  induction l1.
+  - simpl. rewrite -> app_nil. reflexivity.
+  - simpl. rewrite -> IHl1. rewrite -> snoc_append. rewrite -> snoc_append. rewrite -> app_assoc. reflexivity.
+Qed.
 
 
 (** An exercise about your implementation of [nonzeros]: *)
 Theorem nonzeros_app : forall l1 l2 : natlist,
   nonzeros (l1 ++ l2) = (nonzeros l1) ++ (nonzeros l2).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l1 l2. induction l1.
+  - reflexivity.
+  - simpl. rewrite -> IHl1. destruct n. 
+    reflexivity.
+    reflexivity.
+Qed.
 
 (** [] *)
 
@@ -202,20 +238,39 @@ Proof.
 Check beq_nat.
 
 Fixpoint beq_natlist (l1 l2 : natlist) : bool :=
-  (* FILL IN HERE *) admit.
+  match l1 with
+  | nil => match l2 with
+            | nil => true
+            | _ => false
+            end
+  | h::t => match l2 with
+            | nil => false
+            | x::y => andb (beq_nat h x) (beq_natlist t y)
+            end
+  end.
 
 Example test_beq_natlist1 :   (beq_natlist nil nil = true).
- (* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 Example test_beq_natlist2 :   beq_natlist [1;2;3] [1;2;3] = true.
- (* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 Example test_beq_natlist3 :   beq_natlist [1;2;3] [1;2;4] = false.
- (* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 
 (** Hint: You may need to first prove a lemma about reflexivity of beq_nat. *)
+Lemma beq_nat_refl : forall n:nat,
+  beq_nat n n = true.
+Proof.
+  intros n. induction n.
+  - reflexivity.
+  - simpl. rewrite -> IHn. reflexivity.
+Qed.
 Theorem beq_natlist_refl : forall l:natlist,
   beq_natlist l l = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l. induction l.
+  - reflexivity.
+  - simpl. rewrite -> IHl. rewrite -> beq_nat_refl. reflexivity.
+Qed.
 (** [] *)
 
 
@@ -237,10 +292,13 @@ Proof.
 (** **** Problem #5 (10 pts) : 4 stars, advanced (rev_injective) *)
 
 (** Hint: You can use the lemma [rev_involutive]. *)
-Theorem rev_injective: forall l1 l2 : natlist, 
+Theorem rev_injective: forall l1 l2 : natlist,
   rev l1 = rev l2 -> l1 = l2.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l1 l2. induction l1. 
+  - simpl. intros H. rewrite <- rev_involutive. rewrite <- H. reflexivity.
+  - simpl. intros H. rewrite <- rev_involutive with (l := l1). rewrite <- rev_snoc with (l := (rev l1)). rewrite -> H. rewrite -> rev_involutive. reflexivity.
+Qed.
 
 (** [] *)
 

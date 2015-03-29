@@ -829,14 +829,14 @@ Proof.
   - simpl. rewrite -> IHl. reflexivity.
 Qed.
 
-Theorem distr_rev : forall l1 l2 : natlist,
-  rev (l1 ++ l2) = (rev l2) ++ (rev l1).
 Lemma app_nil : forall l : natlist,
   l ++ [] = l.
 Proof. induction l. 
   - reflexivity.
   - simpl. rewrite -> IHl. reflexivity.
 Qed.
+Theorem distr_rev : forall l1 l2 : natlist,
+  rev (l1 ++ l2) = (rev l2) ++ (rev l1).
 Proof.
   intros l1 l2.
   induction l1.
@@ -963,7 +963,7 @@ Theorem rev_injective: forall l1 l2 : natlist,
 Proof.
   intros l1 l2. induction l1. 
   - simpl. intros H. rewrite <- rev_involutive. rewrite <- H. reflexivity.
-  - simpl. intros H. rewrite <- rev_involutive with (l := l1). rewrite <- rev_snoc with (l := (rev l1)).rewrite -> H. rewrite -> rev_involutive. reflexivity.
+  - simpl. intros H. rewrite <- rev_involutive with (l := l1). rewrite <- rev_snoc with (l := (rev l1)). rewrite -> H. rewrite -> rev_involutive. reflexivity.
 Qed.
 
 (** [] *)
