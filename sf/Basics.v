@@ -945,11 +945,11 @@ Theorem andb_eq_orb :
   (andb b c = orb b c) ->
   b = c.
 Proof.
-  intros b c H.
-  destruct b, c.
-  reflexivity.
-  Abort.
-  (*TODO!!*)
+  intros b c.
+  destruct b.
+  - simpl. intros H. rewrite -> H. reflexivity.
+  - simpl. intros H. rewrite -> H. reflexivity.
+  Qed.
   
 
 
