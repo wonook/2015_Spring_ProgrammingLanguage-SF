@@ -821,10 +821,20 @@ Proof. reflexivity.  Qed.
     auxiliary lemma. *)
 
 
+Lemma map_snoc : forall (X Y : Type) (f : X -> Y) (l : list X) (e: X),
+  map f (snoc l e) = snoc (map f l) (f e).
+Proof.
+  intros. induction l.
+  - reflexivity.
+  - simpl. rewrite -> IHl. reflexivity.
+Qed.
 Theorem map_rev : forall (X Y : Type) (f : X -> Y) (l : list X),
   map f (rev l) = rev (map f l).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros. induction l.
+  - reflexivity.
+  - simpl. rewrite -> map_snoc. rewrite -> IHl. reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 2 stars (flat_map)  *)

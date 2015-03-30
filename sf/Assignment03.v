@@ -473,7 +473,7 @@ Theorem split_map: forall X Y (l: list (X*Y)),
 Proof.
   intros. induction l.
   - reflexivity.
-  - simpl. rewrite <- IHl. destruct x. simpl. reflexivity.
+  - simpl. destruct x. simpl. rewrite <- IHl. reflexivity.
 Qed.
 
 (** [] *)
