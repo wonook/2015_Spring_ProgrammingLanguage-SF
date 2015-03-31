@@ -47,7 +47,27 @@ Theorem silly2 : forall (n m o p : nat),
      [n;o] = [m;p].
 Proof.
   intros n m o p eq1 eq2. 
+  Check (eq2 n m). (* checking type *)
   apply eq2. apply eq1.  Qed.
+
+Theorem silly2_1 : forall (n m o p : nat),
+     n = m  ->
+     (forall (q r : nat), q = r -> [q;o] = [r;p]) ->
+     [n;o] = [m;p].
+Proof.
+  intros n m o p eq1 eq2. 
+  assert (X := eq2 n m).
+  apply X. apply eq1. Qed.
+
+Theorem silly2_2 : forall (n m o p : nat),
+     n = m  ->
+     (forall (q r : nat), q = r -> [q;o] = [r;p]) ->
+     [n;o] = [m;p].
+Proof.
+  intros n m o p eq1 eq2. 
+  apply eq2 in eq1.
+  apply eq1. Qed.
+ 
 
 (** You may find it instructive to experiment with this proof
     and see if there is a way to complete it using just [rewrite]
@@ -171,6 +191,19 @@ Proof.
      by adding [with (m:=[c,d])] to the invocation of
      [apply]. *)
   apply trans_eq with (m:=[c;d]). apply eq1. apply eq2.   Qed.
+
+Example trans_eq_example'_1 : forall (a b c d e f : nat),
+     [a;b] = [c;d] ->
+     [c;d] = [e;f] ->
+     [a;b] = [e;f].
+Proof.
+  intros a b c d e f eq1 eq2. 
+  assert (treq := trans_eq).
+  apply treq with (m := [c;d]).
+  - apply eq1.
+  - apply eq2.
+Qed.
+
 
 (**  Actually, we usually don't have to include the name [m]
     in the [with] clause; Coq is often smart enough to

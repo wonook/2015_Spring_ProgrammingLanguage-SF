@@ -670,12 +670,27 @@ Fixpoint filter {X:Type} (test: X->bool) (l:list X)
                         else       filter test t
   end.
 
+(** Same function using match
+* Fixpoint filter {X:Type} (test: X->bool) (l:list X) : (list X) :=
+  * match l with
+  * | [] => []
+  * | h :: t =>
+      * match test h with
+      * | true => h :: (filter test t)
+      * | false => filter test t
+      * end
+* end.
+* *)
+
 (** For example, if we apply [filter] to the predicate [evenb]
     and a list of numbers [l], it returns a list containing just the
     even members of [l]. *)
 
 Example test_filter1: filter evenb [1;2;3;4] = [2;4].
 Proof. reflexivity.  Qed.
+
+(** Another example *)
+Eval compute in filter evenb [1;2;2;3;4;100].
 
 (** *** *)
 Definition length_is_1 {X : Type} (l : list X) : bool :=
@@ -778,6 +793,8 @@ Example test_partition2: partition (fun x => false) [5;9;0] = ([], [5;9;0]).
 (** ** Map *)
 
 (** Another handy higher-order function is called [map]. *)
+(** A function that is much used in toos like Hadoop. *)
+
 
 Fixpoint map {X Y:Type} (f:X->Y) (l:list X)
              : (list Y) :=
@@ -1003,6 +1020,17 @@ Proof.
 (* ###################################################### *)
 (** * The [unfold] Tactic *)
 
+(** 
+* tactics so far:
+* intro(s)
+* simpl
+* reflexivity
+* destruct
+* induction
+* assert
+* rewrite
+* *)
+
 (** Sometimes, a proof will get stuck because Coq doesn't
     automatically expand a function call into its definition.  (This
     is a feature, not a bug: if Coq automatically expanded everything
@@ -1035,6 +1063,14 @@ Proof.
 (** Now we can prove a first property of [override]: If we
     override a function at some argument [k] and then look up [k], we
     get back the overridden value. *)
+
+(*
+* Print override.
+*
+* These two functions are the same: (syntactic sugar)
+* Definition foo := fun x y => x + y + 3.
+* Definition foo := fun x => fun y => x + y + 3.
+*)
 
 Theorem override_eq : forall {X:Type} x k (f:nat->X),
   (override f k x) k = x.
