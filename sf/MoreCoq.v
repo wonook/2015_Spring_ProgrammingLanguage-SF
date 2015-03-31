@@ -199,7 +199,7 @@ Example trans_eq_example'_1 : forall (a b c d e f : nat),
 Proof.
   intros a b c d e f eq1 eq2. 
   assert (treq := trans_eq).
-  apply treq with (m := [c;d]).
+  apply treq with (m := [c;d]) (n := [a;b]).
   - apply eq1.
   - apply eq2.
 Qed.
