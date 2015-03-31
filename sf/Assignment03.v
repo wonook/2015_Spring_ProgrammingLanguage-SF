@@ -457,9 +457,7 @@ Fixpoint split
            : (list X) * (list Y) :=
   match l with 
   | nil=> (nil, nil)
-  | (hh, ht)::t => match split t with
-            | (x, y) => ((cons hh x), (cons ht y))
-            end
+  | h::t => ((fst h :: fst (split t)), (snd h :: snd (split t)))
   end.
 
 Example test_split:
@@ -473,7 +471,7 @@ Theorem split_map: forall X Y (l: list (X*Y)),
 Proof.
   intros. induction l.
   - reflexivity.
-  - simpl. destruct x. simpl. rewrite <- IHl. reflexivity.
+  - simpl. rewrite <- IHl. reflexivity.
 Qed.
 
 (** [] *)
