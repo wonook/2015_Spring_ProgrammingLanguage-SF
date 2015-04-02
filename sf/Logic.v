@@ -2,6 +2,26 @@
 
 Require Export MoreCoq. 
 
+Definition plus_2_is_5 (x:nat) : Prop :=
+  x + 2 = 5.
+Definition fooo :=
+  forall n : nat, plus_2_is_5 n.
+Definition baar :=
+  exists n : nat, plus_2_is_5 n.
+Definition two_plus_3_is_5 :=
+  2 + 3 = 5.
+
+Lemma asdfasdf: 2+3 = 5.
+Proof.
+  reflexivity.
+Qed.
+Print asdfasdf.
+
+Check (fooo).
+
+Definition plus_2_is_bigger_than_5 (x:nat) :=
+  x + 2 > 5.
+
 
 
 (** Coq's built-in logic is very small: the only primitives are
