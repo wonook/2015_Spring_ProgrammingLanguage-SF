@@ -1,0 +1,10 @@
+  intros
+  simpl
+  reflexivity
+  destruct
+  induction
+  rewrite
+  unfold
+
+  apply
+  inversion
