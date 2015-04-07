@@ -727,6 +727,7 @@ Theorem index_after_last: forall (n : nat) (X : Type) (l : list X),
      length l = n ->
      index n l = None.
 Proof.
+  (**difficult*)
   intros. generalize dependent n. induction l.
   - reflexivity.
   - destruct n.
@@ -757,7 +758,14 @@ Theorem double_induction: forall (P : nat -> nat -> Prop),
   (forall m n, P m n -> P (S m) (S n)) ->
   forall m n, P m n.
 Proof.
-  intros. 
+  (**difficult*)
+  intros. generalize dependent n. induction m.
+  - intros. induction n. 
+    apply H.
+    apply H1. apply IHn.
+  - intros. induction n. 
+    apply H0. apply IHm.
+    apply H2. apply IHm.
 Qed.
 (** [] *)
 
@@ -774,7 +782,9 @@ Qed.
 Theorem override_shadow : forall (X:Type) x1 x2 k1 k2 (f : nat->X),
   (override (override f k1 x2) k1 x1) k2 = (override f k1 x1) k2.
 Proof.
-  intros.
+  intros. unfold override. induction (beq_nat k1 k2). 
+  - reflexivity.
+  - reflexivity.
 Qed.
 (** [] *)
 
@@ -796,7 +806,15 @@ Theorem bool_fn_applied_thrice :
   forall (f : bool -> bool) (b : bool), 
   f (f (f b)) = f b.
 Proof.
-  intros.
+  intros. induction b.
+  - destruct (f true) eqn:a.
+    rewrite -> a. apply a.
+    destruct (f false) eqn:c.
+    apply a. apply c.
+  - destruct (f false) eqn: a.
+    destruct (f true) eqn:c.
+    apply c. apply a.
+    rewrite -> a. apply a.
 Qed.
 (** [] *)
 
@@ -811,11 +829,18 @@ Qed.
 
 (** **** Problem #24 (10 pts) : 2 stars (override_same)  
     Hint: use the lemma [beq_nat_true]. *)
+Lemma feq : forall (X Y:Type) x1 x2 (f : X -> Y),
+  x1 = x2 -> f x1 = f x2.
+Proof.
+  intros. rewrite H. reflexivity.
+Qed.
 Theorem override_same : forall (X:Type) x1 k1 k2 (f : nat->X),
   f k1 = x1 -> 
   (override f k1 x1) k2 = f k2.
 Proof.
-  intros.
+  intros. unfold override. induction (beq_nat k1 k2) eqn:a.
+  - apply beq_nat_true in a. rewrite <- H. apply feq. apply a. 
+  - reflexivity.
 Qed.
 (** [] *)
 
@@ -836,7 +861,13 @@ Theorem filter_exercise : forall (X : Type) (test : X -> bool)
      filter test l = x :: lf ->
      test x = true.
 Proof.
-  intros.
+  (**difficult*)
+  intros. generalize dependent lf. induction l.
+  - unfold filter. intros. inversion H.
+  - intros. simpl in H. destruct (test x0) eqn:c.
+    inversion H. 
+    rewrite <- H1. rewrite -> c. reflexivity.
+    apply IHl with lf. apply H.
 Qed.
 (** [] *)
 
