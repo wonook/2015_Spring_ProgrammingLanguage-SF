@@ -24,6 +24,7 @@ MORECOQ
 
 LOGIC
   split.
+  replace ... with ... in ....
 
 
 REVIEW
