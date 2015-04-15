@@ -8,7 +8,9 @@ Require Export Assignment05_14.
 Theorem double_even : forall n,
   ev (double n).
 Proof.
-  (* FILL IN HERE *) admit.
+    intros. induction n.
+    - simpl. apply ev_0.
+    - simpl. apply ev_SS. apply IHn.
 Qed.
 (** [] *)
 

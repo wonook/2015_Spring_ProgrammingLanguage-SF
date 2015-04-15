@@ -11,7 +11,9 @@ Require Export Assignment05_15.
 (** 2 stars (b_times2)  *)
 Theorem b_times2: forall n, beautiful n -> beautiful (2*n).
 Proof.
-    (* FILL IN HERE *) admit.
+    intros. simpl. apply b_sum.
+    - apply H.
+    - apply b_sum. apply H. apply b_0.
 Qed.
 (** [] *)
 
