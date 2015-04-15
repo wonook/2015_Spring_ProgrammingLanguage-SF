@@ -1,3 +1,8 @@
+USEFUL COMMANDS
+  SearchAbout le.
+  SearchPattern (_ + _ = _).
+
+
 BASICS
   intros
   simpl (in H)
