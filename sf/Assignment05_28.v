@@ -21,19 +21,48 @@ Require Export Assignment05_27.
 *)
 
 Inductive pal {X: Type} : list X -> Prop :=
-(* FILL IN HERE *)
+  | pal_nil : pal nil
+  | pal_one : forall n:X, pal [n]
+  | pal_add : forall (n:X) (l:list X), pal l -> pal(n::l++[n])
 .
 
+Lemma snoc_to_plus: forall (X: Type) (l: list X) (n: X),
+    snoc l n = l ++ [n].
+Proof.
+    intros. induction l.
+    - simpl. reflexivity.
+    - simpl. rewrite IHl. reflexivity.
+Qed.
+Theorem app_assoc : forall (X: Type) (l1 l2 l3 : list X), 
+      (l1 ++ l2) ++ l3 = l1 ++ (l2 ++ l3).   
+      Proof.
+            intros x l1 l2 l3. induction l1 as [| n l1'].
+              - reflexivity.
+                - simpl. rewrite -> IHl1'. reflexivity.  
+      Qed.
 Theorem pal_app_rev: forall (X: Type) (l: list X),
   pal (l ++ rev l).
 Proof.
-  (* FILL IN HERE *) admit.
+    intros. replace (l++ rev l) with (l ++ nil ++ rev l). induction l.
+    simpl. apply pal_nil.
+    simpl. rewrite snoc_to_plus. replace (x::l++rev l++[x]) with (x::(l++rev l)++[x]). apply pal_add with (n:=x). apply IHl. rewrite app_assoc. reflexivity.
+    simpl. reflexivity.
 Qed.
 
+Lemma rev_app: forall (X: Type) (a: X) (b:list X),
+    rev(b++[a]) = [a]++(rev b).
+Proof.
+    intros. induction b.
+    reflexivity.
+    simpl. rewrite IHb. reflexivity.
+Qed.
 Theorem pal_rev: forall (X: Type) (l: list X),
   pal l -> l = rev l.
 Proof.
-  (* FILL IN HERE *) admit.
+    intros. induction H.
+    - reflexivity.
+    - reflexivity.
+    - simpl. rewrite snoc_to_plus. rewrite rev_app. simpl. rewrite <- IHpal. reflexivity.
 Qed.
 
 (** [] *)

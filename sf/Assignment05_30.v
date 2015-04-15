@@ -5,6 +5,8 @@ Require Export Assignment05_29.
 Theorem O_le_n : forall n,
   0 <= n.
 Proof.
-  (* FILL IN HERE *) admit.
+    intros. induction n.
+    apply le_n.
+    apply le_S. apply IHn.
 Qed.
 
