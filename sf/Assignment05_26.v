@@ -18,13 +18,20 @@ Require Export Assignment05_25.
     and then prove [even__ev] using it.
 *)
 
-Lemma even_predpred: forall n: nat,
-    even n -> even (S (S n)).
+Lemma evenb_SS: forall n: nat,
+    evenb n = evenb (S (S n)).
 Proof.
   intros. induction n.
   - reflexivity.
-  - 
-Admitted.
+  - simpl. reflexivity.
+Qed.
+Lemma S_pred_n: forall n: nat,
+    (pred (S n)) = n.
+Proof.
+    intros. induction n.
+    simpl. reflexivity.
+    simpl. reflexivity.
+Qed.
 Lemma even__ev_strong: forall n : nat, 
   (even (pred n) -> ev (pred n)) /\ (even n -> ev n).
 Proof.
@@ -34,9 +41,10 @@ Proof.
       intros. apply ev_0.
     - split. 
       intros. simpl. apply IHn. simpl in H. apply H.
-      intros. replace (ev (S n)) with (ev (pred n)). apply IHn. replace (even (pred n)) with (even (S n)). apply H.
-        unfold even.
-Admitted.
+      intros. inversion IHn. destruct n.
+        inversion H.
+        inversion H. apply ev_SS. simpl in H0. apply H0. unfold even. apply H3.
+Qed.
 (** [] *)
 
 
