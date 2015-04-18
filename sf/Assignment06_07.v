@@ -15,7 +15,9 @@ Require Export Assignment06_06.
     does not stutter.) *)
 
 Inductive nostutter:  list nat -> Prop :=
- (* FILL IN HERE *)
+| nostutter_nil: nostutter []
+| nostutter_one: forall (n:nat), nostutter [n]
+| nostutter_next: forall (l:list nat) (a b:nat), nostutter (a::l) /\ not(eq a b) -> nostutter (b:: (a::l))
 .
 
 (** Make sure each of these tests succeeds, but you are free
@@ -31,25 +33,34 @@ Inductive nostutter:  list nat -> Prop :=
     tactics.  *)
 
 Example test_nostutter_1:      nostutter [3;1;4;1;5;6].
-(* FILL IN HERE *) Admitted.
+Proof. repeat constructor; apply beq_nat_false; auto. Qed.
 (* 
   Proof. repeat constructor; apply beq_nat_false; auto. Qed.
 *)
 
 Example test_nostutter_2:  nostutter [].
-(* FILL IN HERE *) Admitted.
+Proof. repeat constructor; apply beq_nat_false; auto. Qed.
 (* 
   Proof. repeat constructor; apply beq_nat_false; auto. Qed.
 *)
 
 Example test_nostutter_3:  nostutter [5].
-(* FILL IN HERE *) Admitted.
+Proof. repeat constructor; apply beq_nat_false; auto. Qed.
 (* 
   Proof. repeat constructor; apply beq_nat_false; auto. Qed.
 *)
 
 Example test_nostutter_4:      not (nostutter [3;1;1;4]).
-(* FILL IN HERE *) Admitted.
+  Proof. intro.
+  repeat match goal with 
+    h: nostutter _ |- _ => inversion h; clear h; subst 
+  end.
+  inversion H1.
+   repeat match goal with 
+    h: nostutter _ |- _ => inversion h; clear h; subst 
+  end.
+  inversion H3.
+  contradiction H2; auto. Qed.
 (* 
   Proof. intro.
   repeat match goal with 
