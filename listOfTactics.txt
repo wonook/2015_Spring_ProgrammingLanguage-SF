@@ -30,6 +30,8 @@ MORECOQ
 LOGIC
   split.
   replace ... with ... in ....
+  left.
+  right.
 
 
 REVIEW
