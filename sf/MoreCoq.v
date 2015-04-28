@@ -77,7 +77,8 @@ Theorem silly_ex :
      evenb 3 = true ->
      oddb 4 = true.
 Proof.
-  intros. Qed.
+  intros. inversion H0.
+Qed.
 (** [] *)
 
 (** To use the [apply] tactic, the (conclusion of the) fact
@@ -116,7 +117,8 @@ Theorem rev_exercise1 : forall (l l' : list nat),
      l = rev l' ->
      l' = rev l.
 Proof.
-  intros. Qed.
+  intros. SearchAbout rev. symmetry. rewrite <- rev_involutive. rewrite H. reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 1 star, optional (apply_rewrite)  *)
@@ -183,7 +185,8 @@ Example trans_eq_exercise : forall (n m o p : nat),
      (n + p) = m ->
      (n + p) = (minustwo o). 
 Proof.
-  intros. Qed.
+  intros. apply trans_eq with (m:=m). apply H0. apply H.
+Qed.
 (** [] *)
 
 
@@ -269,7 +272,8 @@ Example sillyex1 : forall (X : Type) (x y z : X) (l j : list X),
      y :: l = x :: j ->
      x = y.
 Proof.
-  intros. Qed.
+  intros. inversion H. inversion H0. symmetry. apply H2.
+Qed.
 (** [] *)
 
 Theorem silly6 : forall (n : nat),
@@ -290,7 +294,8 @@ Example sillyex2 : forall (X : Type) (x y z : X) (l j : list X),
      y :: l = z :: j ->
      x = z.
 Proof.
-  intros. Qed.
+  intros. inversion H.
+Qed.
 (** [] *)
 
 (** While the injectivity of constructors allows us to reason
@@ -313,12 +318,18 @@ Proof. intros A B f x y eq. rewrite eq.  reflexivity.  Qed.
 Theorem beq_nat_0_l : forall n,
    beq_nat 0 n = true -> n = 0.
 Proof.
-  intros. Qed.
+  intros. generalize dependent H. induction n.
+  - simpl. reflexivity.
+  - simpl. intros. inversion H.
+Qed.
 
 Theorem beq_nat_0_r : forall n,
    beq_nat n 0 = true -> n = 0.
 Proof.
-  intros. Qed.
+  intros. generalize dependent H. induction n.
+  - simpl. reflexivity.
+  - simpl. intros. inversion H.
+Qed.
 (** [] *)
 
 
@@ -383,7 +394,14 @@ Theorem plus_n_n_injective : forall n m,
 Proof.
   intros n. induction n as [| n'].
     (* Hint: use the plus_n_Sm lemma *)
-    intros. Qed.
+  - simpl. destruct m. 
+    reflexivity. 
+    simpl. intros. inversion H.
+  - simpl. destruct m. 
+    intros. inversion H. 
+    intros. SearchPattern (S _ = S _). apply eq_S. apply IHn'. simpl in H. replace (n' + S n') with (S n' + n') in H. replace (m + S m) with (S m + m) in H. inversion H. reflexivity.
+      apply plus_n_Sm. apply plus_n_Sm.
+Qed.
 (** [] *)
 
 (* ###################################################### *)
@@ -413,14 +431,15 @@ Proof.
   Case "n = O". simpl. intros eq. destruct m as [| m'].
     SCase "m = O". reflexivity.
     SCase "m = S m'". inversion eq. 
-  Case "n = S n'". intros eq. destruct m as [| m'].
-    SCase "m = O". inversion eq.
-    SCase "m = S m'".  apply f_equal. 
+  Case "n = S n'". generalize dependent m. intros m eq. destruct m as [| m'].
+    SCase "m = O". intros. inversion H.
+    SCase "m = S m'". intros.  apply f_equal. 
       (* Here we are stuck.  The induction hypothesis, [IHn'], does
          not give us [n' = m'] -- there is an extra [S] in the
          way -- so the goal is not provable. *)
       Abort.
 
+      (* STARSTAR IMPORTANT!!!*)
 (** What went wrong? *)
 
 (** The problem is that, at the point we invoke the induction
@@ -529,7 +548,10 @@ Proof.
 Theorem beq_nat_true : forall n m,
     beq_nat n m = true -> n = m.
 Proof.
-  intros. Qed.
+  intros. generalize dependent m. induction n.
+  - intros. induction m. reflexivity. simpl in H. inversion H.
+  - intros. induction m. simpl in H. inversion H. SearchPattern (S _ = S _). apply eq_S. apply IHn. inversion H. reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 2 stars, advanced (beq_nat_true_informal)  *)
@@ -702,7 +724,12 @@ Theorem index_after_last: forall (n : nat) (X : Type) (l : list X),
      length l = n ->
      index n l = None.
 Proof.
-  intros. Qed.
+  intros. generalize dependent n. induction l. 
+  - simpl. reflexivity.
+  - simpl. intros. destruct n.
+    simpl. inversion H.
+    simpl. apply IHl. inversion H. reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, advanced, optional (index_after_last_informal)  *)
@@ -725,7 +752,8 @@ Theorem length_snoc''' : forall (n : nat) (X : Type)
      length l = n ->
      length (snoc l v) = S n. 
 Proof.
-  intros. Qed.
+  intros. 
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, optional (app_length_cons)  *)
