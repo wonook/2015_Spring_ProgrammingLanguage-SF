@@ -841,10 +841,19 @@ Proof. reflexivity.  Qed.
     auxiliary lemma. *)
 
 
+Lemma map_snoc : forall {X Y :Type} (f:X->Y) (l : list X) (n:X),
+    map f (snoc l n) = snoc (map f l) (f n).
+Proof.
+    intros. induction l.
+    - simpl. reflexivity.
+    - simpl. rewrite IHl. reflexivity.
+Qed.
 Theorem map_rev : forall (X Y : Type) (f : X -> Y) (l : list X),
   map f (rev l) = rev (map f l).
 Proof.
-  intros. 
+  intros. induction l.
+  - simpl. reflexivity.
+  - simpl. rewrite <- IHl. rewrite map_snoc. reflexivity.
 Qed.
 (** [] *)
 
@@ -860,7 +869,10 @@ Qed.
 
 Fixpoint flat_map {X Y:Type} (f:X -> list Y) (l:list X)
                    : (list Y) :=
-  (* FILL IN HERE *) admit.
+  match l with
+  | nil => nil
+  | h::t => (f h)++(flat_map f t)
+  end.
 
 Example test_flat_map1:
   flat_map (fun n => [n;n;n]) [1;5;4]
@@ -999,7 +1011,10 @@ Proof. reflexivity. Qed.
 Theorem override_example : forall (b:bool),
   (override (constfun b) 3 true) 2 = b.
 Proof.
-  intros. Qed.
+  intros. destruct b.
+  - reflexivity.
+  - reflexivity.
+Qed.
 (** [] *)
 
 (** We'll use function overriding heavily in parts of the rest of the
@@ -1054,6 +1069,7 @@ Theorem override_eq : forall {X:Type} x k (f:nat->X),
 Proof.
   intros X x k f.
   unfold override.
+  SearchAbout beq_nat.
   rewrite <- beq_nat_refl.
   reflexivity.  Qed.
 
@@ -1066,7 +1082,8 @@ Theorem override_neq : forall (X:Type) x1 x2 k1 k2 (f : nat->X),
   beq_nat k2 k1 = false ->
   (override f k2 x2) k1 = x1.
 Proof.
-  intros. Qed.
+  intros. unfold override. rewrite H0. apply H.
+Qed.
 (** [] *)
 
 (** As the inverse of [unfold], Coq also provides a tactic
@@ -1090,7 +1107,11 @@ Proof. reflexivity. Qed.
 
 Theorem fold_length_correct : forall X (l : list X),
   fold_length l = length l.
-intros. Qed.
+Proof.
+  intros. induction l.
+  - reflexivity.
+  - simpl. rewrite <- IHl. reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars (fold_map)  *)
@@ -1162,45 +1183,46 @@ Definition three : nat := @doit3times.
 (** Successor of a natural number *)
 
 Definition succ (n : nat) : nat :=
-  (* FILL IN HERE *) admit.
+    fun (X:Type) (f:X->X) (x:X) => f(n X f x).
 
 Example succ_1 : succ zero = one.
-Proof. intros. Qed.
+Proof. reflexivity. Qed.
 
 Example succ_2 : succ one = two.
-Proof. intros. Qed.
+Proof. reflexivity. Qed.
 
 Example succ_3 : succ two = three.
-Proof. intros. Qed.
+Proof. reflexivity. Qed.
 
 (** Addition of two natural numbers *)
 
 Definition plus (n m : nat) : nat :=
-  (* FILL IN HERE *) admit.
+    fun (X:Type) (f:X->X) (x:X) => (m X f (n X f x)).
 
 Example plus_1 : plus zero one = one.
-Proof. intros. Qed.
+Proof. reflexivity. Qed.
 
 Example plus_2 : plus two three = plus three two.
-Proof. intros. Qed.
+Proof. reflexivity. Qed.
 
 Example plus_3 :
   plus (plus two two) three = plus one (plus three three).
-Proof. intros. Qed.
+Proof. reflexivity. Qed.
 
 (** Multiplication *)
 
 Definition mult (n m : nat) : nat := 
-  (* FILL IN HERE *) admit.
+    (* STARSTAR .. I DONT UNDERSTAND.. *)
+    fun (X:Type) (f:X->X) (x:X) => (n X (m X f) x).
 
 Example mult_1 : mult one one = one.
-Proof. intros. Qed.
+Proof. reflexivity. Qed.
 
 Example mult_2 : mult zero (plus three three) = zero.
-Proof. intros. Qed.
+Proof. reflexivity. Qed.
 
 Example mult_3 : mult two three = plus three three.
-Proof. intros. Qed.
+Proof. reflexivity. Qed.
 
 (** Exponentiation *)
 
@@ -1210,16 +1232,17 @@ Proof. intros. Qed.
     type: [nat] itself is usually problematic. *)
 
 Definition exp (n m : nat) : nat :=
-  (* FILL IN HERE *) admit.
+    (* STARSTAR .. I DONT UNDERSTAND.. *)
+    fun (X:Type) (f:X->X) (x:X) => (m (X->X) (n X) f) x.
 
 Example exp_1 : exp two two = plus two two.
-Proof. intros. Qed.
+Proof. reflexivity. Qed.
 
 Example exp_2 : exp three two = plus (mult two (mult two two)) one.
-Proof. intros. Qed.
+Proof. reflexivity. Qed.
 
 Example exp_3 : exp three zero = one.
-Proof. intros. Qed.
+Proof. reflexivity. Qed.
 
 End Church.
 
