@@ -374,35 +374,48 @@ Definition list123''' := [1; 2; 3].
     and complete the proofs below. *)
 
 Fixpoint repeat {X : Type} (n : X) (count : nat) : list X :=
-  (* FILL IN HERE *) admit.
+  match count with
+  | O => nil
+  | S m => n::(repeat n m)
+  end.
 
 Example test_repeat1:
   repeat true 2 = cons true (cons true nil).
- intros. Qed.
+Proof. reflexivity. Qed.
 
 Theorem nil_app : forall X:Type, forall l:list X,
   app [] l = l.
 Proof.
-  intros. Qed.
+  intros. simpl. reflexivity.
+Qed.
 
 Theorem rev_snoc : forall X : Type,
                      forall v : X,
                      forall s : list X,
   rev (snoc s v) = v :: (rev s).
 Proof.
-  intros. Qed.
+  intros. induction s. 
+  - simpl. reflexivity.
+  - simpl. rewrite IHs. simpl. reflexivity.
+Qed.
 
 Theorem rev_involutive : forall X : Type, forall l : list X,
   rev (rev l) = l.
 Proof.
-intros. Qed.
+  intros. induction l.
+  - simpl. reflexivity.
+  - simpl. rewrite rev_snoc. rewrite IHl. reflexivity.
+Qed.
 
 Theorem snoc_with_append : forall X : Type,
                          forall l1 l2 : list X,
                          forall v : X,
   snoc (l1 ++ l2) v = l1 ++ (snoc l2 v).
 Proof.
-  intros. Qed.
+  intros. induction l1.
+  - simpl. reflexivity.
+  - simpl. rewrite IHl1. reflexivity.
+Qed.
 (** [] *)
 
 (* ###################################################### *)
@@ -483,12 +496,14 @@ Fixpoint combine {X Y : Type} (lx : list X) (ly : list Y)
 Fixpoint split
            {X Y : Type} (l : list (X*Y))
            : (list X) * (list Y) :=
-(* FILL IN HERE *) admit.
+  match l with
+  | nil => (nil, nil)
+  | h::t => ((cons (fst h) (fst (split t))), (cons (snd h) (snd (split t))))
+  end.
 
 Example test_split:
   split [(1,false);(2,false)] = ([1;2],[false;false]).
-Proof.
-intros. Qed.
+Proof. reflexivity. Qed.
 (** [] *)
 
 (* ###################################################### *)
@@ -513,7 +528,8 @@ Fixpoint index {X : Type} (n : nat)
                (l : list X) : option X :=
   match l with
   | [] => None
-  | a :: l' => if beq_nat n O then Some a else index (pred n) l'
+  | a :: l' => if beq_nat n O then Some a 
+              else index (pred n) l'
   end.
 
 Example test_index1 :    index 0 [4;5;6;7]  = Some 4.
@@ -529,7 +545,10 @@ Proof. reflexivity.  Qed.
     passes the unit tests below. *)
 
 Definition hd_opt {X : Type} (l : list X)  : option X :=
-  (* FILL IN HERE *) admit.
+  match l with
+  | nil => None
+  | h::t => Some h
+  end.
 
 (** Once again, to force the implicit arguments to be explicit,
     we can use [@] before the name of the function. *)
@@ -537,9 +556,9 @@ Definition hd_opt {X : Type} (l : list X)  : option X :=
 Check @hd_opt.
 
 Example test_hd_opt1 :  hd_opt [1;2] = Some 1.
- intros. Qed.
+Proof. reflexivity. Qed.
 Example test_hd_opt2 :   hd_opt  [[1];[2]]  = Some [1].
- intros. Qed.
+Proof. reflexivity. Qed.
 (** [] *)
 
 (* ###################################################### *)
@@ -630,7 +649,7 @@ Definition prod_curry {X Y Z : Type}
 
 Definition prod_uncurry {X Y Z : Type}
   (f : X -> Y -> Z) (p : X * Y) : Z :=
-  (* FILL IN HERE *) admit.
+  (f (fst p)) (snd p).
 
 (** (Thought exercise: before running these commands, can you
     calculate the types of [prod_curry] and [prod_uncurry]?) *)
@@ -641,13 +660,16 @@ Check @prod_uncurry.
 Theorem uncurry_curry : forall (X Y Z : Type) (f : X -> Y -> Z) x y,
   prod_curry (prod_uncurry f) x y = f x y.
 Proof.
-  intros. Qed.
+  intros. reflexivity.
+Qed.
 
 Theorem curry_uncurry : forall (X Y Z : Type)
                                (f : (X * Y) -> Z) (p : X * Y),
   prod_uncurry (prod_curry f) p = f p.
 Proof.
-  intros. Qed.
+  intros. unfold prod_curry. unfold prod_uncurry. induction p. 
+  simpl. reflexivity.
+Qed.
 (** [] *)
 
 (* ###################################################### *)
@@ -735,16 +757,20 @@ Proof. reflexivity.  Qed.
     and returns a list of just those that are even and greater than
     7. *)
 
+SearchAbout ble_nat.
 Definition filter_even_gt7 (l : list nat) : list nat :=
-  (* FILL IN HERE *) admit.
+  match l with
+  | nil => nil
+  | l' => filter (fun h => andb (evenb h) (blt_nat 7 h)) l
+  end.
 
 Example test_filter_even_gt7_1 :
   filter_even_gt7 [1;2;6;9;10;3;12;8] = [10;12;8].
- intros. Qed.
+Proof. reflexivity. Qed.
 
 Example test_filter_even_gt7_2 :
   filter_even_gt7 [5;2;6;19;129] = [].
- intros. Qed.
+Proof. reflexivity. Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars (partition)  *)
@@ -762,12 +788,12 @@ Example test_filter_even_gt7_2 :
 
 Definition partition {X : Type} (test : X -> bool) (l : list X)
                      : list X * list X :=
-(* FILL IN HERE *) admit.
+  ((filter test l),(filter (fun x => negb (test x)) l)).
 
 Example test_partition1: partition oddb [1;2;3;4;5] = ([1;3;5], [2;4]).
-intros. Qed.
+Proof. reflexivity. Qed.
 Example test_partition2: partition (fun x => false) [5;9;0] = ([], [5;9;0]).
-intros. Qed.
+Proof. reflexivity. Qed.
 (** [] *)
 
 (* ###################################################### *)
@@ -818,7 +844,8 @@ Proof. reflexivity.  Qed.
 Theorem map_rev : forall (X Y : Type) (f : X -> Y) (l : list X),
   map f (rev l) = rev (map f l).
 Proof.
-  intros. Qed.
+  intros. 
+Qed.
 (** [] *)
 
 (** **** Exercise: 2 stars (flat_map)  *)
@@ -838,7 +865,7 @@ Fixpoint flat_map {X Y:Type} (f:X -> list Y) (l:list X)
 Example test_flat_map1:
   flat_map (fun n => [n;n;n]) [1;5;4]
   = [1; 1; 1; 5; 5; 5; 4; 4; 4].
- intros. Qed.
+Proof. reflexivity. Qed.
 (** [] *)
 
 (** Lists are not the only inductive type that we can write a
