@@ -104,10 +104,21 @@ Qed.
 (** Prove [andb_true_elim2], marking cases (and subcases) when
     you use [destruct]. *)
 
+Lemma andb_comm : forall a b : bool,
+  andb a b = andb b a.
+Proof.
+  intros. induction a.
+  - destruct b. reflexivity. reflexivity.
+  - destruct b. reflexivity. reflexivity.
+Qed.
+
 Theorem andb_true_elim2 : forall b c : bool,
   andb b c = true -> c = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros. generalize dependent H. destruct c.
+  - reflexivity.
+  - intros. rewrite <- H. rewrite andb_comm. simpl. reflexivity.
+Qed.
 (** [] *)
 
 (** There are no hard and fast rules for how proofs should be
@@ -143,9 +154,10 @@ Theorem plus_0_r_firsttry : forall n:nat,
   simplified.  *)
 
 Proof.
-  intros n.
-  simpl. (* Does nothing! *)
-Abort.
+  intros n. induction n.
+  - reflexivity.
+  - simpl. rewrite IHn. reflexivity.
+Qed.
 
 (** *** *)
 
@@ -224,18 +236,21 @@ Proof.
 Theorem mult_0_r : forall n:nat,
   n * 0 = 0.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros.
+Qed.
 
 Theorem plus_n_Sm : forall n m : nat, 
   S (n + m) = n + (S m).
 Proof. 
-  (* FILL IN HERE *) Admitted.
+   intros.
+Qed.
 
 
 Theorem plus_comm : forall n m : nat,
   n + m = m + n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+   intros.
+Qed.
 
 
 Theorem plus_assoc : forall n m p : nat,
