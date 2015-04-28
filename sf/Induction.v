@@ -455,18 +455,24 @@ Qed.
 Theorem plus_ble_compat_l : forall n m p : nat, 
   ble_nat n m = true -> ble_nat (p + n) (p + m) = true.
 Proof.
-   intros. 
+   intros. induction p.
+   - simpl. apply H.
+   - simpl. apply IHp.
 Qed.
 
 Theorem S_nbeq_0 : forall n:nat,
   beq_nat (S n) 0 = false.
 Proof.
-   intros.
+   intros. induction n.
+   - reflexivity.
+   - simpl. reflexivity.
 Qed.
 
 Theorem mult_1_l : forall n:nat, 1 * n = n.
 Proof.
-   intros.
+   intros. induction n.
+   - reflexivity.
+   - simpl. SearchPattern (_ + 0 = _). rewrite plus_n_O. reflexivity.
 Qed.
 
 Theorem all3_spec : forall b c : bool,
@@ -476,19 +482,33 @@ Theorem all3_spec : forall b c : bool,
                (negb c))
   = true.
 Proof.
-   intros.
+   intros. induction b.
+   - simpl. induction c.
+      simpl. reflexivity. 
+      simpl. reflexivity.
+   - simpl. reflexivity.
+Qed.
+
+Lemma add_paren : forall a b : nat,
+  a + (b) = a + b.
+Proof.
+  intros. reflexivity.
 Qed.
 
 Theorem mult_plus_distr_r : forall n m p : nat,
   (n + m) * p = (n * p) + (m * p).
 Proof.
-   intros.
+   intros. induction n.
+   - simpl. reflexivity.
+   - simpl. rewrite IHn. apply plus_assoc.
 Qed.
 
 Theorem mult_assoc : forall n m p : nat,
   n * (m * p) = (n * m) * p.
 Proof.
-   intros.
+   intros. induction n.
+   - simpl. reflexivity.
+   - simpl. rewrite IHn. rewrite mult_plus_distr_r. reflexivity.
 Qed.
 (** [] *)
 
@@ -502,7 +522,9 @@ problem using the theorem no matter which way we state it. *)
 Theorem beq_nat_refl : forall n : nat, 
   true = beq_nat n n.
 Proof.
-  intros.
+  intros. induction n.
+  - reflexivity.
+  - simpl. apply IHn.
 Qed.
 (** [] *)
 
@@ -521,7 +543,9 @@ Qed.
 Theorem plus_swap' : forall n m p : nat, 
   n + (m + p) = m + (n + p).
 Proof.
-  intros.
+  intros. induction n.
+  - simpl. reflexivity.
+  - simpl. rewrite IHn. SearchPattern (S (_ + _) = _ + S _). apply plus_n_Sm.
 Qed.
 (** [] *)
 
@@ -624,8 +648,10 @@ Qed.
 
 Theorem plus_assoc' : forall n m p : nat,
   n + (m + p) = (n + m) + p.
-Proof. intros n m p. induction n as [| n']. reflexivity. 
-  simpl. rewrite -> IHn'. reflexivity.  Qed.
+Proof. 
+  intros n m p. induction n as [| n']. reflexivity. 
+  simpl. rewrite -> IHn'. reflexivity.  
+Qed.
 
 (** Coq is perfectly happy with this as a proof.  For a human,
     however, it is difficult to make much sense of it.  If you're used
