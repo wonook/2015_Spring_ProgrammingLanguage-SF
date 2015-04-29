@@ -781,17 +781,23 @@ Qed.
 (** **** Exercise: 4 stars, optional (app_length_twice)  *)
 (** Prove this by induction on [l], without using app_length. *)
 
+Lemma app_length_cons' : forall (X:Type) (l1 l2: list X) (x:X) (n:nat),
+    S (length (l1 ++ l2)) = length (l1++ (x::l2)).
+Proof.
+    intros. generalize dependent x. generalize dependent l2. induction l1.
+    - simpl. reflexivity.
+    - simpl. intros. apply eq_S. apply IHl1.
+Qed.
 Theorem app_length_twice : forall (X:Type) (n:nat) (l:list X),
      length l = n ->
      length (l ++ l) = n + n.
 Proof.
   intros. generalize dependent n. induction l.
   - simpl. intros. inversion H. reflexivity.
-  - simpl. intros.  generalize dependent x. destruct n.
+  - simpl. intros. generalize dependent x. destruct n.
     intros. inversion H.
     simpl. intros. apply eq_S. rewrite <- plus_n_Sm. replace (length (l ++ x::l)) with (length (x:: l++l)). simpl. apply eq_S. apply IHl. inversion H. reflexivity.
-      
-    
+      rewrite <- app_length_cons'. simpl. reflexivity. apply n.
 Qed.
 (** [] *)
 
@@ -806,7 +812,15 @@ Theorem double_induction: forall (P : nat -> nat -> Prop),
   (forall m n, P m n -> P (S m) (S n)) ->
   forall m n, P m n.
 Proof.
-  intros. Qed.
+    (* STARSTAR generalize!! *)
+  intros. generalize dependent m. induction n. 
+  - intros. induction m.
+    apply H.
+    apply H0. apply IHm.
+  - induction m.
+    apply H1. apply IHn.
+    apply H2. apply IHn.
+Qed.
 (** [] *)
 
 
@@ -853,17 +867,30 @@ Proof.
 Theorem override_shadow : forall (X:Type) x1 x2 k1 k2 (f : nat->X),
   (override (override f k1 x2) k1 x1) k2 = (override f k1 x1) k2.
 Proof.
-  intros. Qed.
+  intros. unfold override. destruct (beq_nat k1 k2).
+  reflexivity. reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, optional (combine_split)  *)
 (** Complete the proof below *)
 
+Lemma eq_cons : forall {X:Type} (l1 l2: list X) (x:X),
+  l1 = l2 -> (x::l1) = (x::l2).
+Proof.
+  intros. generalize dependent l2. induction l1.
+  - intros. inversion H. reflexivity.
+  - intros. rewrite H. reflexivity.
+Qed.
 Theorem combine_split : forall X Y (l : list (X * Y)) l1 l2,
   split l = (l1, l2) ->
   combine l1 l2 = l.
 Proof.
-  intros. Qed.
+    (* STARSTAR difficult!!! *)
+  intros. generalize dependent l1. generalize dependent l2. induction l.
+  - simpl. intros. inversion H. reflexivity.
+  - simpl. intros. inversion H. simpl. destruct x. simpl. apply eq_cons. apply IHl. destruct (split l). simpl. reflexivity.
+Qed.
 (** [] *)
 
 (** Sometimes, doing a [destruct] on a compound expression (a
@@ -932,7 +959,10 @@ Theorem bool_fn_applied_thrice :
   forall (f : bool -> bool) (b : bool), 
   f (f (f b)) = f b.
 Proof.
-  intros. Qed.
+  intros. destruct (f b) eqn:E.
+  - induction b. rewrite E. apply E. destruct (f true) eqn:E1. apply E1. apply E.
+  - induction b. destruct (f false) eqn:E1. apply E. apply E1. rewrite E. apply E.
+Qed.
 (** [] *)
 
 (** **** Exercise: 2 stars (override_same)  *)
@@ -940,7 +970,10 @@ Theorem override_same : forall (X:Type) x1 k1 k2 (f : nat->X),
   f k1 = x1 -> 
   (override f k1 x1) k2 = f k2.
 Proof.
-  intros. Qed.
+  intros. unfold override. destruct (beq_nat k1 k2) eqn:E.
+  - rewrite <- H. apply beq_nat_true in E. rewrite E. reflexivity.
+  - reflexivity.
+Qed.
 (** [] *)
 
 (* ################################################################## *)
@@ -1025,7 +1058,11 @@ Proof.
 Theorem beq_nat_sym : forall (n m : nat),
   beq_nat n m = beq_nat m n.
 Proof.
-  intros. Qed.
+  intros. generalize dependent m. induction n.
+  - intros. destruct m. reflexivity. simpl. reflexivity.
+  - intros. destruct m. simpl. reflexivity.
+    simpl. apply IHn.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, advanced, optional (beq_nat_sym_informal)  *)
@@ -1045,7 +1082,10 @@ Theorem beq_nat_trans : forall n m p,
   beq_nat m p = true ->
   beq_nat n p = true.
 Proof.
-  intros. Qed.
+  intros. generalize dependent p. generalize dependent m. induction n.
+  - intros. apply beq_nat_true in H0. rewrite <- H0. apply H.
+  - intros. apply beq_nat_true in H0. rewrite <- H0. apply H.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, advanced (split_combine)  *)
@@ -1061,11 +1101,16 @@ Proof.
     and [l2] for [split] [combine l1 l2 = (l1,l2)] to be true?)  *)
 
 Definition split_combine_statement : Prop :=
-(* FILL IN HERE *) admit.
+    forall {X:Type} (l1 l2:list X),
+    length l1 = length l2 -> (split (combine l1 l2)) = (l1, l2).
 
 Theorem split_combine : split_combine_statement.
-Proof.
-intros. Qed.
+Proof. 
+    unfold split_combine_statement. intro. intro. induction l1.
+    - destruct l2. reflexivity. intros. simpl. inversion H.
+    - destruct l2. simpl. intros. inversion H.
+      simpl. intros. inversion H. apply IHl1 in H1. rewrite H1. simpl. reflexivity.
+Qed.
 
 
 
@@ -1076,7 +1121,10 @@ Theorem override_permute : forall (X:Type) x1 x2 k1 k2 k3 (f : nat->X),
   beq_nat k2 k1 = false ->
   (override (override f k2 x2) k1 x1) k3 = (override (override f k1 x1) k2 x2) k3.
 Proof.
-  intros. Qed.
+  intros. generalize dependent H. unfold override. generalize dependent k2. destruct (beq_nat k1 k3) eqn:E. 
+  - intros. apply beq_nat_true in E. rewrite E in H. rewrite H. reflexivity.
+  - intros. reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, advanced (filter_exercise)  *)
@@ -1087,7 +1135,12 @@ Theorem filter_exercise : forall (X : Type) (test : X -> bool)
      filter test l = x :: lf ->
      test x = true.
 Proof.
-  intros. Qed.
+  intros. generalize dependent lf. induction l.
+  - simpl. intros. inversion H.
+  - simpl. destruct (test x0) eqn:E. 
+    intros. inversion H. rewrite <- H1. apply E.
+    intros. apply IHl with lf. apply H.
+Qed.
 (** [] *)
 
 (** **** Exercise: 4 stars, advanced (forall_exists_challenge)  *)
