@@ -549,8 +549,8 @@ Theorem beq_nat_true : forall n m,
     beq_nat n m = true -> n = m.
 Proof.
   intros. generalize dependent m. induction n.
-  - intros. induction m. reflexivity. simpl in H. inversion H.
-  - intros. induction m. simpl in H. inversion H. SearchPattern (S _ = S _). apply eq_S. apply IHn. inversion H. reflexivity.
+  - intros. induction m. reflexivity. inversion H.
+  - intros. induction m. inversion H. SearchPattern (S _ = S _). apply eq_S. apply IHn. inversion H. reflexivity.
 Qed.
 (** [] *)
 
@@ -867,7 +867,7 @@ Proof.
 Theorem override_shadow : forall (X:Type) x1 x2 k1 k2 (f : nat->X),
   (override (override f k1 x2) k1 x1) k2 = (override f k1 x1) k2.
 Proof.
-  intros. unfold override. destruct (beq_nat k1 k2).
+  intros. unfold override. destruct (beq_nat k1 k2) eqn:E.
   reflexivity. reflexivity.
 Qed.
 (** [] *)
@@ -878,9 +878,7 @@ Qed.
 Lemma eq_cons : forall {X:Type} (l1 l2: list X) (x:X),
   l1 = l2 -> (x::l1) = (x::l2).
 Proof.
-  intros. generalize dependent l2. induction l1.
-  - intros. inversion H. reflexivity.
-  - intros. rewrite H. reflexivity.
+  intros. rewrite H. reflexivity. 
 Qed.
 Theorem combine_split : forall X Y (l : list (X * Y)) l1 l2,
   split l = (l1, l2) ->
@@ -959,6 +957,7 @@ Theorem bool_fn_applied_thrice :
   forall (f : bool -> bool) (b : bool), 
   f (f (f b)) = f b.
 Proof.
+    (*STARSTAR worth looking again*)
   intros. destruct (f b) eqn:E.
   - induction b. rewrite E. apply E. destruct (f true) eqn:E1. apply E1. apply E.
   - induction b. destruct (f false) eqn:E1. apply E. apply E1. rewrite E. apply E.
@@ -1121,9 +1120,9 @@ Theorem override_permute : forall (X:Type) x1 x2 k1 k2 k3 (f : nat->X),
   beq_nat k2 k1 = false ->
   (override (override f k2 x2) k1 x1) k3 = (override (override f k1 x1) k2 x2) k3.
 Proof.
-  intros. generalize dependent H. unfold override. generalize dependent k2. destruct (beq_nat k1 k3) eqn:E. 
+  intros. unfold override. destruct (beq_nat k1 k3) eqn:E. 
   - intros. apply beq_nat_true in E. rewrite E in H. rewrite H. reflexivity.
-  - intros. reflexivity.
+  - reflexivity.
 Qed.
 (** [] *)
 
