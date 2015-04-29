@@ -754,6 +754,7 @@ Theorem length_snoc''' : forall (n : nat) (X : Type)
 Proof.
   intros. generalize dependent n. generalize dependent v. induction l.
   - simpl. intros. inversion H. reflexivity.
+  (* STARSTAR destruct!! -> n -> S n으로 바꾸기 위해!*)
   - simpl. destruct n. 
     intros. inversion H. 
     intros. SearchPattern (S _ = S _). apply eq_S. apply IHl. inversion H. reflexivity.
@@ -769,7 +770,12 @@ Theorem app_length_cons : forall (X : Type) (l1 l2 : list X)
      length (l1 ++ (x :: l2)) = n ->
      S (length (l1 ++ l2)) = n.
 Proof.
-  intros. Qed.
+  intros. generalize dependent n. induction l1.
+  - simpl. intros. apply H.
+  - simpl. intros. destruct n.
+    inversion H.
+    apply eq_S. apply IHl1. inversion H. reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 4 stars, optional (app_length_twice)  *)
@@ -779,7 +785,14 @@ Theorem app_length_twice : forall (X:Type) (n:nat) (l:list X),
      length l = n ->
      length (l ++ l) = n + n.
 Proof.
-  intros. Qed.
+  intros. generalize dependent n. induction l.
+  - simpl. intros. inversion H. reflexivity.
+  - simpl. intros.  generalize dependent x. destruct n.
+    intros. inversion H.
+    simpl. intros. apply eq_S. rewrite <- plus_n_Sm. replace (length (l ++ x::l)) with (length (x:: l++l)). simpl. apply eq_S. apply IHl. inversion H. reflexivity.
+      
+    
+Qed.
 (** [] *)
 
 
