@@ -51,7 +51,10 @@ Inductive ev : nat -> Prop :=
 Theorem double_even : forall n,
   ev (double n).
 Proof.
-  intros. Qed.
+  intros. induction n.
+  - simpl. apply ev_0.
+  - simpl. apply ev_SS. apply IHn.
+Qed.
 (** [] *)
 
 
@@ -193,13 +196,19 @@ Qed.
 (** **** Exercise: 2 stars (b_times2)  *)
 Theorem b_times2: forall n, beautiful n -> beautiful (2*n).
 Proof.
-    intros. Qed.
+    intros. simpl. apply b_sum. 
+    apply H. 
+    apply b_sum. apply H. apply b_0.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars (b_timesm)  *)
 Theorem b_timesm: forall n m, beautiful n -> beautiful (m*n).
 Proof.
-   intros. Qed.
+   intros. induction m.
+   - simpl. apply b_0.
+   - simpl. apply b_sum. apply H. apply IHm.
+Qed.
 (** [] *)
 
 
@@ -253,7 +262,8 @@ Inductive gorgeous : nat -> Prop :=
 Theorem gorgeous_plus13: forall n, 
   gorgeous n -> gorgeous (13+n).
 Proof.
-   intros. Qed.
+   intros. apply g_plus3. apply g_plus5. apply g_plus5. apply H.
+Qed.
 (** [] *)
 
 (** *** *)
@@ -299,6 +309,15 @@ Proof.
        apply b_sum. apply b_5. apply IHgorgeous. 
 Qed.
 
+Theorem gorgeous__beautiful' : forall n,
+    gorgeous n -> beautiful n.
+Proof.
+  intros. induction H.
+  - apply b_0.
+  - apply b_sum. apply b_3. apply IHgorgeous.
+  - apply b_sum. apply b_5. apply IHgorgeous.
+Qed.
+
 
 (* These exercises also require the use of induction on the evidence. *)
 
@@ -306,13 +325,22 @@ Qed.
 Theorem gorgeous_sum : forall n m,
   gorgeous n -> gorgeous m -> gorgeous (n + m).
 Proof.
- intros. Qed.
+  intros. induction H.
+  - apply H0.
+  - apply g_plus3. apply IHgorgeous.
+  - apply g_plus5. apply IHgorgeous.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, advanced (beautiful__gorgeous)  *)
 Theorem beautiful__gorgeous : forall n, beautiful n -> gorgeous n.
 Proof.
- intros. Qed.
+ intros. induction H.
+ - apply g_0.
+ - apply g_plus3. apply g_0.
+ - apply g_plus5. apply g_0.
+ - apply gorgeous_sum. apply IHbeautiful1. apply IHbeautiful2.
+Qed.
 (** [] *)
 
 
@@ -324,13 +352,23 @@ Proof.
 
 Lemma helper_g_times2 : forall x y z, x + (z + y) = z + x + y.
 Proof.
-   intros. Qed.
+   intro. induction x.
+   - simpl. induction z.
+      simpl. reflexivity.
+      simpl. apply eq_S. apply IHz.
+   - simpl. induction z.
+      simpl. reflexivity.
+      simpl. apply eq_S. SearchPattern ((S _) = _ + S _). rewrite <- plus_n_Sm. apply IHz.
+Qed.
 
 Theorem g_times2: forall n, gorgeous n -> gorgeous (2*n).
 Proof.
    intros n H. simpl. 
    induction H.
-   intros. Qed.
+   - apply g_0.
+   - apply gorgeous_sum. apply g_plus3. apply H. apply gorgeous_sum. apply g_plus3. apply H. apply g_0.
+   - apply gorgeous_sum. apply g_plus5. apply H. apply gorgeous_sum. apply g_plus5. apply H. apply g_0.
+Qed.
 (** [] *)
 
 
@@ -381,7 +419,10 @@ Qed.
 Theorem ev_sum : forall n m,
    ev n -> ev m -> ev (n+m).
 Proof. 
-  intros. Qed.
+  intros. induction H.
+  - simpl. apply H0.
+  - simpl. apply ev_SS. apply IHev.
+Qed.
 (** [] *)
 
 
