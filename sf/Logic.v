@@ -214,7 +214,8 @@ Proof.
 Theorem proj2 : forall P Q : Prop, 
   P /\ Q -> Q.
 Proof.
-  intros. Qed.
+  intros. inversion H. apply H1.
+Qed.
 (** [] *)
 
 Theorem and_commut : forall P Q : Prop, 
@@ -238,7 +239,11 @@ Theorem and_assoc : forall P Q R : Prop,
 Proof.
   intros P Q R H.
   destruct H as [HP [HQ HR]].
-intros. Qed.
+  split.
+    split.
+      apply HP. apply HQ.
+    apply HR.
+Qed.
 (** [] *)
 
 
@@ -278,12 +283,18 @@ Proof.
 Theorem iff_refl : forall P : Prop, 
   P <-> P.
 Proof. 
-  intros. Qed.
+  intros. split.
+  - intros. apply H.
+  - intros. apply H.
+Qed.
 
 Theorem iff_trans : forall P Q R : Prop, 
   (P <-> Q) -> (Q <-> R) -> (P <-> R).
 Proof.
-  intros. Qed.
+  intros. inversion H. inversion H0. split.
+  - intros. apply H1 in H5. apply H3 in H5. apply H5.
+  - intros. apply H4 in H5. apply H2 in H5. apply H5.
+Qed.
 
 (** Hint: If you have an iff hypothesis in the context, you can use
     [inversion] to break it into two separate implications.  (Think
@@ -377,14 +388,18 @@ Proof.
 Theorem or_distributes_over_and_2 : forall P Q R : Prop,
   (P \/ Q) /\ (P \/ R) -> P \/ (Q /\ R).
 Proof.
-  intros. Qed.
+  intros. inversion H. destruct H0. 
+  - left. apply H0. 
+  - destruct H1. left. apply H1. right. split. apply H0. apply H1.
+Qed.
 (** [] *)
 
 (** **** Exercise: 1 star, optional (or_distributes_over_and)  *)
 Theorem or_distributes_over_and : forall P Q R : Prop,
   P \/ (Q /\ R) <-> (P \/ Q) /\ (P \/ R).
 Proof.
-  intros. Qed.
+  intros. split. apply or_distributes_over_and_1. apply or_distributes_over_and_2.
+Qed.
 (** [] *)
 
 (* ################################################### *)
@@ -422,19 +437,33 @@ Proof.
 Theorem andb_false : forall b c,
   andb b c = false -> b = false \/ c = false.
 Proof. 
-  intros. Qed.
+  intros. destruct b. 
+  - destruct c.
+    inversion H. right. reflexivity.
+  - left. reflexivity.
+Qed.
 
 (** **** Exercise: 2 stars, optional (orb_false)  *)
 Theorem orb_prop : forall b c,
   orb b c = true -> b = true \/ c = true.
 Proof.
-  intros. Qed.
+  intros. destruct b.
+  - left. reflexivity.
+  - destruct c.
+    right. reflexivity. inversion H.
+Qed.
 
 (** **** Exercise: 2 stars, optional (orb_false_elim)  *)
 Theorem orb_false_elim : forall b c,
   orb b c = false -> b = false /\ c = false.
 Proof. 
-  intros. Qed.
+  intros. destruct b.
+  - destruct c.
+    inversion H. inversion H. 
+  - destruct c. 
+    inversion H. 
+    split. reflexivity. reflexivity.
+Qed.
 (** [] *)
 
 
@@ -570,14 +599,16 @@ Proof.
 Theorem contrapositive : forall P Q : Prop,
   (P -> Q) -> (~Q -> ~P).
 Proof.
-  intros. Qed.
+  intros. unfold not in H0. unfold not. intros. apply H in H1. apply H0 in H1. apply H1.
+Qed.
 (** [] *)
 
 (** **** Exercise: 1 star (not_both_true_and_false)  *)
 Theorem not_both_true_and_false : forall P : Prop,
   ~ (P /\ ~P).
 Proof. 
-  intros. Qed.
+  intros. unfold not. intros. inversion H. apply H1. apply H0.
+Qed.
 (** [] *)
 
 (** **** Exercise: 1 star, advanced (informal_not_PNP)  *)
@@ -633,7 +664,10 @@ we would have both [~ (P \/ ~P)] and [~ ~ (P \/ ~P)], a contradiction. *)
 
 Theorem excluded_middle_irrefutable:  forall (P:Prop), ~ ~ (P \/ ~ P).  
 Proof.
-  intros. Qed.
+    (* STARSTAR worth looking again. *)
+  intros. unfold not. intros. apply H. 
+  right. intros. apply H. left. apply H0.
+Qed.
 
 
 (* ########################################################## *)
@@ -678,14 +712,27 @@ Theorem false_beq_nat : forall n m : nat,
      n <> m ->
      beq_nat n m = false.
 Proof. 
-  intros. Qed.
+  intros. unfold not in H. generalize dependent m. induction n.
+  - destruct m. 
+    intros. apply ex_falso_quodlibet. apply H. reflexivity.
+    intros. reflexivity.
+  - destruct m.
+    intros. reflexivity.
+    intros. apply IHn. intros. apply H. apply eq_S. apply H0.
+Qed.
 (** [] *)
 
 (** **** Exercise: 2 stars, optional (beq_nat_false)  *)
 Theorem beq_nat_false : forall n m,
   beq_nat n m = false -> n <> m.
 Proof.
-  intros. Qed.
+    (*STARSTAR worth looking again*)
+  intros. unfold not. generalize dependent m. induction n.
+  - intros. destruct m.
+    inversion H. inversion H0.
+  - intros. destruct m.
+    inversion H0. inversion H0. apply IHn in H2. apply H2. inversion H. reflexivity.
+Qed.
 (** [] *)
 
 
