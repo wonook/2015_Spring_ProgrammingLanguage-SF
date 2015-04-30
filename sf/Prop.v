@@ -1096,7 +1096,8 @@ Definition natural_number_induction_valid : Prop :=
     equivalent to [Peven n] otherwise. *)
 
 Definition combine_odd_even (Podd Peven : nat -> Prop) : nat -> Prop :=
-  (* FILL IN HERE *) admit.
+  fun n => if (evenb n) then Peven n
+          else Podd n.
 
 (** To test your definition, see whether you can prove the following
     facts: *)
@@ -1107,7 +1108,10 @@ Theorem combine_odd_even_intro :
     (oddb n = false -> Peven n) ->
     combine_odd_even Podd Peven n.
 Proof.
-  intros. Qed.
+  intros. unfold combine_odd_even. unfold oddb in H. unfold oddb in H0. induction n. 
+  simpl. apply H0. reflexivity.
+  destruct (evenb (S n)). apply H0. reflexivity. apply H. reflexivity.
+Qed.
 
 Theorem combine_odd_even_elim_odd :
   forall (Podd Peven : nat -> Prop) (n : nat),
@@ -1115,7 +1119,10 @@ Theorem combine_odd_even_elim_odd :
     oddb n = true ->
     Podd n.
 Proof.
-  intros. Qed.
+  intros. unfold combine_odd_even in H. unfold oddb in H0. destruct (evenb n).
+  - inversion H0.
+  - apply H.
+Qed.
 
 Theorem combine_odd_even_elim_even :
   forall (Podd Peven : nat -> Prop) (n : nat),
@@ -1123,7 +1130,10 @@ Theorem combine_odd_even_elim_even :
     oddb n = false ->
     Peven n.
 Proof.
-  intros. Qed.
+  intros. unfold combine_odd_even in H. unfold oddb in H0. destruct (evenb n).
+  - apply H.
+  - inversion H0.
+Qed.
 
 (** [] *)
 
