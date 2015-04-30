@@ -501,7 +501,8 @@ Proof.
 Theorem SSSSev__even : forall n,
   ev (S (S (S (S n)))) -> ev n.
 Proof.
-  intros. Qed.
+  intros. inversion H. inversion H1. apply H3.
+Qed.
 
 (** The [inversion] tactic can also be used to derive goals by showing
     the absurdity of a hypothesis. *)
@@ -509,7 +510,8 @@ Proof.
 Theorem even5_nonsense : 
   ev 5 -> 2 + 2 = 9.
 Proof.
-  intros. Qed.
+  intros. inversion H. inversion H1. inversion H3.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, advanced (ev_ev__ev)  *)
@@ -519,7 +521,10 @@ Proof.
 Theorem ev_ev__ev : forall n m,
   ev (n+m) -> ev n -> ev m.
 Proof.
-  intros. Qed.
+  intros. generalize dependent H. induction H0.
+  - simpl. intros. apply H.
+  - simpl. intros. inversion H. apply IHev. apply H2.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, optional (ev_plus_plus)  *)
@@ -530,7 +535,15 @@ Proof.
 Theorem ev_plus_plus : forall n m p,
   ev (n+m) -> ev (n+p) -> ev (m+p).
 Proof.
-  intros. Qed.
+  (*STARSTAR check again*)
+  intros. apply ev_sum with (n:=n+p) in H. 
+  rewrite plus_assoc in H. replace (n+p+n+m) with ((n+n)+(p+m)) in H. 
+  apply ev_ev__ev with (n:=n+n) (m:=p+m) in H. 
+  rewrite plus_comm. apply H. 
+  SearchRewrite (double _). rewrite <- double_plus. Search ev. apply double_even. 
+  SearchRewrite (_ + _ + _). rewrite Plus.plus_permute_2_in_4. rewrite plus_assoc. reflexivity.
+  apply H0.
+Qed.
 (** [] *)
 
 
@@ -747,66 +760,108 @@ Inductive next_even : nat -> nat -> Prop :=
 
 Lemma le_trans : forall m n o, m <= n -> n <= o -> m <= o.
 Proof.
-  intros. Qed.
+  (*STARSTAR look again*)
+  intros. Search le. induction H0. apply H. apply le_S. apply IHle.
+Qed.
 
 Theorem O_le_n : forall n,
   0 <= n.
 Proof.
-  intros. Qed.
+  intros. induction n.
+  - apply le_n.
+  - apply le_S. apply IHn.
+Qed.
 
 Theorem n_le_m__Sn_le_Sm : forall n m,
   n <= m -> S n <= S m.
 Proof. 
-  intros. Qed.
+  intros. induction H.
+  - apply le_n.
+  - apply le_S. apply IHle.
+Qed.
 
 
 Theorem Sn_le_Sm__n_le_m : forall n m,
   S n <= S m -> n <= m.
 Proof. 
-  intros. Qed.
+  intros. inversion H.
+  - apply le_n.
+  - Search le. apply le_trans with (m:=n) (n:=(S n)) (o:=m).
+    apply le_S. apply le_n.
+    apply H1.
+Qed.
 
 
 Theorem le_plus_l : forall a b,
   a <= a + b.
 Proof. 
-  intros. Qed.
+  intros. induction b.
+  - SearchRewrite (_+_). rewrite plus_n_O. apply le_n.
+  - apply le_trans with (n:=(a+b)). 
+    apply IHb.
+    SearchRewrite (_+(S _)). rewrite <- plus_n_Sm. apply le_S. apply le_n.
+Qed.
 
 Theorem plus_lt : forall n1 n2 m,
   n1 + n2 < m ->
   n1 < m /\ n2 < m.
 Proof. 
  unfold lt. 
- intros. Qed.
+ intros. split.
+ - apply le_trans with (n:=(S (n1 + n2))). 
+    rewrite plus_comm. rewrite plus_n_Sm. rewrite plus_comm. apply le_plus_l. 
+    apply H.
+ - apply le_trans with (n:=(S (n1 + n2))).
+    rewrite plus_n_Sm. rewrite plus_comm. apply le_plus_l.
+    apply H.
+Qed.
 
 Theorem lt_S : forall n m,
   n < m ->
   n < S m.
 Proof.
-  intros. Qed.
+  unfold lt. intros. apply le_trans with (n:=m).
+  - apply H.
+  - apply le_S. apply le_n.
+Qed.
 
 Theorem ble_nat_true : forall n m,
   ble_nat n m = true -> n <= m.
 Proof. 
-  intros. Qed.
+  intros. generalize dependent m. induction n.
+  - intros. induction m. apply le_n. apply le_S. apply IHm. apply H.
+  - intros. induction m. inversion H. apply n_le_m__Sn_le_Sm. apply IHn. apply H.
+Qed.
 
 Theorem le_ble_nat : forall n m,
   n <= m ->
   ble_nat n m = true.
 Proof.
   (* Hint: This may be easiest to prove by induction on [m]. *)
-  intros. Qed.
+  intros. generalize dependent n. induction m.
+  - intros. destruct n. reflexivity. inversion H.
+  - intros. destruct n. reflexivity. simpl. apply IHm. apply Sn_le_Sm__n_le_m. apply H.
+Qed.
 
 Theorem ble_nat_true_trans : forall n m o,
   ble_nat n m = true -> ble_nat m o = true -> ble_nat n o = true.                               
 Proof.
   (* Hint: This theorem can be easily proved without using [induction]. *)
-  intros. Qed.
+  intros. apply le_ble_nat. apply le_trans with (n:=m).
+  - apply ble_nat_true. apply H.
+  - apply ble_nat_true. apply H0.
+Qed.
 
 (** **** Exercise: 2 stars, optional (ble_nat_false)  *)
 Theorem ble_nat_false : forall n m,
   ble_nat n m = false -> ~(n <= m).
 Proof.
-  intros. Qed.
+  intros. unfold not. intros. generalize dependent m. induction n.
+  - simpl. intros. inversion H.
+  - intros. destruct m. 
+    inversion H0. 
+    simpl in H. apply Sn_le_Sm__n_le_m in H0. apply IHn with (m:=m). apply H. apply H0.
+Qed.
 (** [] *)
 
 
