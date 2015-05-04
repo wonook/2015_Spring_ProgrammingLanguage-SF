@@ -118,12 +118,34 @@ Definition update (st : state) (x : id) (n : nat) : state :=
     as elegant as possible. *)
 
 Fixpoint optimize_0plus_b (b : bexp) : bexp :=
-  (* FILL IN HERE *) admit.
+  match b with
+  | BTrue => BTrue
+  | BFalse => BFalse
+  | BEq a1 a2 => BEq (optimize_0plus a1) (optimize_0plus a2)
+  | BLe a1 a2 => BLe (optimize_0plus a1) (optimize_0plus a2)
+  | BNot b1 => BNot (optimize_0plus_b b1)
+  | BAnd b1 b2 => BAnd (optimize_0plus_b b1) (optimize_0plus_b b2)
+  end.
 
+Lemma optimize_0_plus_sound : forall a,
+  aeval (optimize_0plus a) = aeval a.
+Proof.
+  intros.
+  induction a;
+    try (simpl; reflexivity);
+    try (simpl; simpl in IHa1; simpl in IHa2; rewrite IHa1; rewrite IHa2; reflexivity).
+    destruct a1; try (simpl; simpl in IHa1; simpl in IHa2; rewrite IHa1; rewrite IHa2; reflexivity).
+      destruct n; try (simpl; simpl in IHa2; rewrite IHa2; reflexivity).
+Qed.
 Theorem optimize_0plus_b_sound : forall b,
   beval (optimize_0plus_b b) = beval b.
 Proof.
-  (* FILL IN HERE *) admit.
+  intros.
+  induction b;
+    try (simpl; reflexivity);
+    try (simpl; repeat (rewrite optimize_0_plus_sound); reflexivity);
+    try (simpl; simpl in IHb; rewrite IHb; reflexivity).
+    simpl; try(rewrite IHb1); try (rewrite IHb2); try(reflexivity).
 Qed.
 (** [] *)
 
@@ -153,10 +175,26 @@ Fixpoint optimize_1mult (a:aexp) : aexp :=
     you can prove the following theorem in 5 lines.
  **)
 
+Lemma optimize_0_plus_sound' : forall a,
+  aeval (optimize_0plus a) = aeval a.
+Proof.
+  intros.
+  induction a;
+    try (simpl; reflexivity);
+    try (simpl; simpl in IHa1; simpl in IHa2; rewrite IHa1; rewrite IHa2; reflexivity).
+    destruct a1. admit.
+      simpl. simpl in IHa1. rewrite IHa1. rewrite IHa2. reflexivity.
+      simpl. simpl in IHa1. rewrite IHa1. rewrite IHa2. reflexivity.
+      simpl. simpl in IHa1. rewrite IHa1. rewrite IHa2. reflexivity.
+Qed.
+
 Theorem optimize_1mult_sound: forall a,
   aeval (optimize_1mult a) = aeval a.
 Proof.
-  admit.
+  intros.
+  induction a;
+    try(simpl; reflexivity);
+    try(simpl; rewrite IHa1; rewrite IHa2; reflexivity).
 Qed.
 
 
@@ -171,13 +209,34 @@ Qed.
 
 
 Inductive bevalR: bexp -> bool -> Prop :=
-(* FILL IN HERE *)
-.
+  | E_BTrue : BTrue || true
+  | E_BFalse : BFalse || false
+  | E_BEq : forall (e1 e2: aexp) (n1 n2 : nat),
+      aevalR e1 n1 -> aevalR e2 n2 -> (BEq e1 e2) || (beq_nat n1 n2)
+  | E_BLe : forall (e1 e2: aexp) (n1 n2 : nat),
+      aevalR e1 n1 -> aevalR e2 n2 -> (BLe e1 e2) || (ble_nat n1 n2)
+  | E_BNot : forall (e1: bexp) (b1 : bool),
+      (e1 || b1) -> (BNot e1) || (negb b1)
+  | E_BAnd : forall (e1 e2: bexp) (b1 b2 : bool),
+      (e1 || b1) -> (e2 || b2) -> (BAnd e1 e2) || (andb b1 b2)
+  where "e '||' b" := (bevalR e b) : type_scope.
 
 Theorem beval_iff_bevalR : forall b bv,
   bevalR b bv <-> beval b = bv.
 Proof.
-  admit.
+  split.
+    intros.
+    induction H;
+      try(simpl; reflexivity);
+      try(simpl; apply aeval_iff_aevalR in H; apply aeval_iff_aevalR in H0; rewrite H; rewrite H0; try(reflexivity));
+      try(simpl; subst; reflexivity).
+    generalize dependent bv.
+    induction b; simpl; intros; 
+      try(rewrite <- H; subst; constructor);
+      try(apply aeval_iff_aevalR; reflexivity);
+      try(apply IHb; reflexivity);
+      try(apply IHb1; reflexivity);
+      try(apply IHb2; reflexivity).
 Qed.
 
 (** [] *)
@@ -192,7 +251,9 @@ Qed.
 Lemma neq_id : forall (T:Type) x y (p q:T), x <> y -> 
                (if eq_id_dec x y then p else q) = q. 
 Proof.
-  (* FILL IN HERE *) admit.
+  intros. destruct (eq_id_dec x y); 
+    try(reflexivity).
+    try(apply ex_falso_quodlibet). unfold not in H. apply H. apply e.
 Qed.
 (** [] *)
 
@@ -206,7 +267,9 @@ Qed.
 Theorem update_eq : forall n x st,
   (update st x n) x = n.
 Proof.
-  (* FILL IN HERE *) admit.
+  intros. unfold update. 
+  destruct (eq_id_dec x x); try(reflexivity).
+  unfold not in n0. apply ex_falso_quodlibet. apply n0. reflexivity.
 Qed.
 (** [] *)
 
@@ -221,7 +284,9 @@ Theorem update_neq : forall x2 x1 n st,
   x2 <> x1 ->                        
   (update st x2 n) x1 = (st x1).
 Proof.
-  (* FILL IN HERE *) admit.
+  intros. unfold not in H. unfold update. 
+  destruct (eq_id_dec x2 x1); try(reflexivity).
+  apply ex_falso_quodlibet. apply H. apply e.
 Qed.
 (** [] *)
 
@@ -238,7 +303,10 @@ Qed.
 Theorem update_example : forall (n:nat),
   (update empty_state (Id 2) n) (Id 3) = 0.
 Proof.
-  (* FILL IN HERE *) admit.
+  intros. unfold update. 
+  destruct (eq_id_dec (Id 2) (Id 3)); 
+    try(inversion e);
+    try(unfold not in n0; unfold empty_state; reflexivity).
 Qed.
 (** [] *)
 
@@ -252,7 +320,7 @@ Qed.
 Theorem update_shadow : forall n1 n2 x1 x2 (st : state),
    (update  (update st x2 n1) x2 n2) x1 = (update st x2 n2) x1.
 Proof.
-  (* FILL IN HERE *) admit.
+  intros. unfold update. destruct (eq_id_dec x2 x1); reflexivity.
 Qed.
 (** [] *)
 
@@ -267,7 +335,10 @@ Theorem update_same : forall n1 x1 x2 (st : state),
   st x1 = n1 ->
   (update st x1 n1) x2 = st x2.
 Proof.
-  (* FILL IN HERE *) admit.
+  intros. unfold update. 
+  destruct (eq_id_dec x1 x2); 
+    try(reflexivity);
+    try(subst; reflexivity).
 Qed.
 (** [] *)
 
@@ -282,7 +353,10 @@ Theorem update_permute : forall n1 n2 x1 x2 x3 st,
   x2 <> x1 -> 
   (update (update st x2 n1) x1 n2) x3 = (update (update st x1 n2) x2 n1) x3.
 Proof.
-  (* FILL IN HERE *) admit.
+  intros. unfold update.
+  destruct (eq_id_dec x1 x3); destruct (eq_id_dec x2 x3);
+    try (reflexivity);
+    try(subst; unfold not in H; apply ex_falso_quodlibet; apply H; reflexivity).
 Qed.
 (** [] *)
 
