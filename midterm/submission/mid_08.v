@@ -9,18 +9,19 @@ Require Export mid_07.
  **)
 
 Inductive sorted_min: nat -> list nat -> Prop :=
-  (* FILL IN HERE *)
+  | sorted_nil n : sorted_min n []
+  | sorted_cons n m l (LE: n <= m) (SORTED: sorted_min m l) : sorted_min n (m::l)
 .
 
 Example sorted_min_example1: sorted_min 0 [1; 3; 4; 4; 5].
-Proof. (* FILL IN HERE *) admit. Qed.
+Proof. repeat (constructor; auto). Qed.
 
 
 Example sorted_min_example2: sorted_min 2 [2; 2; 3; 6].
-Proof. (* FILL IN HERE *) admit. Qed.
+Proof. repeat (constructor; auto). Qed.
 
 Example sorted_min_non_example1: sorted_min 1 [0; 1] -> False.
-Proof. (* FILL IN HERE *) admit. Qed.
+Proof. repeat (constructor; auto). Qed.
 
 
 

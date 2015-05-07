@@ -15,6 +15,9 @@ Fixpoint odd_sum (n: nat) : nat :=
 Theorem odd_sum__square: forall n,
   odd_sum n = n * n.
 Proof.
-  (* FILL IN HERE *) admit.
+	induction n.
+	- 
+	- simpl.
+	rewrite IHn, (mult_comm n (S n)), plus 0_r, <- plus_assoc.
 Qed.
 

@@ -12,11 +12,17 @@ Require Export mid_02.
  **)
 
 Fixpoint fibonacci (n: nat) : nat :=
-  (* FILL IN HERE *) admit.
+  match n with
+  | 0 => 0
+  | S m => match m with
+			| 0 => 1
+			| S l => fibonacci m + fibonacci l
+			end
+  end.
 
 Example fibonacci_example1: fibonacci 5 = 5.
-Proof. (* FILL IN HERE *) admit. Qed.
+Proof. reflexivity. Qed.
 
 Example fibonacci_example2: fibonacci 10 = 55.
-Proof. (* FILL IN HERE *) admit. Qed.
+Proof. reflexivity. Qed.
 

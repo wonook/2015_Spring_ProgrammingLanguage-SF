@@ -10,11 +10,13 @@ Require Export mid_01.
  **)
 
 Fixpoint square_sum (n: nat) : nat :=
-  (* FILL IN HERE *) admit.
+match n with
+| 0 -> 0
+| S m => n*n + square_sum m
 
 Example square_sum_example1: square_sum 5 = 55.
-Proof. (* FILL IN HERE *) admit. Qed.
+Proof. reflexivity. Qed.
 
 Example square_sum_example2: square_sum 10 = 385.
-Proof. (* FILL IN HERE *) admit. Qed.
+Proof. reflexivity. Qed.
 
