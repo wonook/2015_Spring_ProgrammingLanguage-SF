@@ -175,19 +175,6 @@ Fixpoint optimize_1mult (a:aexp) : aexp :=
     you can prove the following theorem in 5 lines.
  **)
 
-Lemma optimize_0_plus_sound' : forall a,
-  aeval (optimize_0plus a) = aeval a.
-Proof.
-  intros.
-  induction a;
-    try (simpl; reflexivity);
-    try (simpl; simpl in IHa1; simpl in IHa2; rewrite IHa1; rewrite IHa2; reflexivity).
-    destruct a1. admit.
-      simpl. simpl in IHa1. rewrite IHa1. rewrite IHa2. reflexivity.
-      simpl. simpl in IHa1. rewrite IHa1. rewrite IHa2. reflexivity.
-      simpl. simpl in IHa1. rewrite IHa1. rewrite IHa2. reflexivity.
-Qed.
-
 Theorem optimize_1mult_sound: forall a,
   aeval (optimize_1mult a) = aeval a.
 Proof.
@@ -195,6 +182,90 @@ Proof.
   induction a;
     try(simpl; reflexivity);
     try(simpl; rewrite IHa1; rewrite IHa2; reflexivity).
+    simpl.
+    destruct a1. (*4*)
+      - try (destruct n). (*2*)
+        * try (destruct a2). (*4*)
+          + destruct n. 
+            simpl. reflexivity.
+            destruct n. 
+              simpl. reflexivity.
+              simpl. reflexivity.
+          + simpl. reflexivity.
+          + simpl. reflexivity.
+          + simpl. reflexivity.
+        * destruct n. (*2*)
+          + simpl. rewrite IHa2. omega.
+          + destruct a2. (*4*)
+            destruct n0. (*2*)
+              simpl. reflexivity.
+              destruct n0. (*2*)
+                simpl. omega.
+                simpl. reflexivity.
+            simpl. simpl in IHa2. rewrite IHa2. reflexivity.
+            simpl. simpl in IHa2. rewrite IHa2. reflexivity.
+            simpl. simpl in IHa2. rewrite IHa2. reflexivity.
+    - destruct a2. (*4*)
+      * destruct n.
+        + simpl. simpl in IHa1. rewrite IHa1. reflexivity.
+        + simpl. simpl in IHa1. destruct n.
+          simpl. omega.
+          simpl. rewrite IHa1. reflexivity.
+      * simpl. simpl in IHa1. simpl in IHa2. rewrite IHa1. rewrite IHa2. reflexivity.
+      * simpl. simpl in IHa1. simpl in IHa2. rewrite IHa1. rewrite IHa2. reflexivity.
+      * simpl. simpl in IHa1. simpl in IHa2. rewrite IHa1. rewrite IHa2. reflexivity.
+    - destruct a2. (*4*)
+      * destruct n.
+        + simpl. simpl in IHa1. rewrite IHa1. reflexivity.
+        + simpl. simpl in IHa1. destruct n.
+          simpl. omega.
+          simpl. rewrite IHa1. reflexivity.
+      * simpl. simpl in IHa1. simpl in IHa2. rewrite IHa1. rewrite IHa2. reflexivity.
+      * simpl. simpl in IHa1. simpl in IHa2. rewrite IHa1. rewrite IHa2. reflexivity.
+      * simpl. simpl in IHa1. simpl in IHa2. rewrite IHa1. rewrite IHa2. reflexivity.
+    - destruct a2. (*4*)
+      * destruct n.
+        + simpl. simpl in IHa1. rewrite IHa1. reflexivity.
+        + simpl. simpl in IHa1. destruct n.
+          simpl. omega.
+          simpl. rewrite IHa1. reflexivity.
+      * simpl. simpl in IHa1. simpl in IHa2. rewrite IHa1. rewrite IHa2. reflexivity.
+      * simpl. simpl in IHa1. simpl in IHa2. rewrite IHa1. rewrite IHa2. reflexivity.
+      * simpl. simpl in IHa1. simpl in IHa2. rewrite IHa1. rewrite IHa2. reflexivity.
+Qed.
+
+Theorem optimize_1mult_sound': forall a,
+  aeval (optimize_1mult a) = aeval a.
+Proof.
+  intros.
+  induction a;
+    try(simpl; reflexivity);
+    try(simpl; rewrite IHa1; rewrite IHa2; reflexivity).
+    simpl.
+    destruct a1;
+      try(destruct a2; 
+        try(simpl; simpl in IHa1; simpl in IHa2; rewrite IHa1; rewrite IHa2; reflexivity);
+        destruct n; 
+          simpl; simpl in IHa1; 
+            try(rewrite IHa1; reflexivity);
+            destruct n; simpl;
+              try(omega);
+              rewrite IHa1; reflexivity).
+      destruct n.
+        - destruct a2;
+          try(simpl; reflexivity).
+          destruct n.
+            simpl; reflexivity.
+            destruct n;
+              simpl; reflexivity.
+        - destruct n.
+          simpl. rewrite IHa2. omega.
+          destruct a2;
+            try(simpl; simpl in IHa2; rewrite IHa2; reflexivity).
+            destruct n0.
+              simpl; reflexivity.
+              destruct n0;
+                simpl; omega.
 Qed.
 
 
@@ -359,4 +430,3 @@ Proof.
     try(subst; unfold not in H; apply ex_falso_quodlibet; apply H; reflexivity).
 Qed.
 (** [] *)
-
