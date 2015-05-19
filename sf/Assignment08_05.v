@@ -7,7 +7,13 @@ Require Export Assignment08_04.
     same as pushing the value of the expression on the stack. *)
 
 Fixpoint s_compile (e : aexp) : list sinstr :=
-  FILL_IN_HERE.
+  match e with
+  | ANum n => [SPush n]
+  | AId i => [SLoad i]
+  | APlus a1 a2 => (s_compile a1)++(s_compile a2)++[SPlus]
+  | AMinus a1 a2 => (s_compile a1)++(s_compile a2)++[SMinus]
+  | AMult a1 a2 => (s_compile a1)++(s_compile a2)++[SMult]
+  end.
 
 (** After you've defined [s_compile], prove the following to test
     that it works. *)
@@ -16,7 +22,7 @@ Example s_compile1 :
     s_compile (AMinus (AId X) (AMult (ANum 2) (AId Y)))
   = [SLoad X; SPush 2; SLoad Y; SMult; SMinus].
 Proof.
-  exact FILL_IN_HERE.
+  reflexivity.
 Qed.
 
 (** **** Exercise: 3 stars, advanced (stack_compiler_correct)  *)
@@ -33,10 +39,36 @@ Qed.
     general lemma to get a usable induction hypothesis; the main
     theorem will then be a simple corollary of this lemma. *)
 
+Lemma s_compile_app : forall (st : state) (nl: list nat) (l1 l2 : list sinstr),
+  s_execute st nl (l1 ++ l2) = s_execute st (s_execute st nl l1) l2.
+Proof.
+  intros. generalize dependent nl. induction l1.
+  - reflexivity.
+  - simpl. intros. destruct a.
+    + apply IHl1.
+    + apply IHl1.
+    + destruct nl.
+      * apply IHl1.
+      * destruct nl. apply IHl1. apply IHl1.
+    + destruct nl.
+      * apply IHl1.
+      * destruct nl. apply IHl1. apply IHl1.
+    + destruct nl.
+      * apply IHl1.
+      * destruct nl. apply IHl1. apply IHl1.
+Qed.
+Lemma s_compile_correct0 : forall (st: state) (e:aexp) (nl:list nat),
+  s_execute st nl (s_compile e) = aeval st e :: nl.
+Proof.
+  intros. generalize dependent nl. induction e; try (reflexivity); simpl.
+  - intros. repeat (rewrite s_compile_app). rewrite IHe1. rewrite IHe2. reflexivity.
+  - intros. repeat (rewrite s_compile_app). rewrite IHe1. rewrite IHe2. reflexivity.
+  - intros. repeat (rewrite s_compile_app). rewrite IHe1. rewrite IHe2. reflexivity.
+Qed.
 Theorem s_compile_correct : forall (st : state) (e : aexp),
   s_execute st [] (s_compile e) = [ aeval st e ].
 Proof.
-  exact FILL_IN_HERE.
+  intros. apply s_compile_correct0.
 Qed.
 
 (*-- Check --*)
