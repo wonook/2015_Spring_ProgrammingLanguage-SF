@@ -226,7 +226,10 @@ Theorem skip_right: forall c,
     (c;; SKIP) 
     c.
 Proof. 
-  exact FILL_IN_HERE.
+  intros c st st'.
+  split; intros.
+  - inversion H. subst. inversion H5. subst. assumption.
+  - apply E_Seq with st'. assumption. apply E_Skip.
 Qed.
 
 (*-- Check --*)
@@ -247,7 +250,13 @@ Theorem IFB_false: forall b c1 c2,
     (IFB b THEN c1 ELSE c2 FI) 
     c2.
 Proof.
-  exact FILL_IN_HERE.
+  intros b c1 c2. split; intros.
+  - inversion H0; subst. 
+    unfold bequiv in H. simpl in H. rewrite H in H6. inversion H6.
+    apply H7.
+  - apply E_IfFalse. 
+    unfold bequiv in H. apply H.
+    apply H0.
 Qed.
 
 (*-- Check --*)
@@ -271,7 +280,13 @@ Theorem swap_if_branches: forall b e1 e2,
     (IFB b THEN e1 ELSE e2 FI)
     (IFB BNot b THEN e2 ELSE e1 FI).
 Proof.
-  exact FILL_IN_HERE.
+  intros. split; intros.
+  - inversion H; subst. 
+    apply E_IfFalse. simpl. rewrite H5. reflexivity. apply H6.
+    apply E_IfTrue. simpl. rewrite H5. reflexivity. apply H6.
+  - inversion H; subst.
+    apply E_IfFalse. simpl in H5. symmetry. rewrite negb_involutive_reverse. rewrite H5. reflexivity. apply H6.
+    apply E_IfTrue. simpl in H5. symmetry. rewrite negb_involutive_reverse. rewrite H5. reflexivity. apply H6.
 Qed.
 
 (*-- Check --*)
@@ -289,13 +304,23 @@ Check swap_if_branches: forall b e1 e2,
 (** Prove the following theorem. _Hint_: You'll want to use
     [WHILE_true_nonterm] here. *)
 
+Lemma WHILE_true_nonterm: forall b c st st',
+    bequiv b BTrue -> ~(WHILE b DO c END / st || st').
+Proof.
+  intros. intros H'. remember (WHILE b DO c END).
+  induction H'; inversion Heqc0.
+  - subst. rewrite H in H0. inversion H0.
+  - subst. apply IHH'2. reflexivity.
+Qed.
 Theorem WHILE_true: forall b c,
      bequiv b BTrue  ->
      cequiv 
        (WHILE b DO c END)
        (WHILE BTrue DO SKIP END).
 Proof. 
-  exact FILL_IN_HERE.
+  intros. split; intros.
+  - inversion H0; subst. rewrite H in H5. inversion H5. apply WHILE_true_nonterm in H7. inversion H7. apply H.
+  - inversion H0; subst. inversion H5. apply WHILE_true_nonterm in H7. inversion H7. unfold bequiv. reflexivity.
 Qed.
 
 (*-- Check --*)
