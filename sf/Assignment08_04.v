@@ -1,4 +1,4 @@
-git diffvfRequire Export Assignment08_03.
+Require Export Assignment08_03.
 
 (* problem #04: 10 points *)
 
