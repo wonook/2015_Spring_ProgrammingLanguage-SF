@@ -5,7 +5,14 @@ Require Export Assignment08_17.
 Lemma optimize_0plus_com_sound:
   ctrans_sound optimize_0plus_com.
 Proof.
-  exact FILL_IN_HERE.
+  unfold ctrans_sound. intros. induction c; simpl.
+  - apply refl_cequiv.
+  - apply CAss_congruence. apply optimize_0plus_aexp_sound.
+  - apply CSeq_congruence. assumption. assumption.
+  - assert (bequiv b (optimize_0plus_bexp b)). apply optimize_0plus_bexp_sound. destruct b;
+    simpl; apply CIf_congruence; assumption; assumption; assumption.
+  - assert (bequiv b (optimize_0plus_bexp b)). apply optimize_0plus_bexp_sound. destruct b;
+    simpl; apply CWhile_congruence; assumption; assumption. 
 Qed.
 
 (*-- Check --*)

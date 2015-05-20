@@ -312,12 +312,13 @@ Proof.
   - subst. rewrite H in H0. inversion H0.
   - subst. apply IHH'2. reflexivity.
 Qed.
+
 Theorem WHILE_true: forall b c,
      bequiv b BTrue  ->
      cequiv 
        (WHILE b DO c END)
        (WHILE BTrue DO SKIP END).
-Proof. 
+Proof.
   intros. split; intros.
   - inversion H0; subst. rewrite H in H5. inversion H5. apply WHILE_true_nonterm in H7. inversion H7. apply H.
   - inversion H0; subst. inversion H5. apply WHILE_true_nonterm in H7. inversion H7. unfold bequiv. reflexivity.
@@ -362,12 +363,26 @@ Check seq_assoc : forall c1 c2 c3,
 (* problem #11: 10 points *)
 
 (** **** Exercise: 2 stars (assign_aequiv)  *)
+Lemma update_same : forall n1 x1 x2 (st : state),
+  st x1 = n1 ->
+    (update st x1 n1) x2 = st x2.
+Proof.
+  intros. unfold update. rewrite <- H. destruct (eq_id_dec x1 x2).
+  - rewrite e. reflexivity.
+  - reflexivity.
+Qed.
+
 Theorem assign_aequiv : forall X e,
   aequiv (AId X) e -> 
   cequiv SKIP (X ::= e).
 Proof.
   intros. split; intros.
-  - inversion H0; subst. 
+  - inversion H0; subst. assert (st' = update st' X (aeval st' e)).
+      apply functional_extensionality. intros. rewrite update_same. reflexivity. apply H.
+    rewrite H1 at 2. apply E_Ass. reflexivity.
+  - inversion H0; subst. assert (st = update st X (aeval st e)).
+      apply functional_extensionality. intros. rewrite update_same. reflexivity. apply H.
+    rewrite <- H1. apply E_Skip.
 Qed.
 
 (*-- Check --*)
@@ -385,7 +400,9 @@ Theorem CSeq_congruence : forall c1 c1' c2 c2',
   cequiv c1 c1' -> cequiv c2 c2' ->
   cequiv (c1;;c2) (c1';;c2').
 Proof. 
-  exact FILL_IN_HERE.
+  intros. split; intros.
+  - inversion H1; subst. apply E_Seq with st'0. apply H. apply H4. apply H0. apply H7.
+  - inversion H1; subst. apply E_Seq with st'0. apply H. apply H4. apply H0. apply H7.
 Qed.
 
 (*-- Check --*)
@@ -403,7 +420,13 @@ Theorem CIf_congruence : forall b b' c1 c1' c2 c2',
   bequiv b b' -> cequiv c1 c1' -> cequiv c2 c2' ->
   cequiv (IFB b THEN c1 ELSE c2 FI) (IFB b' THEN c1' ELSE c2' FI).
 Proof.
-  exact FILL_IN_HERE.
+  intros. split; intros.
+  - inversion H2; subst. 
+    apply E_IfTrue. rewrite <- H. assumption. apply H0. assumption.
+    apply E_IfFalse. rewrite <- H. assumption. apply H1. assumption.
+  - inversion H2; subst.
+    apply E_IfTrue. rewrite H. assumption. apply H0. assumption.
+    apply E_IfFalse. rewrite H. assumption. apply H1. assumption.
 Qed.
 
 (*-- Check --*)
@@ -514,7 +537,14 @@ Proof.
          become constants after folding *)
       simpl. destruct (beq_nat n n0); reflexivity.
   Case "BLe". 
-    exact FILL_IN_HERE.
+    simpl.
+    remember (fold_constants_aexp a) as a' eqn:Heqa'.
+    remember (fold_constants_aexp a0) as a0' eqn:Heqa0'.
+    replace (aeval st a) with (aeval st a'). replace (aeval st a0) with (aeval st a0').
+    destruct a'; destruct a0'; try reflexivity.
+      simpl. destruct (ble_nat n n0); reflexivity.
+        subst a0'. rewrite <- fold_constants_aexp_sound. reflexivity.
+        subst a'. rewrite <- fold_constants_aexp_sound. reflexivity.
   Case "BNot". 
     simpl. remember (fold_constants_bexp b) as b' eqn:Heqb'. 
     rewrite IHb.
@@ -543,6 +573,25 @@ Check fold_constants_bexp_sound:
 (** **** Exercise: 3 stars (fold_constants_com_sound)  *)
 (** Complete the [WHILE] case of the following proof. *)
 
+Theorem WHILE_false : forall b c,
+    bequiv b BFalse ->
+    cequiv
+    (WHILE b DO c END)
+    SKIP.
+Proof. 
+    intros b c Hb. split; intros H.
+    Case "->".
+    inversion H; subst.
+    SCase "E_WhileEnd".
+    apply E_Skip.
+    SCase "E_WhileLoop".
+    rewrite Hb in H2. inversion H2.
+    Case "<-".
+    inversion H; subst.
+    apply E_WhileEnd.
+    rewrite Hb.
+reflexivity.  Qed.
+
 Theorem fold_constants_com_sound : 
   ctrans_sound fold_constants_com.
 Proof. 
@@ -570,7 +619,11 @@ Proof.
       apply trans_cequiv with c2; try assumption.
       apply IFB_false; assumption.
   Case "WHILE".
-    exact FILL_IN_HERE.
+    assert (bequiv b (fold_constants_bexp b)).
+      apply fold_constants_bexp_sound.
+    destruct (fold_constants_bexp b) eqn:Heqb; try (apply CWhile_congruence; assumption).
+      apply WHILE_true. apply H.
+      apply WHILE_false. apply H.
 Qed.
 
 (*-- Check --*)
@@ -585,7 +638,11 @@ Check fold_constants_com_sound :
 Lemma optimize_0plus_aexp_sound:
   atrans_sound optimize_0plus_aexp.
 Proof.
-  exact FILL_IN_HERE.
+  unfold atrans_sound. intros. unfold aequiv. intros. induction a; try reflexivity.
+  - simpl. try (destruct a1; try destruct a2; try destruct n; try rewrite IHa1; try rewrite IHa2; try rewrite plus_0_r; try reflexivity).
+    destruct n0. rewrite <- IHa2. simpl. rewrite plus_0_r. reflexivity. reflexivity.
+  - simpl. try (destruct a1; try destruct a2; try rewrite IHa1; try rewrite IHa2; try reflexivity).
+  - simpl. try (destruct a1; try destruct a2; try rewrite IHa1; try rewrite IHa2; try reflexivity).
 Qed.
 
 (*-- Check --*)
@@ -600,7 +657,11 @@ Check optimize_0plus_aexp_sound:
 Lemma optimize_0plus_bexp_sound:
   btrans_sound optimize_0plus_bexp.
 Proof.
-  exact FILL_IN_HERE.
+  unfold btrans_sound. intros. unfold bequiv. intros. induction b; simpl; try reflexivity.
+  - rewrite <- optimize_0plus_aexp_sound. rewrite <- optimize_0plus_aexp_sound. reflexivity.
+  - rewrite <- optimize_0plus_aexp_sound. rewrite <- optimize_0plus_aexp_sound. reflexivity.
+  - rewrite <- IHb. reflexivity.
+  - rewrite <- IHb1. rewrite IHb2. reflexivity.
 Qed.
 
 (*-- Check --*)
@@ -615,7 +676,14 @@ Check optimize_0plus_bexp_sound:
 Lemma optimize_0plus_com_sound:
   ctrans_sound optimize_0plus_com.
 Proof.
-  exact FILL_IN_HERE.
+  unfold ctrans_sound. intros. induction c; simpl.
+  - apply refl_cequiv.
+  - apply CAss_congruence. apply optimize_0plus_aexp_sound.
+  - apply CSeq_congruence. assumption. assumption.
+  - assert (bequiv b (optimize_0plus_bexp b)). apply optimize_0plus_bexp_sound. destruct b;
+    simpl; apply CIf_congruence; assumption; assumption; assumption.
+  - assert (bequiv b (optimize_0plus_bexp b)). apply optimize_0plus_bexp_sound. destruct b;
+    simpl; apply CWhile_congruence; assumption; assumption. 
 Qed.
 
 (*-- Check --*)
@@ -630,7 +698,9 @@ Check optimize_0plus_com_sound:
 Lemma constfold_0plus_sound:
   ctrans_sound constfold_0plus.
 Proof.
-  exact FILL_IN_HERE.
+  unfold ctrans_sound. intros. unfold constfold_0plus. assert (cequiv c (fold_constants_com c)). apply fold_constants_com_sound. assert (cequiv c (optimize_0plus_com c)). apply optimize_0plus_com_sound. apply trans_cequiv with (fold_constants_com c).
+  - assumption.
+  - remember (fold_constants_com c) as c'. apply optimize_0plus_com_sound. 
 Qed.
 
 (*-- Check --*)
