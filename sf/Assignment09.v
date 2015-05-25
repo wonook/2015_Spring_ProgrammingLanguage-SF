@@ -115,43 +115,6 @@ Check hoare_asgn_example4 :
 (** **** Exercise: 2 stars (if_minus_plus)  *)
 (** Prove the following hoare triple using [hoare_if]: *)
 
-Definition bassn b : Assertion :=
-  fun st => (beval st b = true).
-
-Lemma bexp_eval_true : forall b st,
-  beval st b = true -> (bassn b) st.
-Proof.
-  intros b st Hbe.
-  unfold bassn. assumption.
-Qed.
-
-Lemma bexp_eval_false : forall b st,
-  beval st b = false -> ~ ((bassn b) st).
-Proof.
-  intros b st Hbe contra.
-  unfold bassn in contra.
-  rewrite -> contra in Hbe. inversion Hbe.
-Qed.
-
-Lemma hoare_if' : forall P Q b c1 c2,
-  {{fun st => P st /\ bassn b st}} c1 {{Q}} ->
-  {{fun st => P st /\ ~(bassn b st)}} c2 {{Q}} ->
-  {{P}} (IFB b THEN c1 ELSE c2 FI) {{Q}}.
-Proof.
-  intros P Q b c1 c2 HTrue HFalse st st' HE HP.
-  inversion HE; subst.
-  Case "b is true".
-    apply (HTrue st st').
-      assumption.
-      split. assumption.
-        apply bexp_eval_true. assumption.
-  Case "b is false".
-    apply (HFalse st st').
-      assumption.
-      split. assumption.
-        apply bexp_eval_false. assumption.
-Qed.
-
 Theorem if_minus_plus :
   {{fun st => True}}
   IFB (BLe (AId X) (AId Y))
@@ -160,15 +123,17 @@ Theorem if_minus_plus :
   FI
   {{fun st => st Y = st X + st Z}}. 
 Proof.
-  apply hoare_if'.
-    eapply hoare_consequence_pre. 
-      apply hoare_asgn.
-      unfold bassn, assn_sub, update, assert_implies. simpl.
-        intros. inversion H. apply ble_nat_true in H1. apply le_plus_minus. apply H1.
-    eapply hoare_consequence_pre. 
-      apply hoare_asgn.
-      unfold bassn, assn_sub, update, assert_implies. simpl.
-        intros. reflexivity.
+  eapply hoare_consequence_pre.
+    apply hoare_if. 
+      apply hoare_asgn. apply hoare_asgn.
+      unfold assn_sub, update, assert_implies. simpl.
+        intros. split. 
+          destruct (ble_nat (st X) (st Y)) eqn:eqn. 
+            intros. apply le_plus_minus. apply ble_nat_true in eqn. apply eqn.
+            intros. inversion H0.
+          destruct (ble_nat (st X) (st Y)) eqn:eqn.
+            intros. inversion H0.
+            intros. reflexivity.
 Qed.
 
 (*-- Check --*)
@@ -199,6 +164,14 @@ Check if_minus_plus :
       {{ Y = m }} 
     Write an informal decorated program showing that this is correct. *)
 
+Lemma stupid : forall m n,
+  m <> 0 -> m - 1 + (n + 1) = m + n.
+Proof.
+  intros. induction m.
+  unfold not in H. apply ex_falso_quodlibet. apply H. reflexivity.
+  simpl. omega. 
+Qed.
+
 Theorem slow_assignment : forall m,
     {{ fun st => st X = m }}
     Y ::= ANum 0;;
@@ -208,7 +181,14 @@ Theorem slow_assignment : forall m,
     END
     {{ fun st => st Y = m }}.
 Proof.
-  exact FILL_IN_HERE.
+  intros. apply hoare_consequence_pre with (fun st => st X + 0 = m). 
+  apply hoare_seq with (fun st => st X + st Y = m). eapply hoare_consequence_post.
+  apply hoare_while.
+    eapply hoare_seq. apply hoare_asgn. eapply hoare_consequence_pre. apply hoare_asgn.
+      intros st [H1 H2]. unfold assn_sub, update. simpl. rewrite stupid. assumption. unfold beval in H2. apply negb_true in H2. simpl in H2. apply beq_nat_false in H2. assumption.
+      intros st [H1 H2]. unfold beval in H2. apply negb_false in H2. simpl in H2. apply beq_nat_true in H2. rewrite H2 in H1. apply H1. 
+      eapply hoare_consequence_pre. eapply hoare_asgn. intros st H. apply H. 
+      intros st H. omega.
 Qed.
 
 (*-- Check --*)
@@ -239,6 +219,14 @@ Check slow_assignment : forall m,
     specification of [add_slowly]; then (informally) decorate the
     program accordingly. *)
 
+Lemma stupid' : forall m n,
+  m <> 0 -> m - 1 + (n + 1) = m + n.
+Proof.
+  intros. induction m.
+  unfold not in H. apply ex_falso_quodlibet. apply H. reflexivity.
+  simpl. omega. 
+Qed.
+
 Theorem slow_addition_dec_correct : forall n m,
   {{fun st => st X = n /\ st Y = m }}
   WHILE BNot (BEq (AId X) (ANum 0)) DO
@@ -247,7 +235,13 @@ Theorem slow_addition_dec_correct : forall n m,
   END
   {{fun st => st Y = n + m}}.
 Proof.
-  exact FILL_IN_HERE.
+  intros. apply hoare_consequence_pre with (fun st => st X + st Y = n + m). 
+  eapply hoare_consequence_post.
+  apply hoare_while.
+    eapply hoare_seq. apply hoare_asgn. eapply hoare_consequence_pre. apply hoare_asgn.
+      intros st [H1 H2]. unfold assn_sub, update. simpl. rewrite stupid'. assumption. unfold beval in H2. apply negb_true in H2. simpl in H2. apply beq_nat_false in H2. assumption.
+      intros st [H1 H2]. unfold beval in H2. apply negb_false in H2. simpl in H2. apply beq_nat_true in H2. rewrite H2 in H1. apply H1. 
+      intros st H. omega.
 Qed.
 
 (*-- Check --*)
@@ -319,7 +313,14 @@ Theorem parity_correct : forall m,
   END
     {{ fun st => st X = parity m }}.
 Proof.
-  exact FILL_IN_HERE.
+  intros. 
+  apply hoare_consequence_pre with (fun st => parity (st X) = parity m). 
+  eapply hoare_consequence_post.
+  apply hoare_while. 
+    eapply hoare_consequence_pre. apply hoare_asgn.
+    intros st [H1 H2]. unfold assn_sub. simpl. rewrite update_eq. rewrite parity_ge_2. assumption. apply ble_nat_true. apply H2.
+  intros st [H1 H2]. rewrite <- H1. symmetry. rewrite <- parity_lt_2. reflexivity. unfold beval in H2. apply ble_nat_false in H2. simpl in H2. assumption.
+  intros st H. rewrite H. reflexivity.
 Qed.
 
 (*-- Check --*)
