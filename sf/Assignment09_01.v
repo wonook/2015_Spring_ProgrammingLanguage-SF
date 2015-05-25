@@ -9,7 +9,8 @@ Theorem assn_sub_ex1:
       X ::= APlus (AId X) (ANum 1)
   {{ fun st => st X <= 5 }}.
 Proof.
-  exact FILL_IN_HERE.
+  unfold hoare_triple. unfold assn_sub. simpl. intros.
+  inversion H; subst. simpl. apply H0.
 Qed.
 
 (*-- Check --*)

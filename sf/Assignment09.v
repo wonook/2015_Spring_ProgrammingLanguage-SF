@@ -9,7 +9,8 @@ Theorem assn_sub_ex1:
       X ::= APlus (AId X) (ANum 1)
   {{ fun st => st X <= 5 }}.
 Proof.
-  exact FILL_IN_HERE.
+  unfold hoare_triple. unfold assn_sub. simpl. intros.
+  inversion H; subst. simpl. apply H0.
 Qed.
 
 (*-- Check --*)
@@ -28,7 +29,8 @@ Theorem assn_sub_ex2:
      X ::= ANum 3
   {{ fun st => 0 <= st X /\ st X <= 5 }}.
 Proof.
-  exact FILL_IN_HERE.
+  unfold hoare_triple. unfold assn_sub. simpl. intros.
+  inversion H; subst. simpl. apply H0.
 Qed.
 
 (*-- Check --*)
@@ -57,7 +59,13 @@ Check assn_sub_ex2:
 Theorem hoare_asgn_wrong:
   exists a, ~ {{ fun st => True }} X ::= a {{ fun st => st X = aeval st a}}.
 Proof.
-  exact FILL_IN_HERE.
+  unfold hoare_triple. exists (APlus (AId X ) (ANum 1)). 
+  simpl. unfold not. intros. 
+  assert ((X ::= APlus (AId X) (ANum 1)) / empty_state || update empty_state X 1).
+    apply E_Ass. auto.
+  assert (update empty_state X 1 X = aeval (update empty_state X 1) (APlus (AId X) (ANum 1))).
+    apply H with empty_state; auto.
+  simpl in H1. rewrite update_eq in H1. inversion H1.
 Qed.
 
 (*-- Check --*)
@@ -84,7 +92,14 @@ Example hoare_asgn_example4 :
   {{fun st => True}} (X ::= (ANum 1);; Y ::= (ANum 2)) 
   {{fun st => st X = 1 /\ st Y = 2}}.
 Proof.
-  exact FILL_IN_HERE.
+  eapply hoare_seq.
+    apply hoare_asgn.
+    eapply hoare_consequence.
+      apply hoare_asgn.
+      intros st H. assert (((fun st : state => st X = 1) [X |-> ANum 1]) st). reflexivity. apply H0.
+      intros st H. unfold assn_sub. simpl. unfold update. split.
+        destruct (eq_id_dec Y X). inversion e. apply H.
+        destruct (eq_id_dec Y Y). reflexivity. unfold not in n. apply ex_falso_quodlibet. apply n. reflexivity.
 Qed.
 
 (*-- Check --*)
@@ -100,6 +115,43 @@ Check hoare_asgn_example4 :
 (** **** Exercise: 2 stars (if_minus_plus)  *)
 (** Prove the following hoare triple using [hoare_if]: *)
 
+Definition bassn b : Assertion :=
+  fun st => (beval st b = true).
+
+Lemma bexp_eval_true : forall b st,
+  beval st b = true -> (bassn b) st.
+Proof.
+  intros b st Hbe.
+  unfold bassn. assumption.
+Qed.
+
+Lemma bexp_eval_false : forall b st,
+  beval st b = false -> ~ ((bassn b) st).
+Proof.
+  intros b st Hbe contra.
+  unfold bassn in contra.
+  rewrite -> contra in Hbe. inversion Hbe.
+Qed.
+
+Lemma hoare_if' : forall P Q b c1 c2,
+  {{fun st => P st /\ bassn b st}} c1 {{Q}} ->
+  {{fun st => P st /\ ~(bassn b st)}} c2 {{Q}} ->
+  {{P}} (IFB b THEN c1 ELSE c2 FI) {{Q}}.
+Proof.
+  intros P Q b c1 c2 HTrue HFalse st st' HE HP.
+  inversion HE; subst.
+  Case "b is true".
+    apply (HTrue st st').
+      assumption.
+      split. assumption.
+        apply bexp_eval_true. assumption.
+  Case "b is false".
+    apply (HFalse st st').
+      assumption.
+      split. assumption.
+        apply bexp_eval_false. assumption.
+Qed.
+
 Theorem if_minus_plus :
   {{fun st => True}}
   IFB (BLe (AId X) (AId Y))
@@ -108,7 +160,15 @@ Theorem if_minus_plus :
   FI
   {{fun st => st Y = st X + st Z}}. 
 Proof.
-  exact FILL_IN_HERE.
+  apply hoare_if'.
+    eapply hoare_consequence_pre. 
+      apply hoare_asgn.
+      unfold bassn, assn_sub, update, assert_implies. simpl.
+        intros. inversion H. apply ble_nat_true in H1. apply le_plus_minus. apply H1.
+    eapply hoare_consequence_pre. 
+      apply hoare_asgn.
+      unfold bassn, assn_sub, update, assert_implies. simpl.
+        intros. reflexivity.
 Qed.
 
 (*-- Check --*)

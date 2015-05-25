@@ -17,7 +17,13 @@ Require Export Assignment09_02.
 Theorem hoare_asgn_wrong:
   exists a, ~ {{ fun st => True }} X ::= a {{ fun st => st X = aeval st a}}.
 Proof.
-  exact FILL_IN_HERE.
+  unfold hoare_triple. exists (APlus (AId X ) (ANum 1)). 
+  simpl. unfold not. intros. 
+  assert ((X ::= APlus (AId X) (ANum 1)) / empty_state || update empty_state X 1).
+    apply E_Ass. auto.
+  assert (update empty_state X 1 X = aeval (update empty_state X 1) (APlus (AId X) (ANum 1))).
+    apply H with empty_state; auto.
+  simpl in H1. rewrite update_eq in H1. inversion H1.
 Qed.
 
 (*-- Check --*)
