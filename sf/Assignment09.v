@@ -352,18 +352,18 @@ Check parity_correct : forall m,
 
     Fill in the blanks in following decorated program:
     {{ X = m }} ->>
-    {{                                      }}
+    {{ 1 * X! = m! }}
   Y ::= 1;;
-    {{                                      }}
+    {{ Y * X! = m! }}
   WHILE X <> 0
-  DO   {{                                      }} ->>
-       {{                                      }}
+  DO   {{ Y * X! = m! /\ X <> 0 }} ->>
+       {{ (Y * X) * (X - 1)! = m! }}
      Y ::= Y * X;;
-       {{                                      }}
+       {{ Y * (X - 1)! = m! }}
      X ::= X - 1
-       {{                                      }}
+       {{ Y * X! = m! }}
   END
-    {{                                      }} ->>
+    {{ Y * X! = m! /\ X == 0}} ->>
     {{ Y = m! }}
 *)
 
@@ -379,7 +379,18 @@ Theorem factorial_dec_correct: forall m,
   END
   {{ fun st => st Y = fact m }}.
 Proof.
-  exact FILL_IN_HERE.
+  intros.
+  apply hoare_consequence_pre with (fun st => 1 * fact (st X) = fact m).
+  apply hoare_seq with (fun st => (st Y) * fact (st X) = fact m). eapply hoare_consequence_post.
+  apply hoare_while. eapply hoare_seq. apply hoare_asgn. eapply hoare_consequence_pre. apply hoare_asgn.
+    intros st [H1 H2]. unfold assn_sub, update. simpl. assert (st X * fact (st X - 1) = fact (st X)).
+      induction (st X) eqn:eqn.
+        simpl. unfold beval in H2. apply negb_true in H2. simpl in H2. apply beq_nat_false in H2. unfold not in H2. apply ex_falso_quodlibet. apply H2. assumption.
+        simpl. rewrite <- minus_n_O. reflexivity.
+      rewrite <- H1. rewrite <- H. symmetry. apply mult_assoc.
+    intros st [H1 H2]. unfold beval in H2. apply negb_false in H2. apply beq_nat_true in H2. simpl in H2. rewrite H2 in H1. simpl in H1. rewrite mult_1_r in H1. assumption.
+    eapply hoare_consequence_pre. apply hoare_asgn. intros st H. unfold assn_sub, update. simpl. apply H.
+    intros st H. rewrite H. omega.
 Qed.
 
 (*-- Check --*)
@@ -416,32 +427,32 @@ Check factorial_dec_correct: forall m,
     following decorated program.
 
     {{ True }} ->>
-    {{                                        }}
+    {{ c = 0 + 0 + c }}
   X ::= 0;;
-    {{                                        }}
+    {{ c = X + 0 + c }}
   Y ::= 0;;
-    {{                                        }}
+    {{ c = X + Y + c }}
   Z ::= c;;
-    {{                                        }}
+    {{ Z = X + Y + c }}
   WHILE X <> a DO
-      {{                                        }} ->>
-      {{                                        }}
+      {{ Z = X + Y + c  /\ X <> a }} ->>
+      {{ (Z + 1) = (X + 1) + Y + c }}
     X ::= X + 1;;
-      {{                                        }}
+      {{ (Z + 1) = X + Y + c }}
     Z ::= Z + 1
-      {{                                        }}
+      {{ Z = X + Y + c }}
   END;;
-    {{                                        }} ->>
-    {{                                        }}
+    {{ Z = X + Y + c  /\ X = a }} ->>
+    {{ Z = a + Y + c }}
   WHILE Y <> b DO
-      {{                                        }} ->>
-      {{                                        }}
+      {{ Z = a + Y + c /\ Y <> b }} ->>
+      {{ (Z + 1) = a + (Y + 1) + c }}
     Y ::= Y + 1;;
-      {{                                        }}
+      {{ (Z + 1) = a + Y + c }}
     Z ::= Z + 1
-      {{                                        }}
+      {{ Z = a + Y + c }}
   END
-    {{                                        }} ->>
+    {{ Z = a + Y + c /\ Y = b }} ->>
     {{ Z = a + b + c }}
 *)
 
@@ -460,7 +471,31 @@ Theorem add_three_numbers_correct: forall a b c,
   END
   {{ fun st => st Z = a + b + c }}.
 Proof.
-  exact FILL_IN_HERE.
+  intros.
+  apply hoare_consequence_pre with (fun st => c = 0 + 0 + c).
+  apply hoare_seq with (fun st => c = (st X) + 0 + c).
+  apply hoare_seq with (fun st => c = st X + st Y + c).
+  apply hoare_seq with (fun st => st Z = st X + st Y + c).
+  apply hoare_seq with (fun st => st Z = a + st Y + c). 
+  eapply hoare_consequence_post.
+    apply hoare_while. apply hoare_consequence_pre with (fun st => (st Z + 1) = a + (st Y + 1) + c).
+      eapply hoare_seq. apply hoare_asgn. eapply hoare_consequence_pre. apply hoare_asgn.
+      intros st H. unfold assn_sub, update; simpl. assumption.
+    intros st [H1 H2]. omega.
+  intros st [H1 H2]. unfold beval in H2. apply negb_false in H2. apply beq_nat_true in H2. simpl in H2. rewrite H2 in H1. assumption.
+  eapply hoare_consequence_post.
+    apply hoare_while. apply hoare_consequence_pre with (fun st => (st Z + 1) = (st X + 1) + st Y + c).
+      eapply hoare_seq. apply hoare_asgn. eapply hoare_consequence_pre. apply hoare_asgn.
+      intros st H. unfold assn_sub, update; simpl. assumption.
+    intros st [H1 H2]. omega.
+  intros st [H1 H2]. unfold beval in H2. apply negb_false in H2. apply beq_nat_true in H2. simpl in H2. rewrite H2 in H1. assumption.
+  eapply hoare_consequence_pre. apply hoare_asgn.
+    intros st H. unfold assn_sub, update; simpl. assumption.
+  eapply hoare_consequence_pre. apply hoare_asgn.
+    intros st H. unfold assn_sub, update; simpl. assumption.
+  eapply hoare_consequence_pre. apply hoare_asgn.
+    intros st H. unfold assn_sub, update; simpl. assumption.
+  intros st H. simpl. reflexivity.
 Qed.
 
 (*-- Check --*)
@@ -493,7 +528,14 @@ Theorem is_wp_example :
   is_wp (fun st => st Y <= 4)
     (X ::= APlus (AId Y) (ANum 1)) (fun st => st X <= 5).
 Proof.
-  exact FILL_IN_HERE.
+  intros. unfold is_wp. split.
+  - eapply hoare_consequence_pre. apply hoare_asgn.
+    intros st H. unfold assn_sub, update; simpl. omega.
+  - intros. intros st H'. unfold hoare_triple in H. 
+      remember (update st X (st Y + 1)) as st'.
+      assert ((X ::= APlus (AId Y) (ANum 1)) / st || st') as E. subst. apply E_Ass. reflexivity.
+    apply H in E; try assumption. rewrite Heqst' in E. unfold update in E. 
+    apply le_pred in E. simpl in E. rewrite plus_comm in E. simpl in E. assumption.
 Qed.
 
 (*-- Check --*)
@@ -513,7 +555,12 @@ Check is_wp_example :
 Theorem hoare_asgn_weakest : forall Q X a,
   is_wp (Q [X |-> a]) (X ::= a) Q.
 Proof.
-  exact FILL_IN_HERE.
+  intros. unfold is_wp. split.
+  - eapply hoare_consequence_pre. apply hoare_asgn. intros st H. assumption.
+  - intros. intros st H'. unfold hoare_triple in H. unfold assn_sub, update.
+    apply H with (st' := update st X (aeval st a)) in H'.
+      assumption.
+      constructor. reflexivity.
 Qed.
 
 (*-- Check --*)

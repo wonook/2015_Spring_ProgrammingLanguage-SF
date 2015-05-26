@@ -45,7 +45,18 @@ Theorem factorial_dec_correct: forall m,
   END
   {{ fun st => st Y = fact m }}.
 Proof.
-  exact FILL_IN_HERE.
+  intros.
+  apply hoare_consequence_pre with (fun st => 1 * fact (st X) = fact m).
+  apply hoare_seq with (fun st => (st Y) * fact (st X) = fact m). eapply hoare_consequence_post.
+  apply hoare_while. eapply hoare_seq. apply hoare_asgn. eapply hoare_consequence_pre. apply hoare_asgn.
+    intros st [H1 H2]. unfold assn_sub, update. simpl. assert (st X * fact (st X - 1) = fact (st X)).
+      induction (st X) eqn:eqn.
+        simpl. unfold beval in H2. apply negb_true in H2. simpl in H2. apply beq_nat_false in H2. unfold not in H2. apply ex_falso_quodlibet. apply H2. assumption.
+        simpl. rewrite <- minus_n_O. reflexivity.
+      rewrite <- H1. rewrite <- H. symmetry. apply mult_assoc.
+    intros st [H1 H2]. unfold beval in H2. apply negb_false in H2. apply beq_nat_true in H2. simpl in H2. rewrite H2 in H1. simpl in H1. rewrite mult_1_r in H1. assumption.
+    eapply hoare_consequence_pre. apply hoare_asgn. intros st H. unfold assn_sub, update. simpl. apply H.
+    intros st H. rewrite H. omega.
 Qed.
 
 (*-- Check --*)

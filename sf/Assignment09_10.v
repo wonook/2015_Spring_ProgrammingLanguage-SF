@@ -64,7 +64,31 @@ Theorem add_three_numbers_correct: forall a b c,
   END
   {{ fun st => st Z = a + b + c }}.
 Proof.
-  exact FILL_IN_HERE.
+  intros.
+  apply hoare_consequence_pre with (fun st => c = 0 + 0 + c).
+  apply hoare_seq with (fun st => c = (st X) + 0 + c).
+  apply hoare_seq with (fun st => c = st X + st Y + c).
+  apply hoare_seq with (fun st => st Z = st X + st Y + c).
+  apply hoare_seq with (fun st => st Z = a + st Y + c). 
+  eapply hoare_consequence_post.
+    apply hoare_while. apply hoare_consequence_pre with (fun st => (st Z + 1) = a + (st Y + 1) + c).
+      eapply hoare_seq. apply hoare_asgn. eapply hoare_consequence_pre. apply hoare_asgn.
+      intros st H. unfold assn_sub, update; simpl. assumption.
+    intros st [H1 H2]. omega.
+  intros st [H1 H2]. unfold beval in H2. apply negb_false in H2. apply beq_nat_true in H2. simpl in H2. rewrite H2 in H1. assumption.
+  eapply hoare_consequence_post.
+    apply hoare_while. apply hoare_consequence_pre with (fun st => (st Z + 1) = (st X + 1) + st Y + c).
+      eapply hoare_seq. apply hoare_asgn. eapply hoare_consequence_pre. apply hoare_asgn.
+      intros st H. unfold assn_sub, update; simpl. assumption.
+    intros st [H1 H2]. omega.
+  intros st [H1 H2]. unfold beval in H2. apply negb_false in H2. apply beq_nat_true in H2. simpl in H2. rewrite H2 in H1. assumption.
+  eapply hoare_consequence_pre. apply hoare_asgn.
+    intros st H. unfold assn_sub, update; simpl. assumption.
+  eapply hoare_consequence_pre. apply hoare_asgn.
+    intros st H. unfold assn_sub, update; simpl. assumption.
+  eapply hoare_consequence_pre. apply hoare_asgn.
+    intros st H. unfold assn_sub, update; simpl. assumption.
+  intros st H. simpl. reflexivity.
 Qed.
 
 (*-- Check --*)
