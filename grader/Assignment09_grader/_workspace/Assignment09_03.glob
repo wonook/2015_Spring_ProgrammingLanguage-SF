@@ -1,0 +1,41 @@
+DIGEST dbc0f69b8f6d165f995e7d3d73345217
+FAssignment09_03
+R15:29 Assignment09_02 <> <> lib
+prf 694:709 <> hoare_asgn_wrong
+R714:720 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R722:723 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R724:725 Coq.Init.Logic <> :type_scope:'~'_x not
+R726:728 Assignment09_00 <> :hoare_spec_scope:'{{'_x_'}}'_x_'{{'_x_'}}' not
+R743:746 Assignment09_00 <> :hoare_spec_scope:'{{'_x_'}}'_x_'{{'_x_'}}' not
+R754:757 Assignment09_00 <> :hoare_spec_scope:'{{'_x_'}}'_x_'{{'_x_'}}' not
+R785:786 Assignment09_00 <> :hoare_spec_scope:'{{'_x_'}}'_x_'{{'_x_'}}' not
+R739:742 Coq.Init.Logic <> True ind
+R748:752 Imp <> ::x_'::='_x not
+R747:747 Imp <> X def
+R753:753 Assignment09_03 <> a var
+R772:774 Coq.Init.Logic <> :type_scope:x_'='_x not
+R768:769 Assignment09_03 <> st var
+R771:771 Imp <> X def
+R775:779 Imp <> aeval def
+R784:784 Assignment09_03 <> a var
+R781:782 Assignment09_03 <> st var
+R804:815 Assignment09_00 <> FILL_IN_HERE prfax
+R804:815 Assignment09_00 <> FILL_IN_HERE prfax
+R866:872 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R874:875 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R876:877 Coq.Init.Logic <> :type_scope:'~'_x not
+R878:880 Assignment09_00 <> :hoare_spec_scope:'{{'_x_'}}'_x_'{{'_x_'}}' not
+R895:898 Assignment09_00 <> :hoare_spec_scope:'{{'_x_'}}'_x_'{{'_x_'}}' not
+R906:909 Assignment09_00 <> :hoare_spec_scope:'{{'_x_'}}'_x_'{{'_x_'}}' not
+R937:938 Assignment09_00 <> :hoare_spec_scope:'{{'_x_'}}'_x_'{{'_x_'}}' not
+R891:894 Coq.Init.Logic <> True ind
+R900:904 Imp <> ::x_'::='_x not
+R899:899 Imp <> X def
+R905:905 Assignment09_03 <> a var
+R924:926 Coq.Init.Logic <> :type_scope:x_'='_x not
+R920:921 Assignment09_03 <> st var
+R923:923 Imp <> X def
+R927:931 Imp <> aeval def
+R936:936 Assignment09_03 <> a var
+R933:934 Assignment09_03 <> st var
+R846:861 Assignment09_03 <> hoare_asgn_wrong thm

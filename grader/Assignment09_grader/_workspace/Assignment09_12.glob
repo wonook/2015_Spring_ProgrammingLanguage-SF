@@ -1,0 +1,29 @@
+DIGEST bab5732a931fd1d8a4759702d7c0f384
+FAssignment09_12
+R15:29 Assignment09_11 <> <> lib
+prf 234:251 <> hoare_asgn_weakest
+R271:275 Assignment09_00 <> is_wp def
+R301:301 Assignment09_12 <> Q var
+R293:297 Imp <> ::x_'::='_x not
+R292:292 Assignment09_12 <> X var
+R298:298 Assignment09_12 <> a var
+R279:280 Assignment09_00 <> ::x_'['_x_'|->'_x_']' not
+R282:286 Assignment09_00 <> ::x_'['_x_'|->'_x_']' not
+R288:288 Assignment09_00 <> ::x_'['_x_'|->'_x_']' not
+R281:281 Assignment09_12 <> X var
+R287:287 Assignment09_12 <> a var
+R278:278 Assignment09_12 <> Q var
+R319:330 Assignment09_00 <> FILL_IN_HERE prfax
+R319:330 Assignment09_00 <> FILL_IN_HERE prfax
+R398:402 Assignment09_00 <> is_wp def
+R428:428 Assignment09_12 <> Q var
+R420:424 Imp <> ::x_'::='_x not
+R419:419 Assignment09_12 <> X var
+R425:425 Assignment09_12 <> a var
+R406:407 Assignment09_00 <> ::x_'['_x_'|->'_x_']' not
+R409:413 Assignment09_00 <> ::x_'['_x_'|->'_x_']' not
+R415:415 Assignment09_00 <> ::x_'['_x_'|->'_x_']' not
+R408:408 Assignment09_12 <> X var
+R414:414 Assignment09_12 <> a var
+R405:405 Assignment09_12 <> Q var
+R361:378 Assignment09_12 <> hoare_asgn_weakest thm
