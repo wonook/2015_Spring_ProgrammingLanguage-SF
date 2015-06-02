@@ -30,7 +30,13 @@ Require Export Assignment10_01.
 
 Theorem step_deterministic_alt: deterministic step.
 Proof.
-  exact FILL_IN_HERE.
+  unfold deterministic. intros. generalize dependent y2. induction H; intros.
+  - inversion H0; subst; try (solve by inversion); try reflexivity.
+  - inversion H0; subst; try (solve by inversion); try reflexivity.
+    + rewrite (IHstep t1'0). reflexivity. assumption.
+    + inversion H3; subst. solve by inversion.
+  - inversion H; subst. inversion H1; subst; try (solve by inversion).
+    + rewrite (IHstep t2'0). reflexivity. assumption.
 Qed.
 
 (*-- Check --*)

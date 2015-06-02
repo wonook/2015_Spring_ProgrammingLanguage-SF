@@ -14,7 +14,13 @@ Require Export Assignment10_10.
 Theorem evalF_eval : forall t n,
   evalF t = n <-> t || n.
 Proof.
-  exact FILL_IN_HERE.
+  intros. split. 
+  - generalize dependent n. induction t; intros.
+    + simpl in H. rewrite H. constructor.
+    + simpl in H. inversion H; subst. constructor. apply IHt1. reflexivity. apply IHt2. reflexivity.
+  - generalize dependent n. induction t; intros.
+    + inversion H; subst. simpl. reflexivity.
+    + inversion H; subst. simpl. rewrite (IHt1 n1). rewrite (IHt2 n2). reflexivity. assumption. assumption.
 Qed.
 
 (*-- Check --*)

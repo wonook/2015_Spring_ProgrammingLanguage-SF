@@ -21,7 +21,11 @@ Example test_step_2 :
           (C 2) 
           (C (0 + 3))).
 Proof. 
-  exact FILL_IN_HERE.
+  apply ST_Plus2. 
+    apply v_const.
+    apply ST_Plus2.
+      apply v_const.
+      apply ST_PlusConstConst.
 Qed.
 
 (*-- Check --*)
@@ -71,7 +75,13 @@ Check test_step_2 :
 
 Theorem step_deterministic_alt: deterministic step.
 Proof.
-  exact FILL_IN_HERE.
+  unfold deterministic. intros. generalize dependent y2. induction H; intros.
+  - inversion H0; subst; try (solve by inversion); try reflexivity.
+  - inversion H0; subst; try (solve by inversion); try reflexivity.
+    + rewrite (IHstep t1'0). reflexivity. assumption.
+    + inversion H3; subst. solve by inversion.
+  - inversion H; subst. inversion H1; subst; try (solve by inversion).
+    + rewrite (IHstep t2'0). reflexivity. assumption.
 Qed.
 
 (*-- Check --*)
@@ -86,7 +96,7 @@ Check step_deterministic_alt: deterministic step.
 Lemma test_multistep_2:
   C 3 ==>* C 3.
 Proof.
-  exact FILL_IN_HERE.
+  apply multi_refl.
 Qed.
 
 (*-- Check --*)
@@ -104,7 +114,7 @@ Lemma test_multistep_3:
    ==>*
       P (C 0) (C 3).
 Proof.
-  exact FILL_IN_HERE.
+  apply multi_refl.
 Qed.
 
 (*-- Check --*)
@@ -130,7 +140,10 @@ Lemma test_multistep_4:
         (C 0)
         (C (2 + (0 + 3))).
 Proof.
-  exact FILL_IN_HERE.
+  apply multi_step with (P (C 0) (P (C 2) (C (0 + 3)))).
+    apply ST_Plus2. apply v_const. apply ST_Plus2. apply v_const. apply ST_PlusConstConst.
+  apply multi_R.
+    apply ST_Plus2. apply v_const. apply ST_PlusConstConst.
 Qed.
 
 (*-- Check --*)
@@ -157,7 +170,16 @@ Proof.
   inversion P1 as [P11 P12]; clear P1. inversion P2 as [P21 P22]; clear P2. 
   generalize dependent y2. 
   (* We recommend using this initial setup as-is! *)
-  exact FILL_IN_HERE.
+  induction P11.
+  - intros. inversion P21; subst. 
+    reflexivity.
+    exfalso. apply P12. exists y. assumption.
+  - intros. inversion P21; subst.
+    exfalso. apply P22. exists y. assumption.
+    apply IHP11. 
+      assumption.
+      assert (y = y0). eapply step_deterministic_alt. apply H. assumption. rewrite H2. assumption.
+      assumption.
 Qed.
 
 (*-- Check --*)
@@ -175,7 +197,11 @@ Lemma multistep_congr_2 : forall t1 t2 t2',
      t2 ==>* t2' ->
      P t1 t2 ==>* P t1 t2'.
 Proof.
-  exact FILL_IN_HERE.
+  intros. inversion H; subst. induction H0.
+  - apply multi_refl.
+  - apply multi_step with (P (C n) y).
+    apply ST_Plus2. assumption. assumption.
+    assumption.
 Qed.
 
 (*-- Check --*)
@@ -218,10 +244,29 @@ Check multistep_congr_2 : forall t1 t2 t2',
     properties of [==>*]: that it is reflexive, transitive, and
     includes [==>]. *)
 
+Lemma multistep_congr_1: forall t1 t1' t2,
+  t1 ==>* t1' ->
+  P t1 t2 ==>* P t1' t2.
+Proof.
+  intros. induction H.
+  - apply multi_refl.
+  - apply multi_step with (P y t2).
+    apply ST_Plus1. assumption.
+    assumption.
+Qed.
+
 Theorem eval__multistep : forall t n,
   t || n -> t ==>* C n.
 Proof.
-  exact FILL_IN_HERE.
+  intros. generalize dependent n. induction t.
+  - intros. inversion H. apply multi_refl.
+  - intros. inversion H; subst.
+    apply multi_trans with (P (C n1) t2).
+      apply multistep_congr_1 with (t1' := (C n1)). apply IHt1. assumption.
+    apply multi_trans with (P (C n1) (C n2)).
+      apply multistep_congr_2 with (t2' := (C n2)). apply v_const. apply IHt2. assumption.
+    apply multi_R.
+      apply ST_PlusConstConst.
 Qed.
 
 (*-- Check --*)
@@ -240,7 +285,10 @@ Lemma step__eval : forall t t' n,
      t || n.
 Proof.
   intros t t' n Hs. generalize dependent n.
-  exact FILL_IN_HERE.
+  induction Hs; intros.
+  - inversion H; subst. constructor. constructor. constructor.
+  - inversion H; subst. constructor. apply IHHs. assumption. assumption.
+  - inversion H; subst. inversion H0; subst. constructor. assumption. apply IHHs. assumption.
 Qed.
 
 (*-- Check --*)
@@ -263,10 +311,41 @@ Check step__eval : forall t t' n,
     work on the proof.  *)
 
 (** **** Exercise: 3 stars (multistep__eval)  *)
+Theorem strong_progress : forall t,
+  value t \/ (exists t', t ==> t').
+Proof.  
+  tm_cases (induction t) Case.
+    Case "C". left. apply v_const.
+    Case "P". right. inversion IHt1.
+      SCase "l". inversion IHt2.
+        SSCase "l". inversion H. inversion H0.
+          exists (C (n + n0)).
+          apply ST_PlusConstConst.
+        SSCase "r". inversion H0 as [t' H1].
+          exists (P t1 t').
+          apply ST_Plus2. apply H. apply H1.
+      SCase "r". inversion H as [t' H0]. 
+          exists (P t' t2).
+          apply ST_Plus1. apply H0.  Qed.
+
+Lemma nf_is_value : forall t,
+  normal_form step t -> value t.
+Proof. (* a corollary of [strong_progress]... *)
+  unfold normal_form. intros t H.
+  assert (G : value t \/ exists t', t ==> t').
+    SCase "Proof of assertion". apply strong_progress.
+  inversion G.
+    SCase "l". apply H0.
+    SCase "r". apply ex_falso_quodlibet. apply H. assumption.  Qed.
+
 Theorem multistep__eval : forall t t',
   normal_form_of t t' -> exists n, t' = C n /\ t || n.
 Proof.
-  exact FILL_IN_HERE.
+  intros. unfold normal_form_of in H. inversion H. induction H0.
+  - unfold step_normal_form in H1. apply nf_is_value in H1. inversion H1. exists n. split.
+      reflexivity. constructor.
+  - apply IHmulti in H1. destruct H1. destruct H1. exists x0. split. 
+    assumption. apply step__eval with (t':=y). assumption. assumption. split. assumption. assumption.
 Qed.
 
 (*-- Check --*)
@@ -290,7 +369,13 @@ Check multistep__eval : forall t t',
 Theorem evalF_eval : forall t n,
   evalF t = n <-> t || n.
 Proof.
-  exact FILL_IN_HERE.
+  intros. split. 
+  - generalize dependent n. induction t; intros.
+    + simpl in H. rewrite H. constructor.
+    + simpl in H. inversion H; subst. constructor. apply IHt1. reflexivity. apply IHt2. reflexivity.
+  - generalize dependent n. induction t; intros.
+    + inversion H; subst. simpl. reflexivity.
+    + inversion H; subst. simpl. rewrite (IHt1 n1). rewrite (IHt2 n2). reflexivity. assumption. assumption.
 Qed.
 
 (*-- Check --*)
