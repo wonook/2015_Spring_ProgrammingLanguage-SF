@@ -1,0 +1,865 @@
+DIGEST 739aa9940e80e946e650844b1a829784
+FAssignment10_00
+R16:18 Imp <> <> lib
+def 288:299 <> FILL_IN_HERE
+R313:313 Assignment10_00 <> T var
+ind 388:389 <> tm
+constr 405:405 <> C
+constr 446:446 <> P
+R416:417 Assignment10_00 <> tm ind
+R409:411 Coq.Init.Datatypes <> nat ind
+R462:463 Assignment10_00 <> tm ind
+R456:457 Assignment10_00 <> tm ind
+R450:451 Assignment10_00 <> tm ind
+def 591:595 <> evalF
+R602:603 Assignment10_00 <> tm ind
+R608:610 Coq.Init.Datatypes <> nat ind
+R623:623 Assignment10_00 <> t var
+R634:634 Assignment10_00 <> C constr
+R647:647 Assignment10_00 <> P constr
+R666:668 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R658:662 Assignment10_00 <> evalF def
+R669:673 Assignment10_00 <> evalF def
+ind 764:767 <> eval
+constr 796:802 <> E_Const
+constr 835:840 <> E_Plus
+R777:779 Coq.Init.Datatypes <> nat ind
+R771:772 Assignment10_00 <> tm ind
+R955:958 Assignment10_00 <> eval ind
+R825:828 Assignment10_00 <> ::x_'||'_x not
+R822:822 Assignment10_00 <> C constr
+R824:824 Assignment10_00 <> n var
+R829:829 Assignment10_00 <> n var
+R915:919 Assignment10_00 <> ::x_'||'_x not
+R927:927 Assignment10_00 <> ::x_'||'_x not
+R908:908 Assignment10_00 <> P constr
+R913:914 Assignment10_00 <> t2 var
+R910:911 Assignment10_00 <> t1 var
+R922:924 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R920:921 Assignment10_00 <> n1 var
+R925:926 Assignment10_00 <> n2 var
+R892:895 Assignment10_00 <> ::x_'||'_x not
+R890:891 Assignment10_00 <> t2 var
+R896:897 Assignment10_00 <> n2 var
+R873:876 Assignment10_00 <> ::x_'||'_x not
+R871:872 Assignment10_00 <> t1 var
+R877:878 Assignment10_00 <> n1 var
+R955:958 Assignment10_00 <> eval ind
+not 938 <> ::x_'||'_x
+def 1093:1100 <> relation
+R1118:1118 Assignment10_00 <> X var
+R1115:1115 Assignment10_00 <> X var
+def 1139:1151 <> deterministic
+R1167:1174 Assignment10_00 <> relation def
+R1176:1176 Assignment10_00 <> X var
+R1201:1201 Assignment10_00 <> X var
+R1226:1228 Coq.Init.Logic <> :type_scope:x_'='_x not
+R1224:1225 Assignment10_00 <> y1 var
+R1229:1230 Assignment10_00 <> y2 var
+R1214:1214 Assignment10_00 <> R var
+R1218:1219 Assignment10_00 <> y2 var
+R1216:1216 Assignment10_00 <> x var
+R1204:1204 Assignment10_00 <> R var
+R1208:1209 Assignment10_00 <> y1 var
+R1206:1206 Assignment10_00 <> x var
+ind 1245:1249 <> value
+constr 1269:1275 <> v_const
+R1253:1254 Assignment10_00 <> tm ind
+R1289:1293 Assignment10_00 <> value ind
+R1296:1296 Assignment10_00 <> C constr
+R1298:1298 Assignment10_00 <> n var
+ind 1362:1365 <> step
+constr 1393:1409 <> ST_PlusConstConst
+constr 1479:1486 <> ST_Plus1
+constr 1563:1570 <> ST_Plus2
+R1375:1376 Assignment10_00 <> tm ind
+R1369:1370 Assignment10_00 <> tm ind
+R1730:1733 Assignment10_00 <> step ind
+R1452:1462 Assignment10_00 <> ::x_'==>'_x not
+R1437:1437 Assignment10_00 <> P constr
+R1447:1447 Assignment10_00 <> C constr
+R1449:1450 Assignment10_00 <> n2 var
+R1440:1440 Assignment10_00 <> C constr
+R1442:1443 Assignment10_00 <> n1 var
+R1463:1463 Assignment10_00 <> C constr
+R1468:1470 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R1466:1467 Assignment10_00 <> n1 var
+R1471:1472 Assignment10_00 <> n2 var
+R1545:1549 Assignment10_00 <> ::x_'==>'_x not
+R1538:1538 Assignment10_00 <> P constr
+R1543:1544 Assignment10_00 <> t2 var
+R1540:1541 Assignment10_00 <> t1 var
+R1550:1550 Assignment10_00 <> P constr
+R1556:1557 Assignment10_00 <> t2 var
+R1552:1554 Assignment10_00 <> t1' var
+R1518:1522 Assignment10_00 <> ::x_'==>'_x not
+R1516:1517 Assignment10_00 <> t1 var
+R1523:1525 Assignment10_00 <> t1' var
+R1688:1692 Assignment10_00 <> ::x_'==>'_x not
+R1681:1681 Assignment10_00 <> P constr
+R1686:1687 Assignment10_00 <> t2 var
+R1683:1684 Assignment10_00 <> v1 var
+R1693:1693 Assignment10_00 <> P constr
+R1698:1700 Assignment10_00 <> t2' var
+R1695:1696 Assignment10_00 <> v1 var
+R1661:1665 Assignment10_00 <> ::x_'==>'_x not
+R1659:1660 Assignment10_00 <> t2 var
+R1666:1668 Assignment10_00 <> t2' var
+R1600:1604 Assignment10_00 <> value ind
+R1606:1607 Assignment10_00 <> v1 var
+R1730:1733 Assignment10_00 <> step ind
+not 1711 <> ::x_'==>'_x
+ind 1906:1910 <> multi
+constr 1957:1966 <> multi_refl
+constr 2003:2012 <> multi_step
+R1925:1932 Assignment10_00 <> relation def
+R1934:1934 Assignment10_00 <> X var
+R1939:1946 Assignment10_00 <> relation def
+R1987:1991 Assignment10_00 <> multi ind
+R1997:1997 Assignment10_00 <> x var
+R1995:1995 Assignment10_00 <> x var
+R2120:2124 Assignment10_00 <> multi ind
+R2130:2130 Assignment10_00 <> z var
+R2128:2128 Assignment10_00 <> x var
+R2085:2089 Assignment10_00 <> multi ind
+R2095:2095 Assignment10_00 <> z var
+R2093:2093 Assignment10_00 <> y var
+R2060:2060 Assignment10_00 <> y var
+R2058:2058 Assignment10_00 <> x var
+R2286:2290 Assignment10_00 <> multi ind
+R2292:2295 Assignment10_00 <> step ind
+not 2266 <> ::x_'==>*'_x
+prf 2327:2333 <> multi_R
+R2356:2363 Assignment10_00 <> relation def
+R2365:2365 Assignment10_00 <> X var
+R2375:2375 Assignment10_00 <> X var
+R2396:2400 Assignment10_00 <> multi ind
+R2402:2402 Assignment10_00 <> R var
+R2407:2407 Assignment10_00 <> y var
+R2405:2405 Assignment10_00 <> x var
+R2386:2386 Assignment10_00 <> R var
+R2390:2390 Assignment10_00 <> y var
+R2388:2388 Assignment10_00 <> x var
+R2445:2454 Assignment10_00 <> multi_step constr
+R2445:2454 Assignment10_00 <> multi_step constr
+R2479:2488 Assignment10_00 <> multi_refl constr
+R2479:2488 Assignment10_00 <> multi_refl constr
+prf 2507:2517 <> multi_trans
+R2543:2550 Assignment10_00 <> relation def
+R2552:2552 Assignment10_00 <> X var
+R2564:2564 Assignment10_00 <> X var
+R2617:2621 Assignment10_00 <> multi ind
+R2627:2627 Assignment10_00 <> z var
+R2625:2625 Assignment10_00 <> x var
+R2623:2623 Assignment10_00 <> R var
+R2596:2600 Assignment10_00 <> multi ind
+R2606:2606 Assignment10_00 <> z var
+R2604:2604 Assignment10_00 <> y var
+R2602:2602 Assignment10_00 <> R var
+R2574:2578 Assignment10_00 <> multi ind
+R2584:2584 Assignment10_00 <> y var
+R2582:2582 Assignment10_00 <> x var
+R2580:2580 Assignment10_00 <> R var
+R2766:2775 Assignment10_00 <> multi_step constr
+R2766:2775 Assignment10_00 <> multi_step constr
+def 2846:2856 <> normal_form
+R2870:2877 Assignment10_00 <> relation def
+R2879:2879 Assignment10_00 <> X var
+R2885:2885 Assignment10_00 <> X var
+R2900:2901 Coq.Init.Logic <> :type_scope:'~'_x not
+R2902:2908 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R2911:2912 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R2913:2913 Assignment10_00 <> R var
+R2917:2918 Assignment10_00 <> t' var
+R2915:2915 Assignment10_00 <> t var
+def 2933:2948 <> step_normal_form
+R2953:2963 Assignment10_00 <> normal_form def
+R2965:2968 Assignment10_00 <> step ind
+def 2983:2996 <> normal_form_of
+R3006:3007 Assignment10_00 <> tm ind
+R3025:3028 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R3017:3022 Assignment10_00 <> ::x_'==>*'_x not
+R3016:3016 Assignment10_00 <> t var
+R3023:3024 Assignment10_00 <> t' var
+R3029:3044 Assignment10_00 <> step_normal_form def
+R3046:3047 Assignment10_00 <> t' var
+ind 3092:3094 <> com
+constr 3110:3114 <> CSkip
+constr 3126:3129 <> CAss
+constr 3155:3158 <> CSeq
+constr 3184:3186 <> CIf
+constr 3220:3225 <> CWhile
+constr 3265:3268 <> CPar
+R3118:3120 Assignment10_00 <> com ind
+R3147:3149 Assignment10_00 <> com ind
+R3139:3142 Imp <> aexp ind
+R3133:3134 SfLib <> id ind
+R3176:3178 Assignment10_00 <> com ind
+R3169:3171 Assignment10_00 <> com ind
+R3162:3164 Assignment10_00 <> com ind
+R3212:3214 Assignment10_00 <> com ind
+R3205:3207 Assignment10_00 <> com ind
+R3198:3200 Assignment10_00 <> com ind
+R3190:3193 Imp <> bexp ind
+R3244:3246 Assignment10_00 <> com ind
+R3237:3239 Assignment10_00 <> com ind
+R3229:3232 Imp <> bexp ind
+R3286:3288 Assignment10_00 <> com ind
+R3279:3281 Assignment10_00 <> com ind
+R3272:3274 Assignment10_00 <> com ind
+R3502:3506 Assignment10_00 <> CSkip constr
+not 3487 <> ::'SKIP'
+R3537:3540 Assignment10_00 <> CAss constr
+not 3518 <> ::x_'::='_x
+R3589:3592 Assignment10_00 <> CSeq constr
+not 3571 <> ::x_';;'_x
+R3678:3683 Assignment10_00 <> CWhile constr
+not 3646 <> ::'WHILE'_x_'DO'_x_'END'
+R3777:3779 Assignment10_00 <> CIf constr
+not 3735 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI'
+R3869:3872 Assignment10_00 <> CPar constr
+not 3835 <> ::'PAR'_x_'WITH'_x_'END'
+ind 3928:3931 <> aval
+constr 3953:3958 <> av_num
+R3935:3938 Imp <> aexp ind
+R3972:3975 Assignment10_00 <> aval ind
+R3978:3981 Imp <> ANum constr
+R3983:3983 Assignment10_00 <> n var
+R4006:4009 Assignment10_00 <> aval ind
+ind 4096:4100 <> astep
+constr 4141:4145 <> AS_Id
+constr 4201:4207 <> AS_Plus
+constr 4289:4296 <> AS_Plus1
+constr 4396:4403 <> AS_Plus2
+constr 4520:4527 <> AS_Minus
+constr 4618:4626 <> AS_Minus1
+constr 4728:4736 <> AS_Minus2
+constr 4855:4861 <> AS_Mult
+constr 4950:4957 <> AS_Mult1
+constr 5065:5072 <> AS_Mult2
+R4121:4124 Imp <> aexp ind
+R4113:4116 Imp <> aexp ind
+R4104:4108 Imp <> state def
+R5223:5227 Assignment10_00 <> astep ind
+R4174:4176 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4179:4184 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4177:4178 Assignment10_00 <> st var
+R4169:4171 Imp <> AId constr
+R4173:4173 Assignment10_00 <> i var
+R4185:4188 Imp <> ANum constr
+R4191:4192 Assignment10_00 <> st var
+R4194:4194 Assignment10_00 <> i var
+R4259:4261 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4264:4269 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4262:4263 Assignment10_00 <> st var
+R4234:4238 Imp <> APlus constr
+R4251:4254 Imp <> ANum constr
+R4256:4257 Assignment10_00 <> n2 var
+R4241:4244 Imp <> ANum constr
+R4246:4247 Assignment10_00 <> n1 var
+R4270:4273 Imp <> ANum constr
+R4278:4280 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R4276:4277 Assignment10_00 <> n1 var
+R4281:4282 Assignment10_00 <> n2 var
+R4353:4353 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4365:4368 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4371:4377 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4390:4390 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4369:4370 Assignment10_00 <> st var
+R4354:4358 Imp <> APlus constr
+R4363:4364 Assignment10_00 <> a2 var
+R4360:4361 Assignment10_00 <> a1 var
+R4378:4382 Imp <> APlus constr
+R4388:4389 Assignment10_00 <> a2 var
+R4384:4386 Assignment10_00 <> a1' var
+R4329:4331 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4334:4339 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4332:4333 Assignment10_00 <> st var
+R4327:4328 Assignment10_00 <> a1 var
+R4340:4342 Assignment10_00 <> a1' var
+R4477:4477 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4489:4492 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4495:4501 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4514:4514 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4493:4494 Assignment10_00 <> st var
+R4478:4482 Imp <> APlus constr
+R4487:4488 Assignment10_00 <> a2 var
+R4484:4485 Assignment10_00 <> v1 var
+R4502:4506 Imp <> APlus constr
+R4511:4513 Assignment10_00 <> a2' var
+R4508:4509 Assignment10_00 <> v1 var
+R4453:4455 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4458:4463 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4456:4457 Assignment10_00 <> st var
+R4451:4452 Assignment10_00 <> a2 var
+R4464:4466 Assignment10_00 <> a2' var
+R4434:4437 Assignment10_00 <> aval ind
+R4439:4440 Assignment10_00 <> v1 var
+R4554:4554 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4581:4584 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4587:4593 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4612:4612 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4585:4586 Assignment10_00 <> st var
+R4555:4560 Imp <> AMinus constr
+R4573:4576 Imp <> ANum constr
+R4578:4579 Assignment10_00 <> n2 var
+R4563:4566 Imp <> ANum constr
+R4568:4569 Assignment10_00 <> n1 var
+R4594:4597 Imp <> ANum constr
+R4600:4604 Coq.Init.Peano <> minus def
+R4609:4610 Assignment10_00 <> n2 var
+R4606:4607 Assignment10_00 <> n1 var
+R4683:4683 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4696:4699 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4702:4708 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4722:4722 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4700:4701 Assignment10_00 <> st var
+R4684:4689 Imp <> AMinus constr
+R4694:4695 Assignment10_00 <> a2 var
+R4691:4692 Assignment10_00 <> a1 var
+R4709:4714 Imp <> AMinus constr
+R4720:4721 Assignment10_00 <> a2 var
+R4716:4718 Assignment10_00 <> a1' var
+R4659:4661 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4664:4669 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4662:4663 Assignment10_00 <> st var
+R4657:4658 Assignment10_00 <> a1 var
+R4670:4672 Assignment10_00 <> a1' var
+R4810:4810 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4823:4826 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4829:4835 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4849:4849 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4827:4828 Assignment10_00 <> st var
+R4811:4816 Imp <> AMinus constr
+R4821:4822 Assignment10_00 <> a2 var
+R4818:4819 Assignment10_00 <> v1 var
+R4836:4841 Imp <> AMinus constr
+R4846:4848 Assignment10_00 <> a2' var
+R4843:4844 Assignment10_00 <> v1 var
+R4786:4788 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4791:4796 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4789:4790 Assignment10_00 <> st var
+R4784:4785 Assignment10_00 <> a2 var
+R4797:4799 Assignment10_00 <> a2' var
+R4767:4770 Assignment10_00 <> aval ind
+R4772:4773 Assignment10_00 <> v1 var
+R4888:4888 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4914:4917 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4920:4926 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4944:4944 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4918:4919 Assignment10_00 <> st var
+R4889:4893 Imp <> AMult constr
+R4906:4909 Imp <> ANum constr
+R4911:4912 Assignment10_00 <> n2 var
+R4896:4899 Imp <> ANum constr
+R4901:4902 Assignment10_00 <> n1 var
+R4927:4930 Imp <> ANum constr
+R4933:4936 Coq.Init.Peano <> mult def
+R4941:4942 Assignment10_00 <> n2 var
+R4938:4939 Assignment10_00 <> n1 var
+R5014:5014 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5030:5033 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5036:5042 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5059:5059 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5034:5035 Assignment10_00 <> st var
+R5015:5019 Imp <> AMult constr
+R5027:5028 Assignment10_00 <> a2 var
+R5022:5023 Assignment10_00 <> a1 var
+R5043:5047 Imp <> AMult constr
+R5056:5057 Assignment10_00 <> a2 var
+R5050:5052 Assignment10_00 <> a1' var
+R4990:4992 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4995:5000 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R4993:4994 Assignment10_00 <> st var
+R4988:4989 Assignment10_00 <> a1 var
+R5001:5003 Assignment10_00 <> a1' var
+R5146:5146 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5158:5161 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5164:5170 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5183:5183 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5162:5163 Assignment10_00 <> st var
+R5147:5151 Imp <> AMult constr
+R5156:5157 Assignment10_00 <> a2 var
+R5153:5154 Assignment10_00 <> v1 var
+R5171:5175 Imp <> AMult constr
+R5180:5182 Assignment10_00 <> a2' var
+R5177:5178 Assignment10_00 <> v1 var
+R5122:5124 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5127:5132 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5125:5126 Assignment10_00 <> st var
+R5120:5121 Assignment10_00 <> a2 var
+R5133:5135 Assignment10_00 <> a2' var
+R5103:5106 Assignment10_00 <> aval ind
+R5108:5109 Assignment10_00 <> v1 var
+R5223:5227 Assignment10_00 <> astep ind
+not 5196 <> ::x_'/'_x_'==>a'_x
+R5258:5262 Assignment10_00 <> astep ind
+ind 5349:5353 <> bstep
+constr 5394:5398 <> BS_Eq
+constr 5516:5521 <> BS_Eq1
+constr 5617:5622 <> BS_Eq2
+constr 5736:5742 <> BS_LtEq
+constr 5869:5876 <> BS_LtEq1
+constr 5972:5979 <> BS_LtEq2
+constr 6094:6103 <> BS_NotTrue
+constr 6158:6168 <> BS_NotFalse
+constr 6223:6232 <> BS_NotStep
+constr 6321:6334 <> BS_AndTrueTrue
+constr 6394:6408 <> BS_AndTrueFalse
+constr 6470:6480 <> BS_AndFalse
+constr 6542:6555 <> BS_AndTrueStep
+constr 6656:6665 <> BS_AndStep
+R5374:5377 Imp <> bexp ind
+R5366:5369 Imp <> bexp ind
+R5357:5361 Imp <> state def
+R6795:6799 Assignment10_00 <> bstep ind
+R5425:5425 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5449:5452 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5455:5468 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5510:5510 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5453:5454 Assignment10_00 <> st var
+R5426:5428 Imp <> BEq constr
+R5441:5444 Imp <> ANum constr
+R5446:5447 Assignment10_00 <> n2 var
+R5431:5434 Imp <> ANum constr
+R5436:5437 Assignment10_00 <> n1 var
+R5473:5479 Coq.Arith.EqNat <> beq_nat def
+R5484:5485 Assignment10_00 <> n2 var
+R5481:5482 Assignment10_00 <> n1 var
+R5504:5509 Imp <> BFalse constr
+R5493:5497 Imp <> BTrue constr
+R5578:5578 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5588:5591 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5594:5600 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5611:5611 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5592:5593 Assignment10_00 <> st var
+R5579:5581 Imp <> BEq constr
+R5586:5587 Assignment10_00 <> a2 var
+R5583:5584 Assignment10_00 <> a1 var
+R5601:5603 Imp <> BEq constr
+R5609:5610 Assignment10_00 <> a2 var
+R5605:5607 Assignment10_00 <> a1' var
+R5554:5556 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5559:5564 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5557:5558 Assignment10_00 <> st var
+R5552:5553 Assignment10_00 <> a1 var
+R5565:5567 Assignment10_00 <> a1' var
+R5697:5697 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5707:5710 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5713:5719 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5730:5730 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5711:5712 Assignment10_00 <> st var
+R5698:5700 Imp <> BEq constr
+R5705:5706 Assignment10_00 <> a2 var
+R5702:5703 Assignment10_00 <> v1 var
+R5720:5722 Imp <> BEq constr
+R5727:5729 Assignment10_00 <> a2' var
+R5724:5725 Assignment10_00 <> v1 var
+R5673:5675 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5678:5683 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5676:5677 Assignment10_00 <> st var
+R5671:5672 Assignment10_00 <> a2 var
+R5684:5686 Assignment10_00 <> a2' var
+R5653:5656 Assignment10_00 <> aval ind
+R5658:5659 Assignment10_00 <> v1 var
+R5769:5769 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5793:5796 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5799:5821 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5863:5863 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5797:5798 Assignment10_00 <> st var
+R5770:5772 Imp <> BLe constr
+R5785:5788 Imp <> ANum constr
+R5790:5791 Assignment10_00 <> n2 var
+R5775:5778 Imp <> ANum constr
+R5780:5781 Assignment10_00 <> n1 var
+R5826:5832 SfLib <> ble_nat def
+R5837:5838 Assignment10_00 <> n2 var
+R5834:5835 Assignment10_00 <> n1 var
+R5857:5862 Imp <> BFalse constr
+R5846:5850 Imp <> BTrue constr
+R5933:5933 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5943:5946 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5949:5955 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5966:5966 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R5947:5948 Assignment10_00 <> st var
+R5934:5936 Imp <> BLe constr
+R5941:5942 Assignment10_00 <> a2 var
+R5938:5939 Assignment10_00 <> a1 var
+R5956:5958 Imp <> BLe constr
+R5964:5965 Assignment10_00 <> a2 var
+R5960:5962 Assignment10_00 <> a1' var
+R5909:5911 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5914:5919 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R5912:5913 Assignment10_00 <> st var
+R5907:5908 Assignment10_00 <> a1 var
+R5920:5922 Assignment10_00 <> a1' var
+R6053:6053 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6063:6066 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6069:6075 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6088:6088 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6067:6068 Assignment10_00 <> st var
+R6054:6056 Imp <> BLe constr
+R6061:6062 Assignment10_00 <> a2 var
+R6058:6059 Assignment10_00 <> v1 var
+R6076:6078 Imp <> BLe constr
+R6084:6086 Assignment10_00 <> a2' var
+R6080:6081 Assignment10_00 <> v1 var
+R6029:6031 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R6034:6039 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R6032:6033 Assignment10_00 <> st var
+R6027:6028 Assignment10_00 <> a2 var
+R6040:6042 Assignment10_00 <> a2' var
+R6010:6013 Assignment10_00 <> aval ind
+R6015:6016 Assignment10_00 <> v1 var
+R6124:6124 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6135:6138 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6141:6146 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6139:6140 Assignment10_00 <> st var
+R6125:6128 Imp <> BNot constr
+R6130:6134 Imp <> BTrue constr
+R6147:6152 Imp <> BFalse constr
+R6189:6189 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6201:6204 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6207:6212 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6205:6206 Assignment10_00 <> st var
+R6190:6193 Imp <> BNot constr
+R6195:6200 Imp <> BFalse constr
+R6213:6217 Imp <> BTrue constr
+R6286:6286 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6294:6297 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6300:6306 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6315:6315 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6298:6299 Assignment10_00 <> st var
+R6287:6290 Imp <> BNot constr
+R6292:6293 Assignment10_00 <> b1 var
+R6307:6310 Imp <> BNot constr
+R6312:6314 Assignment10_00 <> b1' var
+R6262:6264 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6267:6272 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6265:6266 Assignment10_00 <> st var
+R6260:6261 Assignment10_00 <> b1 var
+R6273:6275 Assignment10_00 <> b1' var
+R6355:6355 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6372:6375 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6378:6383 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6376:6377 Assignment10_00 <> st var
+R6356:6359 Imp <> BAnd constr
+R6367:6371 Imp <> BTrue constr
+R6361:6365 Imp <> BTrue constr
+R6384:6388 Imp <> BTrue constr
+R6429:6429 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6447:6450 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6453:6458 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6451:6452 Assignment10_00 <> st var
+R6430:6433 Imp <> BAnd constr
+R6441:6446 Imp <> BFalse constr
+R6435:6439 Imp <> BTrue constr
+R6459:6464 Imp <> BFalse constr
+R6504:6504 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6519:6522 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6525:6530 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6523:6524 Assignment10_00 <> st var
+R6505:6508 Imp <> BAnd constr
+R6517:6518 Assignment10_00 <> b2 var
+R6510:6515 Imp <> BFalse constr
+R6531:6536 Imp <> BFalse constr
+R6609:6609 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6623:6626 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6629:6635 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6650:6650 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6627:6628 Assignment10_00 <> st var
+R6610:6613 Imp <> BAnd constr
+R6621:6622 Assignment10_00 <> b2 var
+R6615:6619 Imp <> BTrue constr
+R6636:6639 Imp <> BAnd constr
+R6647:6649 Assignment10_00 <> b2' var
+R6641:6645 Imp <> BTrue constr
+R6585:6587 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6590:6595 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6588:6589 Assignment10_00 <> st var
+R6583:6584 Assignment10_00 <> b2 var
+R6596:6598 Assignment10_00 <> b2' var
+R6722:6722 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6733:6736 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6739:6745 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6757:6757 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6737:6738 Assignment10_00 <> st var
+R6723:6726 Imp <> BAnd constr
+R6731:6732 Assignment10_00 <> b2 var
+R6728:6729 Assignment10_00 <> b1 var
+R6746:6749 Imp <> BAnd constr
+R6755:6756 Assignment10_00 <> b2 var
+R6751:6753 Assignment10_00 <> b1' var
+R6698:6700 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6703:6708 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R6701:6702 Assignment10_00 <> st var
+R6696:6697 Assignment10_00 <> b1 var
+R6709:6711 Assignment10_00 <> b1' var
+R6795:6799 Assignment10_00 <> bstep ind
+not 6768 <> ::x_'/'_x_'==>b'_x
+R6830:6834 Assignment10_00 <> bstep ind
+ind 6964:6968 <> cstep
+constr 7038:7047 <> CS_AssStep
+constr 7140:7145 <> CS_Ass
+constr 7225:7234 <> CS_SeqStep
+constr 7344:7355 <> CS_SeqFinish
+constr 7414:7422 <> CS_IfTrue
+constr 7502:7511 <> CS_IfFalse
+constr 7592:7600 <> CS_IfStep
+constr 7730:7737 <> CS_While
+constr 7891:7897 <> CS_Par1
+constr 8028:8034 <> CS_Par2
+constr 8164:8173 <> CS_ParDone
+R6994:6996 Coq.Init.Datatypes <> :type_scope:x_'*'_x not
+R6991:6993 Assignment10_00 <> com ind
+R6997:7001 Imp <> state def
+R6976:6978 Coq.Init.Datatypes <> :type_scope:x_'*'_x not
+R6973:6975 Assignment10_00 <> com ind
+R6979:6983 Imp <> state def
+R8282:8286 Assignment10_00 <> cstep ind
+R8295:8295 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8298:8298 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8302:8302 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8288:8288 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8290:8290 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8293:8293 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7100:7100 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7108:7111 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7114:7120 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7129:7132 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7102:7106 Assignment10_00 <> ::x_'::='_x not
+R7101:7101 Assignment10_00 <> i var
+R7107:7107 Assignment10_00 <> a var
+R7112:7113 Assignment10_00 <> st var
+R7122:7126 Assignment10_00 <> ::x_'::='_x not
+R7121:7121 Assignment10_00 <> i var
+R7127:7128 Assignment10_00 <> a' var
+R7133:7134 Assignment10_00 <> st var
+R7076:7078 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R7081:7086 Assignment10_00 <> ::x_'/'_x_'==>a'_x not
+R7079:7080 Assignment10_00 <> st var
+R7075:7075 Assignment10_00 <> a var
+R7087:7088 Assignment10_00 <> a' var
+R7171:7171 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7186:7189 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7192:7197 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7202:7205 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7219:7219 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7173:7178 Assignment10_00 <> ::x_'::='_x not
+R7185:7185 Assignment10_00 <> ::x_'::='_x not
+R7172:7172 Assignment10_00 <> i var
+R7179:7182 Imp <> ANum constr
+R7184:7184 Assignment10_00 <> n var
+R7190:7191 Assignment10_00 <> st var
+R7198:7201 Assignment10_00 <> ::'SKIP' not
+R7206:7211 Imp <> update def
+R7218:7218 Assignment10_00 <> n var
+R7216:7216 Assignment10_00 <> i var
+R7213:7214 Assignment10_00 <> st var
+R7301:7301 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7310:7313 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7316:7322 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7332:7335 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7304:7307 Assignment10_00 <> ::x_';;'_x not
+R7302:7303 Assignment10_00 <> c1 var
+R7308:7309 Assignment10_00 <> c2 var
+R7314:7315 Assignment10_00 <> st var
+R7326:7329 Assignment10_00 <> ::x_';;'_x not
+R7323:7325 Assignment10_00 <> c1' var
+R7330:7331 Assignment10_00 <> c2 var
+R7336:7338 Assignment10_00 <> st' var
+R7271:7273 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7276:7281 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7285:7287 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7269:7270 Assignment10_00 <> c1 var
+R7274:7275 Assignment10_00 <> st var
+R7282:7284 Assignment10_00 <> c1' var
+R7288:7290 Assignment10_00 <> st' var
+R7379:7379 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7390:7393 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7396:7401 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7404:7406 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7384:7387 Assignment10_00 <> ::x_';;'_x not
+R7380:7383 Assignment10_00 <> ::'SKIP' not
+R7388:7389 Assignment10_00 <> c2 var
+R7394:7395 Assignment10_00 <> st var
+R7402:7403 Assignment10_00 <> c2 var
+R7407:7408 Assignment10_00 <> st var
+R7449:7449 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7478:7481 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7484:7489 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7492:7494 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7450:7453 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7459:7464 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7467:7472 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7475:7477 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7454:7458 Imp <> BTrue constr
+R7465:7466 Assignment10_00 <> c1 var
+R7473:7474 Assignment10_00 <> c2 var
+R7482:7483 Assignment10_00 <> st var
+R7490:7491 Assignment10_00 <> c1 var
+R7495:7496 Assignment10_00 <> st var
+R7538:7538 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7568:7571 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7574:7579 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7582:7584 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7539:7542 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7549:7554 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7557:7562 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7565:7567 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7543:7548 Imp <> BFalse constr
+R7555:7556 Assignment10_00 <> c1 var
+R7563:7564 Assignment10_00 <> c2 var
+R7572:7573 Assignment10_00 <> st var
+R7580:7581 Assignment10_00 <> c2 var
+R7585:7586 Assignment10_00 <> st var
+R7656:7656 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7681:7684 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7687:7693 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7719:7722 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7657:7660 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7662:7667 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7670:7675 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7678:7680 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7661:7661 Assignment10_00 <> b var
+R7668:7669 Assignment10_00 <> c1 var
+R7676:7677 Assignment10_00 <> c2 var
+R7685:7686 Assignment10_00 <> st var
+R7694:7697 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7700:7705 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7708:7713 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7716:7718 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7698:7699 Assignment10_00 <> b' var
+R7706:7707 Assignment10_00 <> c1 var
+R7714:7715 Assignment10_00 <> c2 var
+R7723:7724 Assignment10_00 <> st var
+R7633:7634 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R7637:7642 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R7635:7636 Assignment10_00 <> st var
+R7632:7632 Assignment10_00 <> b var
+R7643:7644 Assignment10_00 <> b' var
+R7763:7763 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7781:7784 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7787:7809 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7860:7863 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7764:7769 Assignment10_00 <> ::'WHILE'_x_'DO'_x_'END' not
+R7771:7774 Assignment10_00 <> ::'WHILE'_x_'DO'_x_'END' not
+R7777:7780 Assignment10_00 <> ::'WHILE'_x_'DO'_x_'END' not
+R7770:7770 Assignment10_00 <> b var
+R7775:7776 Assignment10_00 <> c1 var
+R7785:7786 Assignment10_00 <> st var
+R7810:7813 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7815:7821 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7846:7852 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7857:7859 Assignment10_00 <> ::'IFB'_x_'THEN'_x_'ELSE'_x_'FI' not
+R7814:7814 Assignment10_00 <> b var
+R7824:7827 Assignment10_00 <> ::x_';;'_x not
+R7845:7845 Assignment10_00 <> ::x_';;'_x not
+R7822:7823 Assignment10_00 <> c1 var
+R7828:7833 Assignment10_00 <> ::'WHILE'_x_'DO'_x_'END' not
+R7835:7838 Assignment10_00 <> ::'WHILE'_x_'DO'_x_'END' not
+R7841:7844 Assignment10_00 <> ::'WHILE'_x_'DO'_x_'END' not
+R7834:7834 Assignment10_00 <> b var
+R7839:7840 Assignment10_00 <> c1 var
+R7853:7856 Assignment10_00 <> ::'SKIP' not
+R7864:7865 Assignment10_00 <> st var
+R7965:7965 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7984:7987 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7990:7996 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R8016:8019 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7966:7969 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R7972:7977 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R7980:7983 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R7970:7971 Assignment10_00 <> c1 var
+R7978:7979 Assignment10_00 <> c2 var
+R7988:7989 Assignment10_00 <> st var
+R7997:8000 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8004:8009 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8012:8015 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8001:8003 Assignment10_00 <> c1' var
+R8010:8011 Assignment10_00 <> c2 var
+R8020:8022 Assignment10_00 <> st' var
+R7934:7936 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7939:7944 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7948:7950 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R7932:7933 Assignment10_00 <> c1 var
+R7937:7938 Assignment10_00 <> st var
+R7945:7947 Assignment10_00 <> c1' var
+R7951:7953 Assignment10_00 <> st' var
+R8101:8101 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R8120:8123 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R8126:8132 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R8152:8155 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R8102:8105 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8108:8113 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8116:8119 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8106:8107 Assignment10_00 <> c1 var
+R8114:8115 Assignment10_00 <> c2 var
+R8124:8125 Assignment10_00 <> st var
+R8133:8136 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8139:8144 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8148:8151 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8137:8138 Assignment10_00 <> c1 var
+R8145:8147 Assignment10_00 <> c2' var
+R8156:8158 Assignment10_00 <> st' var
+R8071:8073 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R8076:8081 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R8085:8087 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R8069:8070 Assignment10_00 <> c2 var
+R8074:8075 Assignment10_00 <> st var
+R8082:8084 Assignment10_00 <> c2' var
+R8088:8090 Assignment10_00 <> st' var
+R8194:8194 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R8217:8220 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R8223:8228 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R8233:8235 Assignment10_00 <> ::x_'/'_x_'==>c'_x_'/'_x not
+R8195:8198 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8203:8208 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8213:8216 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8199:8202 Assignment10_00 <> ::'SKIP' not
+R8209:8212 Assignment10_00 <> ::'SKIP' not
+R8221:8222 Assignment10_00 <> st var
+R8229:8232 Assignment10_00 <> ::'SKIP' not
+R8236:8237 Assignment10_00 <> st var
+R8282:8286 Assignment10_00 <> cstep ind
+R8295:8295 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8298:8298 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8302:8302 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8288:8288 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8290:8290 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8293:8293 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+not 8247 <> ::x_'/'_x_'==>c'_x_'/'_x
+R8325:8329 Assignment10_00 <> cstep ind
+def 8344:8353 <> cmultistep
+R8358:8362 Assignment10_00 <> multi ind
+R8364:8368 Assignment10_00 <> cstep ind
+R8422:8426 Assignment10_00 <> multi ind
+R8442:8442 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8445:8445 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8449:8449 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8435:8435 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8437:8437 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8440:8440 Coq.Init.Datatypes <> :core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8428:8432 Assignment10_00 <> cstep ind
+not 8382 <> ::x_'/'_x_'==>c*'_x_'/'_x
+def 8683:8690 <> par_loop
+R8694:8696 Assignment10_00 <> com ind
+R8703:8710 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8723:8734 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8807:8812 Assignment10_00 <> ::'PAR'_x_'WITH'_x_'END' not
+R8712:8716 Assignment10_00 <> ::x_'::='_x not
+R8711:8711 Imp <> Y def
+R8717:8720 Imp <> ANum constr
+R8735:8740 Assignment10_00 <> ::'WHILE'_x_'DO'_x_'END' not
+R8761:8770 Assignment10_00 <> ::'WHILE'_x_'DO'_x_'END' not
+R8799:8806 Assignment10_00 <> ::'WHILE'_x_'DO'_x_'END' not
+R8741:8743 Imp <> BEq constr
+R8754:8757 Imp <> ANum constr
+R8746:8748 Imp <> AId constr
+R8750:8750 Imp <> Y def
+R8772:8776 Assignment10_00 <> ::x_'::='_x not
+R8771:8771 Imp <> X def
+R8777:8781 Imp <> APlus constr
+R8792:8795 Imp <> ANum constr
+R8784:8786 Imp <> AId constr
+R8788:8788 Imp <> X def

@@ -1,0 +1,35 @@
+DIGEST d68ebb7a71620b25eba371f7f393d47f
+FAssignment10_01
+R15:29 Assignment10_00 <> <> lib
+def 294:304 <> test_step_2
+R387:403 Assignment10_00 <> ::x_'==>'_x not
+R315:315 Assignment10_00 <> P constr
+R341:341 Assignment10_00 <> P constr
+R372:372 Assignment10_00 <> P constr
+R381:381 Assignment10_00 <> C constr
+R375:375 Assignment10_00 <> C constr
+R355:355 Assignment10_00 <> C constr
+R327:327 Assignment10_00 <> C constr
+R404:404 Assignment10_00 <> P constr
+R430:430 Assignment10_00 <> P constr
+R461:461 Assignment10_00 <> C constr
+R465:467 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R444:444 Assignment10_00 <> C constr
+R416:416 Assignment10_00 <> C constr
+R490:501 Assignment10_00 <> FILL_IN_HERE prfax
+R490:501 Assignment10_00 <> FILL_IN_HERE prfax
+R625:641 Assignment10_00 <> ::x_'==>'_x not
+R553:553 Assignment10_00 <> P constr
+R579:579 Assignment10_00 <> P constr
+R610:610 Assignment10_00 <> P constr
+R619:619 Assignment10_00 <> C constr
+R613:613 Assignment10_00 <> C constr
+R593:593 Assignment10_00 <> C constr
+R565:565 Assignment10_00 <> C constr
+R642:642 Assignment10_00 <> P constr
+R668:668 Assignment10_00 <> P constr
+R699:699 Assignment10_00 <> C constr
+R703:705 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R682:682 Assignment10_00 <> C constr
+R654:654 Assignment10_00 <> C constr
+R532:542 Assignment10_01 <> test_step_2 def

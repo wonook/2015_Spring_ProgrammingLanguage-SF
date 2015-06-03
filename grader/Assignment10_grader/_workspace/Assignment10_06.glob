@@ -1,0 +1,13 @@
+DIGEST f0df30cc70fa266488c121a0e8e001d3
+FAssignment10_06
+R15:29 Assignment10_05 <> <> lib
+prf 71:89 <> normal_forms_unique
+R94:106 Assignment10_00 <> deterministic def
+R108:121 Assignment10_00 <> normal_form_of def
+R140:152 Assignment10_00 <> deterministic def
+R162:175 Assignment10_00 <> normal_form_of def
+R367:378 Assignment10_00 <> FILL_IN_HERE prfax
+R367:378 Assignment10_00 <> FILL_IN_HERE prfax
+R432:444 Assignment10_00 <> deterministic def
+R446:459 Assignment10_00 <> normal_form_of def
+R409:427 Assignment10_06 <> normal_forms_unique thm

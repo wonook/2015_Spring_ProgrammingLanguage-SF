@@ -1,0 +1,11 @@
+DIGEST 1db5b905d01655c7fd9cb609cbdf6259
+FAssignment10_02
+R15:29 Assignment10_01 <> <> lib
+prf 1245:1266 <> step_deterministic_alt
+R1269:1281 Assignment10_00 <> deterministic def
+R1283:1286 Assignment10_00 <> step ind
+R1304:1315 Assignment10_00 <> FILL_IN_HERE prfax
+R1304:1315 Assignment10_00 <> FILL_IN_HERE prfax
+R1370:1382 Assignment10_00 <> deterministic def
+R1384:1387 Assignment10_00 <> step ind
+R1346:1367 Assignment10_02 <> step_deterministic_alt thm

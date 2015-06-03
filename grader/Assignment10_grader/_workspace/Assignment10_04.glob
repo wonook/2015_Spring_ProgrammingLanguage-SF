@@ -1,0 +1,21 @@
+DIGEST 5c0152e0f119795f858ae8b28606806e
+FAssignment10_04
+R15:29 Assignment10_03 <> <> lib
+prf 128:143 <> test_multistep_3
+R165:179 Assignment10_00 <> ::x_'==>*'_x not
+R152:152 Assignment10_00 <> P constr
+R161:161 Assignment10_00 <> C constr
+R155:155 Assignment10_00 <> C constr
+R180:180 Assignment10_00 <> P constr
+R189:189 Assignment10_00 <> C constr
+R183:183 Assignment10_00 <> C constr
+R210:221 Assignment10_00 <> FILL_IN_HERE prfax
+R210:221 Assignment10_00 <> FILL_IN_HERE prfax
+R289:303 Assignment10_00 <> ::x_'==>*'_x not
+R276:276 Assignment10_00 <> P constr
+R285:285 Assignment10_00 <> C constr
+R279:279 Assignment10_00 <> C constr
+R304:304 Assignment10_00 <> P constr
+R313:313 Assignment10_00 <> C constr
+R307:307 Assignment10_00 <> C constr
+R252:267 Assignment10_04 <> test_multistep_3 thm

@@ -1,0 +1,23 @@
+DIGEST e4127792b7540f47d044cd82504c46c8
+FAssignment10_11
+R15:29 Assignment10_10 <> <> lib
+prf 450:459 <> evalF_eval
+R488:492 Coq.Init.Logic <> :type_scope:x_'<->'_x not
+R484:486 Coq.Init.Logic <> :type_scope:x_'='_x not
+R477:481 Assignment10_00 <> evalF def
+R483:483 Assignment10_11 <> t var
+R487:487 Assignment10_11 <> n var
+R494:497 Assignment10_00 <> ::x_'||'_x not
+R493:493 Assignment10_11 <> t var
+R498:498 Assignment10_11 <> n var
+R516:527 Assignment10_00 <> FILL_IN_HERE prfax
+R516:527 Assignment10_00 <> FILL_IN_HERE prfax
+R596:600 Coq.Init.Logic <> :type_scope:x_'<->'_x not
+R592:594 Coq.Init.Logic <> :type_scope:x_'='_x not
+R585:589 Assignment10_00 <> evalF def
+R591:591 Assignment10_11 <> t var
+R595:595 Assignment10_11 <> n var
+R602:605 Assignment10_00 <> ::x_'||'_x not
+R601:601 Assignment10_11 <> t var
+R606:606 Assignment10_11 <> n var
+R558:567 Assignment10_11 <> evalF_eval thm

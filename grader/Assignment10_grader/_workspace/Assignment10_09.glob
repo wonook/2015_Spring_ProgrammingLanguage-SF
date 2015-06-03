@@ -1,0 +1,25 @@
+DIGEST e310092725c011ef29034ea008c9549a
+FAssignment10_09
+R15:29 Assignment10_08 <> <> lib
+prf 113:122 <> step__eval
+R180:183 Assignment10_00 <> ::x_'||'_x not
+R179:179 Assignment10_09 <> t var
+R184:184 Assignment10_09 <> n var
+R165:168 Assignment10_00 <> ::x_'||'_x not
+R163:164 Assignment10_09 <> t' var
+R169:169 Assignment10_09 <> n var
+R147:151 Assignment10_00 <> ::x_'==>'_x not
+R146:146 Assignment10_09 <> t var
+R152:153 Assignment10_09 <> t' var
+R246:257 Assignment10_00 <> FILL_IN_HERE prfax
+R246:257 Assignment10_00 <> FILL_IN_HERE prfax
+R355:358 Assignment10_00 <> ::x_'||'_x not
+R354:354 Assignment10_09 <> t var
+R359:359 Assignment10_09 <> n var
+R340:343 Assignment10_00 <> ::x_'||'_x not
+R338:339 Assignment10_09 <> t' var
+R344:344 Assignment10_09 <> n var
+R322:326 Assignment10_00 <> ::x_'==>'_x not
+R321:321 Assignment10_09 <> t var
+R327:328 Assignment10_09 <> t' var
+R288:297 Assignment10_09 <> step__eval thm

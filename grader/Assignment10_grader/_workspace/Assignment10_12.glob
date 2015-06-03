@@ -1,0 +1,47 @@
+DIGEST 916c4da796dfde97377d06b4f16721b2
+FAssignment10_12
+R15:29 Assignment10_11 <> <> lib
+prf 110:123 <> par_body_n__Sn
+R176:178 Assignment10_00 <> ::x_'/'_x_'==>c*'_x_'/'_x not
+R181:187 Assignment10_00 <> ::x_'/'_x_'==>c*'_x_'/'_x not
+R196:199 Assignment10_00 <> ::x_'/'_x_'==>c*'_x_'/'_x not
+R217:217 Assignment10_00 <> ::x_'/'_x_'==>c*'_x_'/'_x not
+R168:175 Assignment10_00 <> par_loop def
+R179:180 Assignment10_12 <> st var
+R188:195 Assignment10_00 <> par_loop def
+R200:205 Imp <> update def
+R213:213 Coq.Init.Datatypes <> S constr
+R215:215 Assignment10_12 <> n var
+R210:210 Imp <> X def
+R207:208 Assignment10_12 <> st var
+R150:153 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R146:148 Coq.Init.Logic <> :type_scope:x_'='_x not
+R142:143 Assignment10_12 <> st var
+R145:145 Imp <> X def
+R149:149 Assignment10_12 <> n var
+R158:160 Coq.Init.Logic <> :type_scope:x_'='_x not
+R154:155 Assignment10_12 <> st var
+R157:157 Imp <> Y def
+R235:246 Assignment10_00 <> FILL_IN_HERE prfax
+R235:246 Assignment10_00 <> FILL_IN_HERE prfax
+R343:345 Assignment10_00 <> ::x_'/'_x_'==>c*'_x_'/'_x not
+R348:354 Assignment10_00 <> ::x_'/'_x_'==>c*'_x_'/'_x not
+R363:366 Assignment10_00 <> ::x_'/'_x_'==>c*'_x_'/'_x not
+R384:384 Assignment10_00 <> ::x_'/'_x_'==>c*'_x_'/'_x not
+R335:342 Assignment10_00 <> par_loop def
+R346:347 Assignment10_12 <> st var
+R355:362 Assignment10_00 <> par_loop def
+R367:372 Imp <> update def
+R380:380 Coq.Init.Datatypes <> S constr
+R382:382 Assignment10_12 <> n var
+R377:377 Imp <> X def
+R374:375 Assignment10_12 <> st var
+R317:320 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R313:315 Coq.Init.Logic <> :type_scope:x_'='_x not
+R309:310 Assignment10_12 <> st var
+R312:312 Imp <> X def
+R316:316 Assignment10_12 <> n var
+R325:327 Coq.Init.Logic <> :type_scope:x_'='_x not
+R321:322 Assignment10_12 <> st var
+R324:324 Imp <> Y def
+R277:290 Assignment10_12 <> par_body_n__Sn thm

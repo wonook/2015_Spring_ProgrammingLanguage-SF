@@ -1,0 +1,13 @@
+DIGEST 33cdc3ff21a445b7351addbd6f621ad7
+FAssignment10_03
+R15:29 Assignment10_02 <> <> lib
+prf 128:143 <> test_multistep_2
+R151:156 Assignment10_00 <> ::x_'==>*'_x not
+R148:148 Assignment10_00 <> C constr
+R157:157 Assignment10_00 <> C constr
+R177:188 Assignment10_00 <> FILL_IN_HERE prfax
+R177:188 Assignment10_00 <> FILL_IN_HERE prfax
+R242:247 Assignment10_00 <> ::x_'==>*'_x not
+R239:239 Assignment10_00 <> C constr
+R248:248 Assignment10_00 <> C constr
+R219:234 Assignment10_03 <> test_multistep_2 thm

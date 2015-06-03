@@ -1,0 +1,39 @@
+DIGEST b72fc30fc6064cf634948487e067fe5a
+FAssignment10_15
+R15:29 Assignment10_14 <> <> lib
+prf 313:332 <> bexp_strong_progress
+R350:350 Coq.Init.Logic <> :type_scope:x_'\/'_x not
+R374:380 Coq.Init.Logic <> :type_scope:x_'\/'_x not
+R360:363 Coq.Init.Logic <> :type_scope:x_'\/'_x not
+R352:354 Coq.Init.Logic <> :type_scope:x_'='_x not
+R351:351 Assignment10_15 <> b var
+R355:359 Imp <> BTrue constr
+R365:367 Coq.Init.Logic <> :type_scope:x_'='_x not
+R364:364 Assignment10_15 <> b var
+R368:373 Imp <> BFalse constr
+R381:387 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R390:391 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R393:395 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R398:403 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R396:397 Assignment10_15 <> st var
+R392:392 Assignment10_15 <> b var
+R404:405 Assignment10_15 <> b' var
+R423:434 Assignment10_00 <> FILL_IN_HERE prfax
+R423:434 Assignment10_00 <> FILL_IN_HERE prfax
+R502:502 Coq.Init.Logic <> :type_scope:x_'\/'_x not
+R526:532 Coq.Init.Logic <> :type_scope:x_'\/'_x not
+R512:515 Coq.Init.Logic <> :type_scope:x_'\/'_x not
+R504:506 Coq.Init.Logic <> :type_scope:x_'='_x not
+R503:503 Assignment10_15 <> b var
+R507:511 Imp <> BTrue constr
+R517:519 Coq.Init.Logic <> :type_scope:x_'='_x not
+R516:516 Assignment10_15 <> b var
+R520:525 Imp <> BFalse constr
+R533:539 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R542:543 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R545:547 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R550:555 Assignment10_00 <> ::x_'/'_x_'==>b'_x not
+R548:549 Assignment10_15 <> st var
+R544:544 Assignment10_15 <> b var
+R556:557 Assignment10_15 <> b' var
+R465:484 Assignment10_15 <> bexp_strong_progress thm

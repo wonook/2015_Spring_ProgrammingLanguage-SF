@@ -1,0 +1,31 @@
+DIGEST 56fbc0528f0ad5813e8c780f354c235e
+FAssignment10_07
+R15:29 Assignment10_06 <> <> lib
+prf 120:136 <> multistep_congr_2
+R207:212 Assignment10_00 <> ::x_'==>*'_x not
+R200:200 Assignment10_00 <> P constr
+R205:206 Assignment10_07 <> t2 var
+R202:203 Assignment10_07 <> t1 var
+R213:213 Assignment10_00 <> P constr
+R218:220 Assignment10_07 <> t2' var
+R215:216 Assignment10_07 <> t1 var
+R182:187 Assignment10_00 <> ::x_'==>*'_x not
+R180:181 Assignment10_07 <> t2 var
+R188:190 Assignment10_07 <> t2' var
+R163:167 Assignment10_00 <> value ind
+R169:170 Assignment10_07 <> t1 var
+R238:249 Assignment10_00 <> FILL_IN_HERE prfax
+R238:249 Assignment10_00 <> FILL_IN_HERE prfax
+R367:372 Assignment10_00 <> ::x_'==>*'_x not
+R360:360 Assignment10_00 <> P constr
+R365:366 Assignment10_07 <> t2 var
+R362:363 Assignment10_07 <> t1 var
+R373:373 Assignment10_00 <> P constr
+R378:380 Assignment10_07 <> t2' var
+R375:376 Assignment10_07 <> t1 var
+R342:347 Assignment10_00 <> ::x_'==>*'_x not
+R340:341 Assignment10_07 <> t2 var
+R348:350 Assignment10_07 <> t2' var
+R323:327 Assignment10_00 <> value ind
+R329:330 Assignment10_07 <> t1 var
+R280:296 Assignment10_07 <> multistep_congr_2 thm

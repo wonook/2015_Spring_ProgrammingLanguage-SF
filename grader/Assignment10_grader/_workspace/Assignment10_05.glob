@@ -1,0 +1,35 @@
+DIGEST bfbfeee2f1f54ecb1d72f752b79eb6a1
+FAssignment10_05
+R15:29 Assignment10_04 <> <> lib
+prf 119:134 <> test_multistep_4
+R212:225 Assignment10_00 <> ::x_'==>*'_x not
+R143:143 Assignment10_00 <> P constr
+R168:168 Assignment10_00 <> P constr
+R197:197 Assignment10_00 <> P constr
+R206:206 Assignment10_00 <> C constr
+R200:200 Assignment10_00 <> C constr
+R181:181 Assignment10_00 <> C constr
+R154:154 Assignment10_00 <> C constr
+R226:226 Assignment10_00 <> P constr
+R251:251 Assignment10_00 <> C constr
+R255:258 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R264:264 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R260:262 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R237:237 Assignment10_00 <> C constr
+R284:295 Assignment10_00 <> FILL_IN_HERE prfax
+R284:295 Assignment10_00 <> FILL_IN_HERE prfax
+R419:432 Assignment10_00 <> ::x_'==>*'_x not
+R350:350 Assignment10_00 <> P constr
+R375:375 Assignment10_00 <> P constr
+R404:404 Assignment10_00 <> P constr
+R413:413 Assignment10_00 <> C constr
+R407:407 Assignment10_00 <> C constr
+R388:388 Assignment10_00 <> C constr
+R361:361 Assignment10_00 <> C constr
+R433:433 Assignment10_00 <> P constr
+R458:458 Assignment10_00 <> C constr
+R462:465 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R471:471 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R467:469 Coq.Init.Peano <> :nat_scope:x_'+'_x not
+R444:444 Assignment10_00 <> C constr
+R326:341 Assignment10_05 <> test_multistep_4 thm

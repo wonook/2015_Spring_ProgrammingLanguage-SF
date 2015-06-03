@@ -1,0 +1,21 @@
+DIGEST 843ff0a5698fa3fbc4d755075b9f7bd6
+FAssignment10_08
+R15:29 Assignment10_07 <> <> lib
+prf 1451:1465 <> eval__multistep
+R1494:1499 Assignment10_00 <> ::x_'==>*'_x not
+R1493:1493 Assignment10_08 <> t var
+R1500:1500 Assignment10_00 <> C constr
+R1502:1502 Assignment10_08 <> n var
+R1484:1487 Assignment10_00 <> ::x_'||'_x not
+R1483:1483 Assignment10_08 <> t var
+R1488:1488 Assignment10_08 <> n var
+R1520:1531 Assignment10_00 <> FILL_IN_HERE prfax
+R1520:1531 Assignment10_00 <> FILL_IN_HERE prfax
+R1605:1610 Assignment10_00 <> ::x_'==>*'_x not
+R1604:1604 Assignment10_08 <> t var
+R1611:1611 Assignment10_00 <> C constr
+R1613:1613 Assignment10_08 <> n var
+R1595:1598 Assignment10_00 <> ::x_'||'_x not
+R1594:1594 Assignment10_08 <> t var
+R1599:1599 Assignment10_08 <> n var
+R1562:1576 Assignment10_08 <> eval__multistep thm

@@ -1,0 +1,33 @@
+DIGEST 3b31c71127f1da89392d0c7c0b178de7
+FAssignment10_10
+R15:29 Assignment10_09 <> <> lib
+prf 471:485 <> multistep__eval
+R527:533 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R535:536 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R545:548 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R539:541 Coq.Init.Logic <> :type_scope:x_'='_x not
+R537:538 Assignment10_10 <> t' var
+R542:542 Assignment10_00 <> C constr
+R544:544 Assignment10_10 <> n var
+R550:553 Assignment10_00 <> ::x_'||'_x not
+R549:549 Assignment10_10 <> t var
+R554:554 Assignment10_10 <> n var
+R504:517 Assignment10_00 <> normal_form_of def
+R521:522 Assignment10_10 <> t' var
+R519:519 Assignment10_10 <> t var
+R572:583 Assignment10_00 <> FILL_IN_HERE prfax
+R572:583 Assignment10_00 <> FILL_IN_HERE prfax
+R670:676 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R678:679 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R688:691 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R682:684 Coq.Init.Logic <> :type_scope:x_'='_x not
+R680:681 Assignment10_10 <> t' var
+R685:685 Assignment10_00 <> C constr
+R687:687 Assignment10_10 <> n var
+R693:696 Assignment10_00 <> ::x_'||'_x not
+R692:692 Assignment10_10 <> t var
+R697:697 Assignment10_10 <> n var
+R647:660 Assignment10_00 <> normal_form_of def
+R664:665 Assignment10_10 <> t' var
+R662:662 Assignment10_10 <> t var
+R614:628 Assignment10_10 <> multistep__eval thm
