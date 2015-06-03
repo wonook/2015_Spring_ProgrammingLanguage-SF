@@ -392,7 +392,17 @@ Lemma par_body_n__Sn : forall n st,
   st X = n /\ st Y = 0 ->
   par_loop / st ==>c* par_loop / (update st X (S n)).
 Proof.
-  exact FILL_IN_HERE.
+  intros. inversion H; subst. destruct H. unfold par_loop.
+  eapply multi_step. apply CS_Par2. apply CS_While.
+  eapply multi_step. apply CS_Par2. apply CS_IfStep. apply BS_Eq1. apply AS_Id.
+  eapply multi_step. apply CS_Par2. apply CS_IfStep. rewrite H0. apply BS_Eq. simpl.
+  eapply multi_step. apply CS_Par2. apply CS_IfTrue.
+  eapply multi_step. apply CS_Par2. apply CS_SeqStep. apply CS_AssStep. apply AS_Plus1. apply AS_Id.
+  eapply multi_step. apply CS_Par2. apply CS_SeqStep. apply CS_AssStep. apply AS_Plus.
+  eapply multi_step. apply CS_Par2. apply CS_SeqStep. apply CS_Ass.
+  eapply multi_step. apply CS_Par2. apply CS_SeqFinish.
+  rewrite plus_comm. simpl.
+  apply multi_refl.
 Qed.
 
 (*-- Check --*)
@@ -411,7 +421,19 @@ Lemma par_body_n : forall n st,
   exists st',
     par_loop / st ==>c*  par_loop / st' /\ st' X = n /\ st' Y = 0.
 Proof.
-  exact FILL_IN_HERE.
+    (* DIFFICULT!! *)
+  intros. generalize dependent st. induction n; intros; unfold par_loop.
+  - exists st. split.
+    apply multi_refl. assumption.
+  - apply IHn in H. inversion H.
+    exists (update x X (S n)).
+    inversion H0; subst. split.
+    eapply multi_trans. apply H1.
+    eapply par_body_n__Sn. assumption.
+    split. 
+      rewrite update_eq. reflexivity.
+      rewrite update_neq. inversion H2. assumption.
+      destruct (eq_id_dec X Y) eqn:eqn. inversion eqn. assumption.
 Qed.
 
 (*-- Check --*)
