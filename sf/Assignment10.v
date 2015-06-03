@@ -1,4 +1,4 @@
-Require Export Assignment10_00.
+bRequire Export Assignment10_00.
 
 (* problem #01: 10 points *)
 
@@ -459,11 +459,26 @@ Check par_body_n : forall n st,
      destruct ... as [[? ?] | [? ?]].
 *)
 
+Hint Constructors aval.
+Hint Constructors astep.
+
 Theorem aexp_strong_progress: forall st a,
   (exists n, a = ANum n) \/
   exists a', a / st ==>a a'.
 Proof.
-  exact FILL_IN_HERE.
+  intros. induction a; eauto.
+  - inversion IHa1. inversion H. rewrite H0. inversion IHa2. inversion H1. rewrite H2. 
+    eauto. 
+    inversion H1. eauto. 
+    inversion H. eauto.
+  - inversion IHa1. inversion H. rewrite H0. inversion IHa2. inversion H1. rewrite H2.
+    eauto.
+    inversion H1. eauto.
+    inversion H. eauto.
+  - inversion IHa1. inversion H. rewrite H0. inversion IHa2. inversion H1. rewrite H2.
+    eauto.
+    inversion H1. eauto.
+    inversion H. eauto.
 Qed.
 
 (*-- Check --*)
@@ -487,11 +502,32 @@ Check aexp_strong_progress: forall st a,
      destruct ... as [[? | ?] | [? ?]].
 *)
 
+Hint Constructors bstep.
+
 Theorem bexp_strong_progress: forall st b,
   (b = BTrue \/ b = BFalse) \/
   exists b', b / st ==>b b'.
 Proof.
-  exact FILL_IN_HERE.
+  intros. induction b; eauto. 
+  - assert ((exists n, a = ANum n) \/ exists a', a / st ==>a a'). apply aexp_strong_progress. 
+    assert ((exists n, a0 = ANum n) \/ exists a', a0 / st ==>a a'). apply aexp_strong_progress.
+    inversion H. inversion H1. rewrite H2. inversion H0. inversion H3. 
+      rewrite H4; eauto.
+      inversion H3; eauto.
+      inversion H1; eauto.
+  - assert ((exists n, a = ANum n) \/ exists a', a / st ==>a a'). apply aexp_strong_progress. 
+    assert ((exists n, a0 = ANum n) \/ exists a', a0 / st ==>a a'). apply aexp_strong_progress.
+    inversion H. inversion H1. rewrite H2. inversion H0. inversion H3. 
+      rewrite H4; eauto.
+      inversion H3; eauto.
+      inversion H1; eauto.
+  - inversion IHb. inversion H. rewrite H0; eauto. rewrite H0; eauto. inversion H; eauto.
+  - inversion IHb1. inversion H. rewrite H0. inversion IHb2. inversion H1. 
+    rewrite H2; eauto.
+    rewrite H2; eauto.
+    inversion H1; eauto.
+    rewrite H0; eauto.
+    inversion H; eauto.
 Qed.
 
 (*-- Check --*)
@@ -515,11 +551,19 @@ Check bexp_strong_progress: forall st b,
      destruct ... as [ | [? [? ?]]].
 *)
 
+Hint Constructors cstep.
+
 Theorem cimp_strong_progress : forall c st,
   c = SKIP \/ 
   exists c' st', c / st ==>c c' / st'.
 Proof.
-  exact FILL_IN_HERE.
+  intros. induction c; eauto.
+  - assert ((exists n, a = ANum n) \/ exists a', a / st ==>a a'). apply aexp_strong_progress. 
+    inversion H. inversion H0. rewrite H1; eauto. inversion H0; eauto.
+  - inversion IHc1; subst. inversion IHc2; subst. eauto. inversion H; eauto. inversion H; inversion H0; eauto.
+  - assert ((b = BTrue \/ b = BFalse) \/ exists b', b / st ==>b b'). apply bexp_strong_progress.
+    inversion H. inversion H0. rewrite H1; eauto. rewrite H1; eauto. inversion H0; eauto.
+  - inversion IHc1; subst. inversion IHc2; subst. eauto. inversion H; inversion H0; eauto. inversion H; inversion H0; eauto.
 Qed.
 
 (*-- Check --*)
