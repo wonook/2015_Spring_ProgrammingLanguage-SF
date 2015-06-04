@@ -7,8 +7,8 @@ Example some_term_is_stuck :
   exists t, stuck t.
 Proof.
   exists (tsucc ttrue). unfold stuck, value, normal_form, not. split; intros.
-  - inversion H. inversion H0. solve by inversion.
-  - inversion H. inversion H0. inversion H0. solve by inversion.
+  - inversion H. inversion H0. inversion H2. 
+  - inversion H. inversion H0. inversion H0. inversion H2. 
 Qed.
 
 (*-- Check --*)

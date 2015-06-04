@@ -20,16 +20,18 @@ Proof with auto.
          (* and we can deal with several impossible
             cases all at once *)
          try (solve by inversion).
-  Case "T_If". inversion HE; subst; clear HE.
+  - Case "T_If". inversion HE; subst; clear HE.
     SCase "ST_IFTrue". assumption.
     SCase "ST_IfFalse". assumption.
     SCase "ST_If". apply T_If; try assumption.
       apply IHHT1; assumption.
-      exact FILL_IN_HERE.
-  Case "T_Pred".
-    exact FILL_IN_HERE.
-  Case "T_Iszero".
-    exact FILL_IN_HERE.
+  - Case "T_Succ".
+    inversion HE; subst...
+  - Case "T_Pred".  
+    inversion HE; subst...
+      inversion HT; subst. assumption.
+  - Case "T_Iszero".
+    inversion HE; subst...
 Qed.
 
 (*-- Check --*)

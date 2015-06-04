@@ -7,8 +7,8 @@ Example some_term_is_stuck :
   exists t, stuck t.
 Proof.
   exists (tsucc ttrue). unfold stuck, value, normal_form, not. split; intros.
-  - inversion H. inversion H0. solve by inversion.
-  - inversion H. inversion H0. inversion H0. solve by inversion.
+  - inversion H. inversion H0. inversion H2. 
+  - inversion H. inversion H0. inversion H0. inversion H2. 
 Qed.
 
 (*-- Check --*)
@@ -91,7 +91,7 @@ Example succ_hastype_nat__hastype_nat : forall t,
   |- tsucc t \in TNat ->
   |- t \in TNat.  
 Proof.
-  exact FILL_IN_HERE.
+  intros. inversion H; subst. assumption.
 Qed.
 
 (*-- Check --*)
@@ -120,7 +120,7 @@ Proof with auto.
   has_type_cases (induction HT) Case...
   (* The cases that were obviously values, like T_True and
      T_False, were eliminated immediately by auto *)
-  Case "T_If".
+  - Case "T_If".
     right. inversion IHHT1; clear IHHT1.
     SCase "t1 is a value".
     apply (bool_canonical t1 HT1) in H.
@@ -129,12 +129,23 @@ Proof with auto.
       exists t3...
     SCase "t1 can take a step".
       inversion H as [t1' H1].
-      exists (tif t1' t2 t3)...
-      exact FILL_IN_HERE.
-  Case "T_Pred".
-    exact FILL_IN_HERE.
-  Case "T_Iszero".
-    exact FILL_IN_HERE.
+        exists (tif t1' t2 t3)...
+  - Case "T_Succ".
+    inversion IHHT; subst...
+      inversion H... right. inversion H0; subst. inversion HT. inversion HT.
+      inversion H. right. exists (tsucc x)...
+  - Case "T_Pred".
+    inversion IHHT; subst...
+      inversion H... 
+        right. inversion H0; subst. inversion HT. inversion HT.
+        right. induction H0; subst. exists tzero... exists t...
+      inversion H; subst. right. exists (tpred x)...
+  - Case "T_Iszero".
+    inversion IHHT; subst...
+      inversion H...
+        right. inversion H0; subst. inversion HT. inversion HT.
+        right. inversion H0; subst. exists ttrue... exists tfalse...
+      inversion H; subst. right. exists (tiszero x)...
 Qed.
 
 (*-- Check --*)
@@ -165,16 +176,18 @@ Proof with auto.
          (* and we can deal with several impossible
             cases all at once *)
          try (solve by inversion).
-  Case "T_If". inversion HE; subst; clear HE.
+  - Case "T_If". inversion HE; subst; clear HE.
     SCase "ST_IFTrue". assumption.
     SCase "ST_IfFalse". assumption.
     SCase "ST_If". apply T_If; try assumption.
       apply IHHT1; assumption.
-      exact FILL_IN_HERE.
-  Case "T_Pred".
-    exact FILL_IN_HERE.
-  Case "T_Iszero".
-    exact FILL_IN_HERE.
+  - Case "T_Succ".
+    inversion HE; subst...
+  - Case "T_Pred".  
+    inversion HE; subst...
+      inversion HT; subst. assumption.
+  - Case "T_Iszero".
+    inversion HE; subst...
 Qed.
 
 (*-- Check --*)
@@ -193,7 +206,7 @@ Theorem normalize_ex : exists e',
   (AMult (ANum 3) (AMult (ANum 2) (ANum 1))) / empty_state 
   ==>a* e'.
 Proof.
-  exact FILL_IN_HERE.
+  eapply ex_intro. normalize.
 Qed.
 
 (*-- Check --*)
@@ -213,7 +226,7 @@ Theorem normalize_ex' : exists e',
   (AMult (ANum 3) (AMult (ANum 2) (ANum 1))) / empty_state 
   ==>a* e'.
 Proof.
-  exact FILL_IN_HERE.
+  apply ex_intro with (ANum 6). normalize.
 Qed.
 
 (*-- Check --*)
@@ -241,7 +254,8 @@ Theorem subject_expansion_false:
     |- t' \in T /\
     ~ |- t \in T.
 Proof.
-  exact FILL_IN_HERE.
+  exists (tif ttrue tfalse tzero). exists tfalse. eexists. split; eauto. split; eauto. unfold not. intros.
+  inversion H; subst; eauto. inversion H6.
 Qed.
 
 (*-- Check --*)
@@ -260,21 +274,22 @@ Check subject_expansion_false:
 **)
 
 Fixpoint tycheck (t: tm) (T: ty) : bool :=
-  FILL_IN_HERE.
+  match t with
+  | .
 
 Example tycheck_ex1:
   tycheck
     (tif (tiszero (tpred (tsucc (tsucc tzero)))) ttrue (tiszero (tsucc tzero))) 
     TBool 
   = true.
-Proof. exact FILL_IN_HERE. Qed.
+Proof. reflexivity. Qed.
 
 Example tycheck_ex2:
   tycheck
     (tif (tiszero (tpred (tsucc (tsucc tzero)))) tzero (tiszero (tsucc tzero))) 
     TBool 
   = false.
-Proof. exact FILL_IN_HERE. Qed.
+Proof. reflexivity. Qed.
 
 (** Prove that the type checking function [tyeq: tm -> ty -> bool] is correct.
 
