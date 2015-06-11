@@ -1,0 +1,39 @@
+DIGEST 4fff120b1c2413a7542634ba25ed130e
+FAssignment11_09
+R15:29 Assignment11_08 <> <> lib
+prf 523:545 <> subject_expansion_false
+R551:557 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R564:569 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R578:585 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R571:575 Assignment11_00 <> ::x_'==>'_x not
+R570:570 Assignment11_09 <> t var
+R576:577 Assignment11_09 <> t' var
+R597:604 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R586:588 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R591:595 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R589:590 Assignment11_09 <> t' var
+R596:596 Assignment11_09 <> T var
+R605:606 Coq.Init.Logic <> :type_scope:'~'_x not
+R607:609 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R611:615 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R610:610 Assignment11_09 <> t var
+R616:616 Assignment11_09 <> T var
+R634:645 Assignment11_00 <> FILL_IN_HERE prfax
+R634:645 Assignment11_00 <> FILL_IN_HERE prfax
+R704:710 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R717:722 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R731:738 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R724:728 Assignment11_00 <> ::x_'==>'_x not
+R723:723 Assignment11_09 <> t var
+R729:730 Assignment11_09 <> t' var
+R750:757 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R739:741 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R744:748 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R742:743 Assignment11_09 <> t' var
+R749:749 Assignment11_09 <> T var
+R758:759 Coq.Init.Logic <> :type_scope:'~'_x not
+R760:762 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R764:768 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R763:763 Assignment11_09 <> t var
+R769:769 Assignment11_09 <> T var
+R676:698 Assignment11_09 <> subject_expansion_false thm

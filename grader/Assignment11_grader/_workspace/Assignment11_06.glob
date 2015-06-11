@@ -1,0 +1,35 @@
+DIGEST 0e8651544e5111fba74ffd4b2873d545
+FAssignment11_06
+R15:29 Assignment11_05 <> <> lib
+prf 294:305 <> preservation
+R356:358 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R361:365 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R359:360 Assignment11_06 <> t' var
+R366:366 Assignment11_06 <> T var
+R343:347 Assignment11_00 <> ::x_'==>'_x not
+R342:342 Assignment11_06 <> t var
+R348:349 Assignment11_06 <> t' var
+R326:328 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R330:334 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R329:329 Assignment11_06 <> t var
+R335:335 Assignment11_06 <> T var
+R825:828 Assignment11_00 <> T_If constr
+R825:828 Assignment11_00 <> T_If constr
+R890:901 Assignment11_00 <> FILL_IN_HERE prfax
+R890:901 Assignment11_00 <> FILL_IN_HERE prfax
+R931:942 Assignment11_00 <> FILL_IN_HERE prfax
+R931:942 Assignment11_00 <> FILL_IN_HERE prfax
+R974:985 Assignment11_00 <> FILL_IN_HERE prfax
+R974:985 Assignment11_00 <> FILL_IN_HERE prfax
+R1078:1080 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R1083:1087 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R1081:1082 Assignment11_06 <> t' var
+R1088:1088 Assignment11_06 <> T var
+R1065:1069 Assignment11_00 <> ::x_'==>'_x not
+R1064:1064 Assignment11_06 <> t var
+R1070:1071 Assignment11_06 <> t' var
+R1048:1050 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R1052:1056 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R1051:1051 Assignment11_06 <> t var
+R1057:1057 Assignment11_06 <> T var
+R1016:1027 Assignment11_06 <> preservation thm

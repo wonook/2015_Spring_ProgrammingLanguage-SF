@@ -1,0 +1,15 @@
+DIGEST 24e8eaf6f9190f8f365c67328c02e9a3
+FAssignment11_02
+R15:29 Assignment11_01 <> <> lib
+prf 582:592 <> value_is_nf
+R619:634 Assignment11_00 <> step_normal_form syndef
+R636:636 Assignment11_02 <> t var
+R608:612 Assignment11_00 <> value def
+R614:614 Assignment11_02 <> t var
+R654:665 Assignment11_00 <> FILL_IN_HERE prfax
+R654:665 Assignment11_00 <> FILL_IN_HERE prfax
+R733:748 Assignment11_00 <> step_normal_form syndef
+R750:750 Assignment11_02 <> t var
+R722:726 Assignment11_00 <> value def
+R728:728 Assignment11_02 <> t var
+R696:706 Assignment11_02 <> value_is_nf thm

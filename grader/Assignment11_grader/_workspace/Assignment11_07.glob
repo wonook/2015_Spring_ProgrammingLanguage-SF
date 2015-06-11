@@ -1,0 +1,31 @@
+DIGEST 8b4b99b98c5a068590cd3db5dfaf6950
+FAssignment11_07
+R15:29 Assignment11_06 <> <> lib
+prf 116:127 <> normalize_ex
+R131:137 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R140:143 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R144:144 Assignment11_00 <> ::x_'/'_x_'==>a*'_x not
+R185:188 Assignment11_00 <> ::x_'/'_x_'==>a*'_x not
+R200:209 Assignment11_00 <> ::x_'/'_x_'==>a*'_x not
+R189:199 Imp <> empty_state def
+R145:149 Imp <> AMult constr
+R161:165 Imp <> AMult constr
+R177:180 Imp <> ANum constr
+R168:171 Imp <> ANum constr
+R152:155 Imp <> ANum constr
+R210:211 Assignment11_07 <> e' var
+R229:240 Assignment11_00 <> FILL_IN_HERE prfax
+R229:240 Assignment11_00 <> FILL_IN_HERE prfax
+R286:292 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R295:298 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R299:299 Assignment11_00 <> ::x_'/'_x_'==>a*'_x not
+R340:343 Assignment11_00 <> ::x_'/'_x_'==>a*'_x not
+R355:364 Assignment11_00 <> ::x_'/'_x_'==>a*'_x not
+R344:354 Imp <> empty_state def
+R300:304 Imp <> AMult constr
+R316:320 Imp <> AMult constr
+R332:335 Imp <> ANum constr
+R323:326 Imp <> ANum constr
+R307:310 Imp <> ANum constr
+R365:366 Assignment11_07 <> e' var
+R271:282 Assignment11_07 <> normalize_ex thm

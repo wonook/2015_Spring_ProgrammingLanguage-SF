@@ -1,0 +1,15 @@
+DIGEST ca5154b6c867af6be5e98c06fe72e0d1
+FAssignment11_01
+R15:29 Assignment11_00 <> <> lib
+def 123:140 <> some_term_is_stuck
+R146:152 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R154:155 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R156:160 Assignment11_00 <> stuck def
+R162:162 Assignment11_01 <> t var
+R180:191 Assignment11_00 <> FILL_IN_HERE prfax
+R180:191 Assignment11_00 <> FILL_IN_HERE prfax
+R245:251 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R253:254 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R255:259 Assignment11_00 <> stuck def
+R261:261 Assignment11_01 <> t var
+R222:239 Assignment11_01 <> some_term_is_stuck def

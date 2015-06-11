@@ -1,0 +1,39 @@
+DIGEST f375be3c00ab40f4db6d6d8d321486b5
+FAssignment11_05
+R15:29 Assignment11_04 <> <> lib
+prf 462:469 <> progress
+R510:513 Coq.Init.Logic <> :type_scope:x_'\/'_x not
+R503:507 Assignment11_00 <> value def
+R509:509 Assignment11_05 <> t var
+R514:520 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R523:524 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R526:530 Assignment11_00 <> ::x_'==>'_x not
+R525:525 Assignment11_05 <> t var
+R531:532 Assignment11_05 <> t' var
+R487:489 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R491:495 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R490:490 Assignment11_05 <> t var
+R496:496 Assignment11_05 <> T var
+R815:828 Assignment11_00 <> bool_canonical thm
+R815:828 Assignment11_00 <> bool_canonical thm
+R992:994 Assignment11_00 <> tif constr
+R992:994 Assignment11_00 <> tif constr
+R1022:1033 Assignment11_00 <> FILL_IN_HERE prfax
+R1022:1033 Assignment11_00 <> FILL_IN_HERE prfax
+R1063:1074 Assignment11_00 <> FILL_IN_HERE prfax
+R1063:1074 Assignment11_00 <> FILL_IN_HERE prfax
+R1106:1117 Assignment11_00 <> FILL_IN_HERE prfax
+R1106:1117 Assignment11_00 <> FILL_IN_HERE prfax
+R1196:1199 Coq.Init.Logic <> :type_scope:x_'\/'_x not
+R1189:1193 Assignment11_00 <> value def
+R1195:1195 Assignment11_05 <> t var
+R1200:1206 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R1209:1210 Coq.Init.Logic <> :type_scope:'exists'_x_'..'_x_','_x not
+R1212:1216 Assignment11_00 <> ::x_'==>'_x not
+R1211:1211 Assignment11_05 <> t var
+R1217:1218 Assignment11_05 <> t' var
+R1173:1175 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R1177:1181 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R1176:1176 Assignment11_05 <> t var
+R1182:1182 Assignment11_05 <> T var
+R1148:1155 Assignment11_05 <> progress thm

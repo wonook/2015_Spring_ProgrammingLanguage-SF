@@ -1,0 +1,25 @@
+DIGEST 4cc68a11db1d6bae8879bc9658037d3b
+FAssignment11_04
+R15:29 Assignment11_03 <> <> lib
+def 143:171 <> succ_hastype_nat__hastype_nat
+R212:214 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R216:220 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R215:215 Assignment11_04 <> t var
+R221:224 Assignment11_00 <> TNat constr
+R187:189 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R197:201 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R190:194 Assignment11_00 <> tsucc constr
+R196:196 Assignment11_04 <> t var
+R202:205 Assignment11_00 <> TNat constr
+R244:255 Assignment11_00 <> FILL_IN_HERE prfax
+R244:255 Assignment11_00 <> FILL_IN_HERE prfax
+R355:357 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R359:363 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R358:358 Assignment11_04 <> t var
+R364:367 Assignment11_00 <> TNat constr
+R330:332 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R340:344 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R333:337 Assignment11_00 <> tsucc constr
+R339:339 Assignment11_04 <> t var
+R345:348 Assignment11_00 <> TNat constr
+R286:314 Assignment11_04 <> succ_hastype_nat__hastype_nat def

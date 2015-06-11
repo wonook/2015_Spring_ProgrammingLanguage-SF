@@ -1,0 +1,275 @@
+DIGEST 37a0a343e6f498d7728fd5b78eac3399
+FAssignment11_00
+R16:24 Smallstep <> <> lib
+R46:50 Assignment11_00 <> multi ind
+def 320:331 <> FILL_IN_HERE
+R345:345 Assignment11_00 <> T var
+ind 371:372 <> tm
+constr 388:392 <> ttrue
+constr 403:408 <> tfalse
+constr 419:421 <> tif
+constr 450:454 <> tzero
+constr 465:469 <> tsucc
+constr 486:490 <> tpred
+constr 507:513 <> tiszero
+R396:397 Assignment11_00 <> tm ind
+R412:413 Assignment11_00 <> tm ind
+R443:444 Assignment11_00 <> tm ind
+R437:438 Assignment11_00 <> tm ind
+R431:432 Assignment11_00 <> tm ind
+R425:426 Assignment11_00 <> tm ind
+R458:459 Assignment11_00 <> tm ind
+R479:480 Assignment11_00 <> tm ind
+R473:474 Assignment11_00 <> tm ind
+R500:501 Assignment11_00 <> tm ind
+R494:495 Assignment11_00 <> tm ind
+R523:524 Assignment11_00 <> tm ind
+R517:518 Assignment11_00 <> tm ind
+ind 538:543 <> bvalue
+constr 565:571 <> bv_true
+constr 592:599 <> bv_false
+R547:548 Assignment11_00 <> tm ind
+R575:580 Assignment11_00 <> bvalue ind
+R582:586 Assignment11_00 <> ttrue constr
+R603:608 Assignment11_00 <> bvalue ind
+R610:615 Assignment11_00 <> tfalse constr
+ind 629:634 <> nvalue
+constr 656:662 <> nv_zero
+constr 683:689 <> nv_succ
+R638:639 Assignment11_00 <> tm ind
+R666:671 Assignment11_00 <> nvalue ind
+R673:677 Assignment11_00 <> tzero constr
+R715:720 Assignment11_00 <> nvalue ind
+R723:727 Assignment11_00 <> tsucc constr
+R729:729 Assignment11_00 <> t var
+R703:708 Assignment11_00 <> nvalue ind
+R710:710 Assignment11_00 <> t var
+def 745:749 <> value
+R754:755 Assignment11_00 <> tm ind
+R769:772 Coq.Init.Logic <> :type_scope:x_'\/'_x not
+R761:766 Assignment11_00 <> bvalue ind
+R768:768 Assignment11_00 <> t var
+R773:778 Assignment11_00 <> nvalue ind
+R780:780 Assignment11_00 <> t var
+R802:807 Assignment11_00 <> bvalue ind
+R809:814 Assignment11_00 <> nvalue ind
+R829:833 Assignment11_00 <> value def
+R850:855 SfLib <> extend def
+ind 917:920 <> step
+constr 948:956 <> ST_IfTrue
+constr 1009:1018 <> ST_IfFalse
+constr 1072:1076 <> ST_If
+constr 1166:1172 <> ST_Succ
+constr 1248:1258 <> ST_PredZero
+constr 1296:1306 <> ST_PredSucc
+constr 1376:1382 <> ST_Pred
+constr 1458:1470 <> ST_IszeroZero
+constr 1510:1522 <> ST_IszeroSucc
+constr 1599:1607 <> ST_Iszero
+R930:931 Assignment11_00 <> tm ind
+R924:925 Assignment11_00 <> tm ind
+R1708:1711 Assignment11_00 <> step ind
+R980:980 Assignment11_00 <> ::x_'==>'_x not
+R996:1001 Assignment11_00 <> ::x_'==>'_x not
+R981:983 Assignment11_00 <> tif constr
+R994:995 Assignment11_00 <> t2 var
+R991:992 Assignment11_00 <> t1 var
+R985:989 Assignment11_00 <> ttrue constr
+R1002:1003 Assignment11_00 <> t1 var
+R1042:1042 Assignment11_00 <> ::x_'==>'_x not
+R1059:1064 Assignment11_00 <> ::x_'==>'_x not
+R1043:1045 Assignment11_00 <> tif constr
+R1057:1058 Assignment11_00 <> t2 var
+R1054:1055 Assignment11_00 <> t1 var
+R1047:1052 Assignment11_00 <> tfalse constr
+R1065:1066 Assignment11_00 <> t2 var
+R1127:1127 Assignment11_00 <> ::x_'==>'_x not
+R1140:1146 Assignment11_00 <> ::x_'==>'_x not
+R1160:1160 Assignment11_00 <> ::x_'==>'_x not
+R1128:1130 Assignment11_00 <> tif constr
+R1138:1139 Assignment11_00 <> t3 var
+R1135:1136 Assignment11_00 <> t2 var
+R1132:1133 Assignment11_00 <> t1 var
+R1147:1149 Assignment11_00 <> tif constr
+R1158:1159 Assignment11_00 <> t3 var
+R1155:1156 Assignment11_00 <> t2 var
+R1151:1153 Assignment11_00 <> t1' var
+R1109:1113 Assignment11_00 <> ::x_'==>'_x not
+R1107:1108 Assignment11_00 <> t1 var
+R1114:1116 Assignment11_00 <> t1' var
+R1217:1217 Assignment11_00 <> ::x_'==>'_x not
+R1226:1232 Assignment11_00 <> ::x_'==>'_x not
+R1242:1242 Assignment11_00 <> ::x_'==>'_x not
+R1218:1222 Assignment11_00 <> tsucc constr
+R1224:1225 Assignment11_00 <> t1 var
+R1233:1237 Assignment11_00 <> tsucc constr
+R1239:1241 Assignment11_00 <> t1' var
+R1199:1203 Assignment11_00 <> ::x_'==>'_x not
+R1197:1198 Assignment11_00 <> t1 var
+R1204:1206 Assignment11_00 <> t1' var
+R1268:1268 Assignment11_00 <> ::x_'==>'_x not
+R1280:1285 Assignment11_00 <> ::x_'==>'_x not
+R1269:1273 Assignment11_00 <> tpred constr
+R1275:1279 Assignment11_00 <> tzero constr
+R1286:1290 Assignment11_00 <> tzero constr
+R1346:1346 Assignment11_00 <> ::x_'==>'_x not
+R1363:1368 Assignment11_00 <> ::x_'==>'_x not
+R1347:1351 Assignment11_00 <> tpred constr
+R1354:1358 Assignment11_00 <> tsucc constr
+R1360:1361 Assignment11_00 <> t1 var
+R1369:1370 Assignment11_00 <> t1 var
+R1327:1332 Assignment11_00 <> nvalue ind
+R1334:1335 Assignment11_00 <> t1 var
+R1427:1427 Assignment11_00 <> ::x_'==>'_x not
+R1436:1442 Assignment11_00 <> ::x_'==>'_x not
+R1452:1452 Assignment11_00 <> ::x_'==>'_x not
+R1428:1432 Assignment11_00 <> tpred constr
+R1434:1435 Assignment11_00 <> t1 var
+R1443:1447 Assignment11_00 <> tpred constr
+R1449:1451 Assignment11_00 <> t1' var
+R1409:1413 Assignment11_00 <> ::x_'==>'_x not
+R1407:1408 Assignment11_00 <> t1 var
+R1414:1416 Assignment11_00 <> t1' var
+R1480:1480 Assignment11_00 <> ::x_'==>'_x not
+R1494:1499 Assignment11_00 <> ::x_'==>'_x not
+R1481:1487 Assignment11_00 <> tiszero constr
+R1489:1493 Assignment11_00 <> tzero constr
+R1500:1504 Assignment11_00 <> ttrue constr
+R1563:1563 Assignment11_00 <> ::x_'==>'_x not
+R1582:1587 Assignment11_00 <> ::x_'==>'_x not
+R1564:1570 Assignment11_00 <> tiszero constr
+R1573:1577 Assignment11_00 <> tsucc constr
+R1579:1580 Assignment11_00 <> t1 var
+R1588:1593 Assignment11_00 <> tfalse constr
+R1544:1549 Assignment11_00 <> nvalue ind
+R1551:1552 Assignment11_00 <> t1 var
+R1652:1652 Assignment11_00 <> ::x_'==>'_x not
+R1663:1669 Assignment11_00 <> ::x_'==>'_x not
+R1681:1681 Assignment11_00 <> ::x_'==>'_x not
+R1653:1659 Assignment11_00 <> tiszero constr
+R1661:1662 Assignment11_00 <> t1 var
+R1670:1676 Assignment11_00 <> tiszero constr
+R1678:1680 Assignment11_00 <> t1' var
+R1634:1638 Assignment11_00 <> ::x_'==>'_x not
+R1632:1633 Assignment11_00 <> t1 var
+R1639:1641 Assignment11_00 <> t1' var
+R1708:1711 Assignment11_00 <> step ind
+not 1690 <> ::x_'==>'_x
+R2075:2078 Assignment11_00 <> step ind
+syndef 2091:2106 <> step_normal_form
+R2112:2122 Smallstep <> normal_form def
+R2124:2127 Assignment11_00 <> step ind
+def 2143:2147 <> stuck
+R2152:2153 Assignment11_00 <> tm ind
+R2186:2189 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R2168:2183 Assignment11_00 <> step_normal_form syndef
+R2185:2185 Assignment11_00 <> t var
+R2190:2191 Coq.Init.Logic <> :type_scope:'~'_x not
+R2192:2196 Assignment11_00 <> value def
+R2198:2198 Assignment11_00 <> t var
+R2214:2218 Assignment11_00 <> stuck def
+ind 2232:2233 <> ty
+constr 2250:2254 <> TBool
+constr 2265:2268 <> TNat
+R2258:2259 Assignment11_00 <> ty ind
+R2272:2273 Assignment11_00 <> ty ind
+ind 2338:2345 <> has_type
+constr 2373:2378 <> T_True
+constr 2413:2419 <> T_False
+constr 2455:2458 <> T_If
+constr 2584:2589 <> T_Zero
+constr 2623:2628 <> T_Succ
+constr 2700:2705 <> T_Pred
+constr 2777:2784 <> T_Iszero
+R2355:2356 Assignment11_00 <> ty ind
+R2349:2350 Assignment11_00 <> tm ind
+R2883:2890 Assignment11_00 <> has_type ind
+R2390:2392 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2398:2402 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2393:2397 Assignment11_00 <> ttrue constr
+R2403:2407 Assignment11_00 <> TBool constr
+R2431:2433 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2440:2444 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2434:2439 Assignment11_00 <> tfalse constr
+R2445:2449 Assignment11_00 <> TBool constr
+R2558:2560 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2573:2577 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2561:2563 Assignment11_00 <> tif constr
+R2571:2572 Assignment11_00 <> t3 var
+R2568:2569 Assignment11_00 <> t2 var
+R2565:2566 Assignment11_00 <> t1 var
+R2578:2578 Assignment11_00 <> T var
+R2536:2538 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2541:2545 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2539:2540 Assignment11_00 <> t3 var
+R2546:2546 Assignment11_00 <> T var
+R2514:2516 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2519:2523 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2517:2518 Assignment11_00 <> t2 var
+R2524:2524 Assignment11_00 <> T var
+R2488:2490 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2493:2497 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2491:2492 Assignment11_00 <> t1 var
+R2498:2502 Assignment11_00 <> TBool constr
+R2601:2603 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2609:2613 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2604:2608 Assignment11_00 <> tzero constr
+R2614:2617 Assignment11_00 <> TNat constr
+R2675:2677 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2686:2690 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2678:2682 Assignment11_00 <> tsucc constr
+R2684:2685 Assignment11_00 <> t1 var
+R2691:2694 Assignment11_00 <> TNat constr
+R2650:2652 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2655:2659 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2653:2654 Assignment11_00 <> t1 var
+R2660:2663 Assignment11_00 <> TNat constr
+R2752:2754 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2763:2767 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2755:2759 Assignment11_00 <> tpred constr
+R2761:2762 Assignment11_00 <> t1 var
+R2768:2771 Assignment11_00 <> TNat constr
+R2727:2729 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2732:2736 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2730:2731 Assignment11_00 <> t1 var
+R2737:2740 Assignment11_00 <> TNat constr
+R2831:2833 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2844:2848 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2834:2840 Assignment11_00 <> tiszero constr
+R2842:2843 Assignment11_00 <> t1 var
+R2849:2853 Assignment11_00 <> TBool constr
+R2806:2808 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2811:2815 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R2809:2810 Assignment11_00 <> t1 var
+R2816:2819 Assignment11_00 <> TNat constr
+R2883:2890 Assignment11_00 <> has_type ind
+not 2862 <> ::'|-'_x_'\in'_x
+R3150:3157 Assignment11_00 <> has_type ind
+prf 3167:3180 <> bool_canonical
+R3225:3230 Assignment11_00 <> bvalue ind
+R3232:3232 Assignment11_00 <> t var
+R3214:3218 Assignment11_00 <> value def
+R3220:3220 Assignment11_00 <> t var
+R3196:3198 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R3200:3204 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R3199:3199 Assignment11_00 <> t var
+R3205:3209 Assignment11_00 <> TBool constr
+prf 3330:3342 <> nat_canonical
+R3386:3391 Assignment11_00 <> nvalue ind
+R3393:3393 Assignment11_00 <> t var
+R3375:3379 Assignment11_00 <> value def
+R3381:3381 Assignment11_00 <> t var
+R3358:3360 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R3362:3366 Assignment11_00 <> ::'|-'_x_'\in'_x not
+R3361:3361 Assignment11_00 <> t var
+R3367:3370 Assignment11_00 <> TNat constr
+def 3504:3513 <> amultistep
+R3521:3525 Smallstep <> multi ind
+R3528:3532 Smallstep <> astep ind
+R3534:3535 Assignment11_00 <> st var
+R3577:3586 Assignment11_00 <> amultistep def
+not 3549 <> ::x_'/'_x_'==>a*'_x
+R3649:3653 Assignment11_00 <> astep ind
+R3655:3658 Assignment11_00 <> aval ind
+R3794:3803 Smallstep <> multi_step constr
+R3875:3884 Smallstep <> multi_refl constr
