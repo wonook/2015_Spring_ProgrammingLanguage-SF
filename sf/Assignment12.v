@@ -15,7 +15,16 @@ Example typing_nonexample_3 :
              (tapp (tvar X) (tvar X))) \in
           T).
 Proof.
-  exact FILL_IN_HERE.
+  unfold not. intros. inversion H. inversion H0. 
+  inversion H1; subst; clear H1.
+  inversion H7; subst; clear H7.
+  inversion H4; subst; clear H4.
+  inversion H6; subst; clear H6.
+  rewrite H3 in H4. inversion H4. 
+  assert (forall T T', ~ (TArrow T T' = T)).
+  - induction T; unfold not; intros; try solve by inversion.
+    + inversion H1. eapply IHT1. apply H6.
+  - eapply H1. apply H2.
 Qed.
 
 (*-- Check --*)
@@ -36,7 +45,10 @@ Corollary typable_empty__closed : forall t T,
     empty |- t \in T  ->
     closed t.
 Proof.
-  exact FILL_IN_HERE.
+  intros. remember (@empty ty) as Gamma. unfold closed. unfold not. intros. 
+  assert (exists T', Gamma x = Some T').
+    - apply free_in_context with t T. assumption. assumption.
+    - inversion H1. rewrite HeqGamma in H2. inversion H2.
 Qed.
 
 (*-- Check --*)
@@ -59,7 +71,30 @@ Lemma type_is_unique: forall t G T T'
     (TYPED': G |- t \in T'),
   T = T'.
 Proof.
-  exact FILL_IN_HERE.
+  intros. generalize dependent T'. induction TYPED; intros; inversion TYPED'; subst; eauto.
+  - rewrite H2 in H. inversion H. auto.
+  - assert (T12 = T1). apply IHTYPED. assumption. 
+    rewrite H. auto.
+  - assert (TArrow T1 T2 = TArrow T0 T'). apply IHTYPED1. assumption.
+    inversion H. auto.
+  - assert (T1 = T0). apply IHTYPED1. assumption.
+    assert (T2 = T3). apply IHTYPED2. assumption.
+    subst. auto.
+  - assert (TProd T1 T2 = TProd T' T3). apply IHTYPED. assumption.
+    inversion H. auto.
+  - assert (TProd T1 T2 = TProd T0 T'). apply IHTYPED. assumption.
+    inversion H. auto.
+  - apply IHTYPED2. assert (T1 = T0). apply IHTYPED1. assumption.
+    rewrite H. auto.
+  - assert (T1 = T0). apply IHTYPED. assumption.
+    subst. auto.
+  - assert (T2 = T3). apply IHTYPED. assumption.
+    subst. auto.
+  - assert (TSum T1 T2 = TSum T0 T3). apply IHTYPED1. assumption.
+    inversion H.
+    apply IHTYPED2. rewrite H1. assumption.
+  - assert (TArrow (TArrow T1 T2) (TArrow T1 T2) = TArrow (TArrow T0 T3) (TArrow T0 T3)). apply IHTYPED. assumption. 
+    inversion H. auto.
 Qed.
 
 (*-- Check --*)
@@ -78,7 +113,11 @@ Corollary soundness : forall t t' T,
   t ==>* t' ->
   ~(stuck t').
 Proof.
-  exact FILL_IN_HERE.
+    intros t t' T Hhas_type Hmulti. unfold stuck.
+    intros [Hnf Hnot_val]. unfold normal_form in Hnf.
+    induction Hmulti.
+    - apply Hnot_val. destruct (progress x T). assumption. assumption. exfalso. apply Hnf. assumption.
+    - apply IHHmulti. apply (preservation x y). assumption. assumption. assumption. assumption.
 Qed.
 
 (*-- Check --*)
@@ -108,19 +147,19 @@ Definition halve : tm :=
 Example halve_type: empty |- halve \in TArrow TNat TNat.
 Proof.
   (* unfold halve; eauto 10. *)
-  exact FILL_IN_HERE.
+  unfold halve; eauto 10.
 Qed.
 
 Example halve_10: tapp halve (tnat 10) ==>* tnat 5.
 Proof.
   (* unfold halve; normalize. *)
-  exact FILL_IN_HERE.
+  unfold halve; normalize.
 Qed.
 
 Example halve_11: tapp halve (tnat 11) ==>* tnat 5.
 Proof.
   (* unfold halve; normalize. *)
-  exact FILL_IN_HERE.
+  unfold halve; normalize.
 Qed.
 
 

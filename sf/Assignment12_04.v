@@ -7,7 +7,11 @@ Corollary soundness : forall t t' T,
   t ==>* t' ->
   ~(stuck t').
 Proof.
-  exact FILL_IN_HERE.
+    intros t t' T Hhas_type Hmulti. unfold stuck.
+    intros [Hnf Hnot_val]. unfold normal_form in Hnf.
+    induction Hmulti.
+    - apply Hnot_val. destruct (progress x T). assumption. assumption. exfalso. apply Hnf. assumption.
+    - apply IHHmulti. apply (preservation x y). assumption. assumption. assumption. assumption.
 Qed.
 
 (*-- Check --*)

@@ -7,7 +7,10 @@ Corollary typable_empty__closed : forall t T,
     empty |- t \in T  ->
     closed t.
 Proof.
-  exact FILL_IN_HERE.
+  intros. remember (@empty ty) as Gamma. unfold closed. unfold not. intros. 
+  assert (exists T', Gamma x = Some T').
+    - apply free_in_context with t T. assumption. assumption.
+    - inversion H1. rewrite HeqGamma in H2. inversion H2.
 Qed.
 
 (*-- Check --*)
