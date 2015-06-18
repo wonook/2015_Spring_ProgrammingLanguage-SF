@@ -1,4 +1,4 @@
-bRequire Export Assignment10_00.
+Require Export Assignment10_00.
 
 (* problem #01: 10 points *)
 
